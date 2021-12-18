@@ -4,7 +4,7 @@ type AppProps = {
   greeting: string;
 }
 const HelloWorld = ({ greeting }: AppProps) => (
-  <div>Rendered via TS: {greeting}</div>
+  <div>Rendered via TSX: {greeting}</div>
 )
 
 export default HelloWorld
