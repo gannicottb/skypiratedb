@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: postgres_development
+  database: skypiratedb_development
   pool: 5
   username: postgres
   password:
@@ -27,7 +27,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: postgres_test
+  database: skypiratedb_test
   pool: 5
   username: postgres
   password:
@@ -35,7 +35,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: postgres_production
+  database: skypiratedb_production
   pool: 5
   username: postgres
   password:

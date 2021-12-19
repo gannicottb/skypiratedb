@@ -20,7 +20,5 @@ module Skypiratedb
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.react.server_renderer_extensions = ["jsx", "js", "tsx", "ts"]
-    Rack::MiniProfiler.config.position = "bottom-right"
-    Rack::MiniProfiler.config.start_hidden = false
   end
 end
