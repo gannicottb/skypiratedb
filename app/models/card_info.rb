@@ -4,7 +4,10 @@ class CardInfo < ApplicationRecord
   belongs_to :type
   belongs_to :faction
   belongs_to :artist
-  has_one :card
+  has_one :card, foreign_key: "front_id"
+  has_one :card, foreign_key: "back_id"
+
+  delegate :expansion, :expansion_number, to: :card
 
   FIELDS = %i(
     name

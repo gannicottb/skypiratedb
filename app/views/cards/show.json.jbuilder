@@ -1,1 +1,3 @@
-json.partial! "card", obj: @card
+json.card do
+  json.partial! "card", obj: @card
+end

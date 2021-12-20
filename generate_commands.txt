@@ -1,0 +1,91 @@
+
+ :name,
+ :unique,
+ :type,
+ :subtypes,
+ :faction,
+ :text,
+ :presence1,
+ :presence2,
+ :ammo,
+ :cost,
+ :power,
+ :break,
+ :is_tactic)
+      .merge(back: @data[:back]&.minimal)
+
+
+
+rails g model Card 
+name:string:uniq 
+unique:boolean
+supertype:string
+type:string
+subtypes:string
+raw_text:text
+text:text
+flavor:text
+faction:references
+artist:references
+expansion:references
+expansion_number:number
+attack:number
+defense:number
+ammo:number
+cost:number
+power:number
+durability:number
+image_link:string
+
+# how to handle dfcs
+# currently we just embed another Card in the Card entry in an in-memory cache
+# relationally speaking, we need an id that points to the Card representing the back
+# so we have two cards with the same set_number but are otherwise different
+# problem is that inflates card and faction counts and other things too
+# I guess we just have to always filter dfc backs out or uniq on set_num
+# but we want the card back to have all the same properties as a regular card.
+# the desire at the front-end is the same - we want to just dereference our card back and access 
+# all props
+
+# One option is to make a CardData table, and have that hold the bulk of props
+# Then have Card delegate to its CardData
+
+
+rails g model Artist name:string
+rails g model Faction name:string color:string
+rails g model Subtype name:string
+rails g model Supertype name:string
+rails g model Type name:string
+rails g model Expansion name:string code:string release_date:date
+
+rails g model Card \
+front_id:integer \
+back_id:integer \
+expansion:references \
+expansion_number:integer
+
+rails g model CardInfo \
+name:string:uniq \
+unique:boolean \
+supertype:integer \
+type:references \
+subtype:references \
+raw_text:text \
+text:text \
+flavor:text \
+faction:references \
+artist:references \
+attack:integer \
+defense:integer \
+ammo:integer \
+cost:integer \
+power:integer \
+durability:integer \
+image_link:string
+
+# So in this world, Luc Sangre is:
+# Type id: 3, name: "Captain"
+# Type id: 4, name: "Crew"
+# Card id: 259, set_number: 99, front_id: 259, set_id: 2, back_id: 260
+# CardData id: 259, name: "Luc Sangre", type_id: 3, card_id: 259, text: "When your turn begins, you may spend 1(P)..." 
+# CardData id: 260, name: "The Bat", type_id: 4, card_id: 259, ...
