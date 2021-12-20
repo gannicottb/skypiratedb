@@ -1,0 +1,39 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  unique: false
+  supertype_id: 1
+  type: one
+  subtypes: MyString
+  raw_text: MyText
+  text: MyText
+  flavor: MyText
+  faction: one
+  artist: one
+  attack: 1
+  defense: 1
+  ammo: 1
+  cost: 1
+  power: 1
+  durability: 1
+  image_link: MyString
+
+two:
+  name: MyString
+  unique: false
+  supertype_id: 1
+  type: two
+  subtypes: MyString
+  raw_text: MyText
+  text: MyText
+  flavor: MyText
+  faction: two
+  artist: two
+  attack: 1
+  defense: 1
+  ammo: 1
+  cost: 1
+  power: 1
+  durability: 1
+  image_link: MyString
