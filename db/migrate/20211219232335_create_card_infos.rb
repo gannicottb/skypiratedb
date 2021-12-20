@@ -17,7 +17,7 @@ class CreateCardInfos < ActiveRecord::Migration[6.1]
       t.integer :cost
       t.integer :power
       t.integer :durability
-      t.string :image_link
+      t.string :image_url
 
       t.timestamps
     end

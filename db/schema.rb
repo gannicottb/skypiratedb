@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_12_19_235947) do
     t.integer "cost"
     t.integer "power"
     t.integer "durability"
-    t.string "image_link"
+    t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["artist_id"], name: "index_card_infos_on_artist_id"
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 2021_12_19_235947) do
 
   create_table "factions", force: :cascade do |t|
     t.string "name"
-    t.string "color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
