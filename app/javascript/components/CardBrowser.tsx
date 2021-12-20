@@ -8,8 +8,8 @@ type CardBrowserProps = {
 
 export default ({ cards }: CardBrowserProps) => (
   <ChakraProvider>
-    <Container>
-      <Grid templateColumns='repeat(4, 1fr)' gap={6}>
+    <Container maxW='container.lg'>
+      <Grid templateColumns='repeat(5, 1fr)' gap={6}>
         {cards.map((c) =>
           <Card
             card={c}
