@@ -1,0 +1,550 @@
+Name,Faction,Supertype,Type,Subtypes,Text,Font_Size,Name_Font_Size,Unique,Cost,Power,Break,Presence1,Presence2,Ammo,front,back,Art,Illustrator,X_pos,Y_pos,zoom,starter_id,Set,Number,Flavor
+Card Catalog,Ghost,,Asset,,"When your turn begins, you may discard a card from your hand. If you do, draw a card.",0.9,,,,,,,,,,,ItemsCards_42_b.png,REXARD,,400%,105%,,c1,1,The Eternal Court’s long imprisonment gave them ample time to organize their archives.
+Haunted Barrel,Ghost,,Asset,Curse,"When this asset enters play, choose a cannon. It gets -1 power.",,,,,,,,,,,,ItemsCards_43_b.png,REXARD,,,105%,,c1,2,“I can’t explain it. The powder must be damp or something…”
+Leaky Kegs,Ghost,,Asset,Curse,"When your turn begins, your opponent loses 1(P).",,,TRUE,,,,,,,,,SGI_73.png,REXARD,,-45%,,,c1,3,Maybe someone’s stealing it from the engine room. Maybe it’s just disappearing into thin air.
+Mortal Frailty,Ghost,,Asset,Curse,"When this asset enters play, choose a crew. It gets -2 presence. 
+
+When the chosen crew leaves play, return this asset to its captain's hand.",,,,,,,,,,,,SGI_30.PNG,REXARD,,,,,c1,4,
+King Adarath,Ghost,,Captain,,"Whenever you raid or repel, you may spend 1(P) to put a crew from your discard pile into play facedown as a 2/2 Shade crew, in reserve.",0.8,,,,,,,,,,,FantasyCardsPack_049.png,REXARD,,,,,c1,5,
+Queen Valii,Ghost,,Captain,,"Whenever you breach, you may spend 1(P) to put a crew discarded by the damage into play facedown as a 2/2 Shade crew under your control.",0.8,,,,,,,,,,,FantasyCardsPack_035.PNG,REXARD,,,,,c1,6,
+Adarath's Hound,Ghost,,Crew,,"Whenever this crew boards, choose a crew the defending player controls. It cannot be committed to the defending party.",,,,,,,2,2,,,,FantasyCardsPack_002.png,REXARD,,-47%,,,c1,7,
+Breathstealer,Ghost,,Crew,,"**(T):** Choose a crew in your opponent’s party. Until the attempt ends, that crew gets -2 presence and is discarded if its presence is 0.",,,,,,,2,1,,,,FantasyCardsPack_024.png,REXARD,,,,,c1,8,
+Court Jester,Ghost,,Crew,,"When this crew enters play, choose one. Your opponent chooses the other:
+
+* Gain 2(P).
+* Draw two cards.",,,,,,,2,3,,,,FantasyCardsPack_006.png,REXARD,,-94%,,,c1,9,
+Eldeghast,Ghost,,Crew,,This crew cannot be stowed from play.,,,TRUE,,,,1,1,,,,Tex_skeleton_bg.png,REXARD,,,,,c1,10,"He served the Eternal Court when the world was young, and its ending did not shake his loyalty."
+Imposing Spectre,Ghost,,Crew,Shade,"As long as you control a Curse, your opponent must spend 1(P) more to board.",,,,,,,1,3,,,,FantasyCardsPack_019.png,REXARD,,,,,c1,11,You should have never come this far.
+Peekaboo,Ghost,Tactic,Crew,Shade,"*(Play only during a boarding attempt).*
+
+Whenever this crew raids, choose an asset the defending player controls. Turn it facedown and it becomes a 2/2 Shade crew.",,,,,,,2,2,,,,imp.png,REXARD,,,,,c1,12,
+Phantom Duelist,Ghost,,Crew,Shade,"Whenever you play a Tactic card or use a Tactic effect, if this crew is in your party, it gets +1 presence until the attempt ends.",,,,,,,2,2,,,,Tex_ghost_bg.png,REXARD,,,,,c1,13,
+Restless Dead,Ghost,,Crew,,"**(T):** While defending, deal 1 damage to the boarding player and **pass**. Use any number of times per attempt.",,,,,,,1,3,,,,FantasyCardsPack_022.PNG,REXARD,,,,,c1,14,
+Seneschal Kaine,Ghost,,Crew,Shade,"Reveal a Ghost card from your hand as an additional cost to play this crew.
+
+When this crew enters play, you may play a maneuver from your discard pile. If you do, eject that card after it resolves.",,,TRUE,,,,1,2,,,,Ghost.png,REXARD,,,,,c1,15,
+Valii's Conduit,Ghost,,Crew,,"When this crew enters play, all cannons get +1 cost until your next turn begins.",,,,,,,4,0,,,,FantasyCardsPack_020.PNG,REXARD,,,,,c1,16,The arcane fields that power their weapons have a dampening effect on lesser technologies.
+Arc Caster,Ghost,,Emplacement,Cannon,**(A):** Swap this cannon's cost and power until the turn ends.,,,,3,2,3,,,,,,G_Arc Caster.jpg,Trevor Gannicott,,100%,,,c1,17,These spectres have forgotten more about weaponcraft than we will ever know.
+Coilgun,Ghost,,Emplacement,Cannon,"Whenever this cannon unstuns, deal 1 damage to your opponent.",,,,2,2,2,,,,,,G_Coilgun.jpg,Trevor Gannicott,,70%,,,c1,18,"Fiendish potential, forever crackling."
+Coldsteel Plating,Ghost,,Emplacement,Structure,"*React -* Whenever you are dealt damage, reduce it by 1 and put a counter on this structure.
+
+This structure gets -1 durability for each counter on it. When it has 0 durability, break it.",,,,,,5,,,,,,ice_hut.png,REXARD,,,,,c1,19,
+Ectoplasmic Lens,Ghost,,Emplacement,Structure,"**(A), return a crew you control to its captain’s hand:** Draw a card, then discard a card from your hand. Use only once each turn.
+
+When this structure breaks, search your Hold for a Curse, reveal it, and put it into your hand.",0.8,,,,,3,,,,,,LootCard_116.png,REXARD,,-190%,108%,,c1,20,
+Geistlaser,Ghost,,Emplacement,Cannon,"**(A), discard X crew you control:** Put X counters on this cannon.
+
+This cannon gets +1 power for each counter on it.",,,,8,0,5,,,,,,G_Geistlaser.jpg,Trevor Gannicott,,122%,,,c1,21,
+Soul Crypt,Ghost,,Emplacement,Structure,"Whenever you draw a card during your turn, you may spend 1(P) to put it into play facedown as a 2/2 Shade crew. Use only once each turn.
+
+When this structure breaks, search your Hold for a Curse, reveal it, and put it into your hand.",0.8,,,,,2,,,,,,SGI_60.png,REXARD,,,,,c1,22,
+Supercharger,Ghost,,Emplacement,Structure,"Cannons you control get +1 cost.
+
+The first time each cannon you control unstuns each turn, gain 2(P).
+
+When this structure breaks, search your Hold for a Curse, reveal it, and put it into your hand.",0.8,,,,,4,,,,,,ItemsCards_14_b.png,REXARD,,-430%,106%,,c1,23,
+Armored Rush,Ghost,,Maneuver,,"**Board,** choosing this card as your raid token. 
+
+If you raid, shuffle four Shields into your Hold and eject this card.",,,,,,,,,,,,SGI_78.png,REXARD,,,,,c1,24,
+Consume Spirit,Ghost,,Maneuver,,"Discard any number of Shades you control. Gain 2(P) for each Shade discarded this way.",,,,,,,,,,,,LootCard_67.png,REXARD,,350%,106%,,c1,25,
+Delve the Atheneum,Ghost,,Maneuver,,"Spend (A) as an additional cost to play this maneuver.
+
+Shuffle any number of cards from your hand into your Hold. Draw that many cards plus one. Gain 3(P).",,,,,,,,,,,,goblin_s_dwelling.png,REXARD,,,,,c1,26,
+Polterheist,Ghost,,Maneuver,,"**Board,** choosing this card as your raid token.
+
+If you raid, put the top two cards of the defending player’s Hold into play facedown as 2/2 Shade crew under your control, in reserve.",,,,,,,,,,,,skeleton.png,REXARD,,,,,c1,27,
+Rip Soul,Ghost,Tactic,Maneuver,,Choose a crew in your opponent’s party. Turn it facedown and it becomes a 2/2 Shade crew.,,,,,,,,,,,,Ice_fish.PNG,REXARD,,,,,c1,28,
+Summon Shade,Ghost,Tactic,Maneuver,,Put the top card of your Hold into play facedown as a 2/2 Shade crew. Move it to reserve when the attempt ends.,,,,,,,,,,,,ma (75).png,REXARD,,,,,c1,29,
+Twilight Pulse,Ghost,,Maneuver,,"Spend 2(P) as an additional cost to play this maneuver.
+
+Turn all crew in play facedown. They each become a 2/2 Shade crew. ",,,,,,,,,,,,FantasyCardsPack_010.png,REXARD,,,,,c1,30,
+Expunger,Ghost,,Special Ammo,,"*React -* Whenever this cannon would resolve damage, eject that many cards from the top of your opponent’s Hold instead.",,,,,,,,,1,,,LootCard_61.png,REXARD,33%,275%,108%,,c1,31,
+Soulcharged Munitions,Ghost,,Special Ammo,,"As long as the total presence of crew you control is greater than the total presence of crew your opponent controls, this cannon gets +2 power.",,,,,,,,,2,,,LootCard_19.png,REXARD,33%,200%,108%,,c1,32,
+Shade,Ghost,,Token,Crew|Shade,*You may cover a facedown card with this card as a reminder.*,,,,,,,2,2,,,,fantom.PNG,REXARD,,,,,c1,33,
+Ablative Shield,Imperial,,Asset,,"Security Set. *(Limit 1 Set per deck).*
+
+*React -* Whenever you are dealt damage, you may eject this asset to reduce it by 3.",,,,,,,,,,,,SGI_addons_169.PNG,REXARD,,,,,c1,34,
+Extra Rations,Imperial,,Asset,,"This asset enters play with three counters on it. When it runs out, discard it.
+
+When your turn begins, remove a counter from this asset and you may draw two cards.",,,,,,,,,,,,FantasyCardsPack_029.png,REXARD,,,,,c1,35,
+Extractor,Imperial,,Asset,,"**(A), return a crew you control to its captain’s hand:** Gain 2(P). Use only once each turn.",,,,,,,,,,,,Invisibility.png,REXARD,,,,,c1,36,Imperial citizens are not permitted excess personal possessions.
+Brass,Imperial,,Captain,,**(A):** Choose a cannon you control. It gets +1 cost and +2 power until the turn ends. Use only once each turn.,,,,,,,,,,,,Adventurer.png,REXARD,,,,B,c1,37,
+Harmony,Imperial,,Captain,,"Whenever you raid or repel, you may spend 1(P) to stow a maneuver from your discard pile.",,,,,,,,,,,,FantasyCardsPack_039.png,REXARD,,,,H,c1,38,
+Clarity,Imperial,,Crew,,"Whenever you spend (A) to use an action on a card, if you’ve spent exactly 3(A) to use actions on cards this turn, gain (A).",,,TRUE,,,,1,1,,,,Tex_h_mage_female_bg.png,REXARD,,,,,c1,39,“Always keep your eyes on the bigger picture.”
+Frontliner,Imperial,,Crew,,"Whenever this crew raids or repels, gain 1(P).",,,,,,,3,2,,,,Tex_h_scout_male_bg.png,REXARD,,46%,,H,c1,40,Securing the spoils of war for glory and Empire.
+Gunnery Officer,Imperial,,Crew,,"When this crew enters play, cannons you control get +1 power until the turn ends.",,,,,,,1,3,,,,Tex_elf_sentinel_female_bg.png,REXARD,,,,B,c1,41,“Let me show you how it’s done.”
+Musketeer,Imperial,,Crew,,"**(T), 1(P):** While defending, stow a crew with 3 or less presence in the boarding party.",,,,,,,2,3,,,,Tex_drow_warrior_female_bg.png,REXARD,,65%,,B,c1,42,The crack of an Imperial rifle is the sound of a fight ending before it started.
+Pike,Imperial,,Crew,,"Reveal an Imperial card from your hand as an additional cost to play this crew.
+
+Whenever this crew raids, if you chose the Repair raid token, draw up to three cards.",,,TRUE,,,,1,5,,,,FantasyCardsPack_057.png,REXARD,,,,,c1,43,
+Skilled Operators,Imperial,,Crew,,"When this crew enters play, put a 1/1 Deckhand crew token into play, then you may use the Operate action on a card you control, reducing the cost by (A).",0.9,,,,,,1,1,,,,Tex_h_mage_male_bg.png,REXARD,,51%,,,c1,44,
+Skipper,Imperial,Tactic,Crew,,"*(Play only during a boarding attempt).*
+
+**(T):** Return this crew to its captain’s hand and **pass**.",,,,,,,2,2,,,,naga.png,REXARD,,,,,c1,45,
+Swordsman,Imperial,,Crew,,"Conquest Set. *(Limit 1 Set per deck).*
+
+As long as your opponent’s party has two or more crew, this crew gets +2 presence.",,,,,,,2,2,,,,Tex_drow_warrior_male_bg.png,REXARD,,38%,,H,c1,46,“They’ve got us outnumbered? Then it’s a fair fight.”
+3-Pounder,Imperial,,Emplacement,Cannon,,,,,1,1,3,,,,,,I_3-Pounder.jpg,Trevor Gannicott,,,,,c1,47,"A common sight on Imperial gunships, favored for its ease of deployment."
+Autoloader,Imperial,,Emplacement,Structure,"**(A):** Operate 1. Search your Hold for a special ammo, then play it.
+
+When this structure breaks, stow a special ammo from your discard pile for each operator it has.",,,,,,3,,,,,,SGI_113.PNG,REXARD,,95%,,,c1,48,
+Carapace,Imperial,,Emplacement,Structure,"Security Set. *(Limit 1 Set per deck).*
+
+Whenever you defend, you may spend 1(P) to deal 2 damage to boarding player.",,,,,,2,,,,,,shell_house.png,REXARD,,-1100%,,B,c1,49,
+Hullpiercer,Imperial,,Emplacement,Structure,"Conquest Set. *(Limit 1 Set per deck).*
+
+Whenever you board, you may spend 1(P) to deal 2 damage to the defending player.",,,,,,2,,,,,,SGI_17.png,REXARD,,156%,,,c1,50,
+Mongoose,Imperial,,Emplacement,Cannon,This cannon gets +1 power for each other stunned cannon you control.,,,,2,2,3,,,,,,I_Mongoose.jpg,Trevor Gannicott,,,,,c1,51,The last one’s a doozy.
+Salty Karla,Imperial,,Emplacement,Cannon,"**(A):** Operate 1.
+
+This cannon gets -1 cost for each operator it has.",,,,5,4,4,,,,,,I_Salty Karla.jpg,Trevor Gannicott,,,,,c1,52,"It’s not magic, it’s an army of skilled hands working in concert."
+Warmonger,Imperial,,Emplacement,Cannon,"Whenever you raid, this cannon gets -1 cost and +1 power until the turn ends.",,,,3,3,4,,,,,,I_Warmonger.jpg,Trevor Gannicott,,,,,c1,53,Just try to not hit the boarding party.
+Broadside,Imperial,,Maneuver,,"Spend (A) as an additional cost to play this maneuver.
+
+During your cannon phase this turn, you may fire each unstunned cannon you control.",,,,,,,,,,,,telekinesis.png,REXARD,,,,B,c1,54,
+Buying Time,Imperial,,Maneuver,,"**Board**, spending 2(P) less. You must choose the Repair raid token.",,,,,,,,,,,,LootCard_63.png,REXARD,,265%,110%,H,c1,55,"""How long do you need?"""
+Falsified Orders,Imperial,Tactic,Maneuver,,Stow a crew in your opponent’s party. Its captain draws a card.,,,,,,,,,,,,wizard.png,REXARD,,,,H,c1,56,"""Says here I'm supposed to go do inventory, sir."""
+Guard the Hold,Imperial,Tactic,Maneuver,,"Security Set. *(Limit 1 Set per deck).*
+
+While defending, choose two:
+
+* Put a 1/1 Deckhand crew token into play.
+* Choose a crew in a party. Move it to reserve.
+* Shuffle three Shields into your Hold. Eject this card.",,,,,,,,,,,,ItemsCards_33_b.png,REXARD,,-1500%,,,c1,57,
+Proliferate,Imperial,,Maneuver,,"Spend (A) as an additional cost to play this maneuver.
+
+Gain 5(P).",,,,,,,,,,,,LootCard_39.png,REXARD,,320%,106%,,c1,58,The Empire has so much to offer its citizens. Is a little obedience really so much to ask in return?
+Requisition,Imperial,,Maneuver,,"Choose one:
+
+* Search the top five cards of your Hold for an asset, then play it.
+* Shuffle three Shields into your Hold. Eject this card.",,,,,,,,,,,,LootCard_54.png,REXARD,,320%,106%,,c1,59,
+Resupply,Imperial,,Maneuver,,"Choose up to one asset, crew, and special ammo card from your discard pile. Put one on top of your Hold and stow the rest. Eject this card.",,,,,,,,,,,,SGI_13.png,REXARD,,,,B,c1,60,
+Skirmish,Imperial,Tactic,Maneuver,,"Conquest Set. *(Limit 1 Set per deck).*
+
+While boarding, choose two:
+
+* Search the top three cards of your Hold for a crew, then play it.
+* Choose a crew in reserve. Move it to the attempt.
+* Choose a crew. It gets +1 presence until the attempt ends.",0.65,,,,,,,,,,,ItemsCards_25_b.png,REXARD,,-1690%,,H,c1,61,
+Tighten Chains,Imperial,Tactic,Maneuver,,Players cannot play Tactic cards until the attempt ends.,,,,,,,,,,,,ItemsCards_35_b.png,REXARD,,-1900%,,,c1,62,Nobody move.
+Battering Volley,Imperial,,Special Ammo,,"This cannon gets +1 power.
+
+Whenever this cannon breaches, your opponent discards an asset they control.",,,,,,,,,2,,,LootCard_13.png,REXARD,33%,275%,108%,,c1,63,
+Scrapshot,Imperial,,Special Ammo,,"Whenever this cannon breaches, your opponent discards three crew they control with 1 or less presence.",,,,,,,,,1,,,SGI_addons_183.png,REXARD,,,,B,c1,64,
+Torpedo,Imperial,,Special Ammo,,"This cannon gets +1 power.
+
+This cannon’s damage discards cards from the bottom of your opponent’s Hold.",,,,,,,,,2,,,LootCard_93.png,REXARD,33%,275%,108%,,c1,65,
+Big Mouth,Neutral,,Crew,,"**(T):** While boarding, choose a crew the defending player controls. Move it to the attempt.",1,,,,,,3,2,,,,ma (47).png,REXARD,,,,H,c1,66,
+Deadwind Mercenary,Neutral,,Crew,,,,,,,,,3,4,,,,Tex_h_warrior_male_bg.png,REXARD,,35%,,,c1,67,"Pay them on time, and they'll get the job done."
+Fisher,Neutral,,Crew,,"When this crew enters play, draw a card.",,,,,,,1,1,,,,Fisher.png,REXARD,,,,,c1,68,Ask about the catch of the day!
+Galeth of Cloudreach,Neutral,,Crew,,,,,TRUE,,,,-,6,,,,swordsman.png,REXARD,,,,B,c1,69,None shall pass.
+Hedge Mage,Neutral,,Crew,,"When this crew enters play, gain 1(P).",,,,,,,1,1,,,,Tex_Forest_Keeper_bg.png,REXARD,,,,,c1,70,There are still those among the isles with some small magical skill.
+Sapper,Neutral,,Crew,,"Whenever this crew raids, shuffle a Bomb into your opponent’s Hold.",,,,,,,2,2,,,,kobold.png,REXARD,,,,,c1,71,"""Don't let that sneaky one anywhere near the hold! Push them back!"""
+Seasoned Mentor,Neutral,,Crew,,"When this crew enters play, put a 1/1 Deckhand crew token into play.",,,,,,,2,2,,,,FantasyCardsPack_009.png,REXARD,,,,,c1,72,"""Someone's gotta show you the ropes, kid."""
+Smelly Pete,Neutral,,Crew,,"When this crew enters play, stow another crew you control.
+
+Whenever this crew boards, stow a crew the defending player controls.",0.9,,TRUE,,,,1,2,,,,ghoul.png,REXARD,,,,C,c1,73,
+Big Daryl,Neutral,,Emplacement,Cannon,,,,,4,4,5,,,,,,N_BigDarrel.jpg,Trevor Gannicott,,,,,c1,74,Any questions?
+Crow's Foot,Neutral,,Emplacement,Cannon,,,,,2,2,3,,,,,,N_Crows Foot.jpg,Trevor Gannicott,,82%,,B,c1,75,Ka-kaw!
+Medbay,Neutral,,Emplacement,Structure,"Whenever one or more crew are discarded from your Hold, you may store one of them on this structure. If you do, discard all previously stored crew.
+
+**(A), 1(P):** Play a crew stored on this structure.",,,,,,3,,,,,,Barracks.png,REXARD,,-1840%,,H,c1,76,
+Palisade,Neutral,,Emplacement,Structure,"*React -* Whenever you are dealt damage, you may break this structure to reduce that damage to 0.",,,,,,3,,,,,,archery_yard.png,REXARD,,,,,c1,77,Sacrificial bulkheads have proven time and time again to be one of the most effective answers to cannon fire.
+All Hands on Deck!,Neutral,Tactic,Maneuver,,"Search the top four cards of your Hold for a crew, then play it.",,,,,,,,,,,,star_fire.png,REXARD,,,,,c1,78,The work goes quickly when everyone pitches in.
+Evasive Maneuvers,Neutral,,Maneuver,,"You cannot board this turn.
+
+Until your next turn begins, whenever you deal or are dealt cannon damage, reduce it by 3.",1,,,,,,,,,,,SGI_42.png,REXARD,,,,,c1,79,
+Go for the Captain,Neutral,,Maneuver,,"**Board,** choosing this card as your raid token.
+
+If you raid, reveal the defending player’s hand. Choose a card from it. The defending player discards that card. You may draw a card.",,,,,,,,,,,,FantasyCardsPack_028.png,REXARD,,,,,c1,80,
+Lucky Catch,Neutral,,Maneuver,,Return a card from your discard pile to your hand.,,,,,,,,,,,,spear.png,REXARD,,,,,c1,81,Going overboard isn't so bad unless you miss the catchnet.
+Powder Cache,Neutral,,Maneuver,,Gain 3(P).,,,,,,,,,,,,ItemsCards_68_b.png,REXARD,,-1800%,,,c1,82,"What's left of the world runs on compressed orbs of wizard dust, collected from the air and then burned for its prodigious energy output."
+Prepare for War,Neutral,,Maneuver,,Shuffle four Shields into your Hold. Eject this card.,,,,,,,,,,,,FantasyCardsPack_055.png,REXARD,,-375%,,,c1,83,There’s no such thing as being too prepared when the cannons start firing.
+Smash,Neutral,Tactic,Maneuver,,"While boarding, choose one:
+
+* Discard an asset the defending player controls.
+* Eject up to two cards from the defending player’s discard pile.",,,,,,,,,,,,ItemsCards_105_b.png,REXARD,,,,,c1,84,
+Boarding,Neutral,,Reference,,"**INITIATE**
+<hr />
+* Spend 3(P).
+* Place a raid token on an unbroken emplacement (structures first).
+* Commit crew to your party.
+* Defending player commits crew to their party.
+
+**BATTLE**
+<hr />
+Starting with the defending player, alternate until consecutive pass:
+
+* (T): Play a Tactic card.
+* (T): Use a Tactic effect (noncrew or a crew in your party, once each).
+* (T): Pass.
+
+**RESOLVE**
+<hr />
+* Compare presence for Raid/Repel.
+* If Raid: check for break.
+* Stow both parties.
+* Attacker action phase ends.",0.7,,,,,,,,,,,mana_storm.png,REXARD,,,,,c1,85,
+Player Turn,Neutral,,Reference,,"**Start Phase**
+
+* Your turn begins.
+* Draw a card.
+
+**Action Phase** (3(A))
+
+* (A): Draw a card.
+* (A): Gain 1(P).
+* (A): Play a card.
+* (A): Board *(spending 3(P))*.
+
+**Cannon Phase**
+
+* If your cannons are all stunned, unstun them.
+* Otherwise, you may fire an unstunned cannon.
+
+**End Phase**
+
+* Stow down to hand size.
+* Your turn ends.",0.8,,,,,,,,,,,desert.png,REXARD,,,,,c1,86,
+Ice Bomb,Neutral,,Special Ammo,,"When you load this special ammo, stun the loaded cannon.
+
+Whenever this cannon breaches, shuffle a Bomb into your opponent's Hold.",,,,,,,,,1,,,warpstone.png,REXARD,,170%,,,c1,87,
+Bomb,Neutral,,Status,,"If you draw or discard this card, it deals 3 damage to you and ejects.",,,,,,,,,,,,LootCard_114.png,REXARD,,103%,110%,,c1,88,
+First Player,Neutral,,Status,,*You go first. You cannot board or fire a cannon on your first turn!*,,,,,,,,,,,,ItemsCards_47_b.png,REXARD,,center,106%,,c1,89,
+Shield,Neutral,,Status,,"If you discard this card, eject it.",0.95,,,,,,,,,,,back_wood.png,REXARD,,,,,c1,90,
+Deckhand,Neutral,,Token,Crew|Deckhand,,,,,,,,1,1,,,,Marauder.png,REXARD,,,,,c1,91,
+Initiative,Neutral,Raid,Token,,"If you raid, when your next turn begins, gain (A).",,,,,,,,,,,,Artifact.png,REXARD,,,,,c1,92,
+Plunder,Neutral,Raid,Token,,"If you raid, plunder 3. *(Reveal the top three cards of the defending player’s Hold, put up to one noncrew card from among them into your Treasure Chest, then discard the rest. The defending player may recover one of them).*",,,,,,,,,,,,Demon.png,REXARD,,,,,c1,93,
+Repair,Neutral,Raid,Token,,"If you raid, stow up to two noncrew cards from your discard pile. *(Put the chosen cards on the bottom of your Hold in any order).*",,,,,,,,,,,,waggon.png,REXARD,,,,,c1,94,
+Buddy System,Pirate,,Asset,,"The first time you play a crew each turn, put a 1/1 Deckhand crew token into play.",,,Unique,,,,,,,,,sheep.png,REXARD,,,,,c1,95,Everyone needs a buddy.
+Illegal Bore,Pirate,,Asset,,"When your cannon phase begins, you may discard a card from your hand. If you do, choose a cannon you control. It gets +2 cost and +2 power until the turn ends.",,,,,,,,,,,,SGI_102.png,REXARD,,26%,,,c1,96,
+Open Keg,Pirate,,Asset,,"This asset enters play with three counters on it. When it runs out, discard it.
+
+When your turn begins, remove a counter from this asset and gain 2(P).",,,,,,,,,,,,SGI_104.png,REXARD,,,,,c1,97,
+Burgle,Pirate,,Captain,,"Whenever you breach, you may spend 1(P) to put a noncrew card discarded by the damage into your Treasure Chest.",,,,,,,,,,,,girl.png,REXARD,,,,G,c1,98,
+Cleaver,Pirate,,Captain,,"Whenever you board, you may spend 1(P) to put a 1/1 Deckhand crew token into play.",,,,,,,,,,,,FantasyCardsPack_044.png,REXARD,,,,C,c1,99,
+Basher,Pirate,,Crew,,Discard a card from your hand as an additional cost to play this crew.,,,,,,,5,4,,,,Tex_orc_bg.png,REXARD,,,,G,c1,100,He really needs to learn how to knock.
+Chef Danl,Pirate,,Crew,,"Whenever this crew raids, you may draw cards equal to the number of crew in your party.",,,TRUE,,,,2,3,,,,FantasyCardsPack_034.png,REXARD,,,,,c1,101,
+Dusty Zeke,Pirate,,Crew,,"*Reckless -* If you discard this card from your hand, you may spend 1(P) to play it.",,,TRUE,,,,2,2,,,,Tex_h_barbarian_male_bg.png,REXARD,,39%,,G,c1,102,"Some people find powder to be a potent intoxicant, deadening the senses to a point where not even death can find them."
+Friendo,Pirate,,Crew,,X is the number of Deckhands in your party.,,,TRUE,,,,X,X,,,,To-ku.png,REXARD,,,,,c1,103,Pirate's best friend.
+Grappler,Pirate,,Crew,,**(T):** Choose a crew in your opponent’s party. Stow this crew and the chosen crew.,,,,,,,2,1,,,,Tex_Troll_bg.png,REXARD,,-41%,,,c1,104,It’s all about leverage.
+Relic Diver,Pirate,,Crew,,"**(T):** This crew gets +3 presence until the attempt ends. When the attempt ends, discard this crew.",,,,,,,3,-,,,,diver.png,REXARD,,,,C,c1,105,
+Ship Sentinel,Pirate,,Crew,,"**(T):** While defending, move a crew from the boarding party to reserve.",,,,,,,-,3,,,,mercenary.png,REXARD,,,,G,c1,106,"“I’ll send ‘em packing, boss.”"
+Tev the Tireless,Pirate,,Crew,,"As you play this crew, you may reveal a Pirate card from your hand. If you do, put a crew token into play that's a copy of this crew, except it's named Bram the Bold.
+
+Whenever this crew raids, deal 1 damage to the defending player.",0.8,,TRUE,,,,2,1,,,,FantasyCardsPack_046.png,REXARD,,50%,,C,c1,107,
+Treasure Hoarder,Pirate,,Crew,,"When this crew enters play, gain 1(P) for each card in your Treasure Chest.",,,,,,,3,1,,,,insect.png,REXARD,,,,,c1,108,That thing loves treasure more than its own mother.
+Ambusher’s Perch,Pirate,,Emplacement,Structure,"**(T), discard a card from your hand:** While defending, put two 1/1 Deckhand crew tokens into play.
+
+When this structure breaks, return a crew in your party to its captain's hand.",,,,,,2,,,,,,SGI_148.png,REXARD,,,,G,c1,109,
+Cerberus,Pirate,,Emplacement,Cannon,"**(A):** Operate 2 (Limit 4 operators).
+
+After this cannon fires, you may unstun it and fire it again. You may do this once each turn for every two operators it has.",,,,2,2,5,,,,,,Cerberus.png,Trevor Gannicott,,173%,102%,,c1,110,
+Loot Bags,Pirate,,Emplacement,Structure,"Whenever you raid, gain 1(P).
+
+When this structure breaks, put a 1/1 Deckhand crew token into play, in reserve.",1,,,,,3,,,,,,SGI_158.png,REXARD,,,,C,c1,111,
+Maw,Pirate,,Emplacement,Cannon,You may load an additional special ammo into this cannon.,,,,3,3,4,,,,,,maw-1.png,Brandon Gannicott,,,,,c1,112,Where does it put it all?
+Mess Hall,Pirate,,Emplacement,Structure,"When your turn ends, draw cards until you have three cards in your hand.
+
+When this structure breaks, put a 1/1 Deckhand crew token into play, in reserve.",,,,,,3,,,,,,chapel.png,REXARD,,,,,c1,113,
+Raging Bull,Pirate,,Emplacement,Cannon,"When your cannon phase begins, you may have this cannon get +2 cost and +2 power until the turn ends.",,,,2,2,3,,,,,,PirateCannon_TS_M.jpg,Brandon Gannicott,,,,,c1,114,
+War Drums,Pirate,,Emplacement,Structure,"**(A):** Operate 1 (Limit 1 operator).
+
+**(T):** If this structure is operated, choose a crew. Move it to the attempt.",,,,,,4,,,,,,FantasyCardsPack_053.png,REXARD,,-2200%,,,c1,115,
+Chow Time,Pirate,,Maneuver,,Draw cards until you have cards in your hand equal to your maximum hand size.,,,,,,,,,,,,pancakes.png,REXARD,,,,,c1,116,Mealtimes are sacred on any ship flying the Pirate banner.
+Chum the Skies!,Pirate,,Maneuver,,"Deal 2 damage to each player.
+
+Each player gains 4(P).",,,,,,,,,,,,FantasyCardsPack_027.png,REXARD,,-1100%,,,c1,117,That ought to get the skywolves interested.
+Deck Party,Pirate,,Maneuver,,"Choose one:
+
+* Play two crew from your hand.
+* Stow three crew cards from your discard pile. Eject this card.",,,,,,,,,,,,Beer.png,REXARD,,,,G,c1,118,
+Overwhelm,Pirate,,Maneuver,,"**Board,** choosing this card as your raid token.
+
+If you raid, deal damage to the defending player equal to the number of crew in your party.",,,,,,,,,,,,crab.png,REXARD,,,,C,c1,119,
+Rob the Engine Room,Pirate,,Maneuver,,"**Board,** choosing this card as your raid token.
+
+If you raid, steal 6(P).",,,,,,,,,,,,FantasyCardsPack_005.png,REXARD,,,,,c1,120,"Staying aloft for weeks at a time requires a lot of fuel. Fortunately, wealthy ships always seem to have extra."
+Sleight of Hand,Pirate,Tactic,Maneuver,,"While boarding, move a crew in your party to reserve. If you do, steal 2(P).",,,,,,,,,,,,LootCard_115.png,REXARD,,250%,108%,C,c1,121,"“See if you can rustle up some powder while you’re over there, yeah?”"
+Sneak Attack,Pirate,,Maneuver,,"Fire an unstunned cannon you control.
+
+*Reckless -* If you discard this card from your hand, you may unstun a cannon you control.",,,,,,,,,,,,FantasyCardsPack_021.png,REXARD,,,,G,c1,122,
+Sweep the Leg,Pirate,Tactic,Maneuver,,Choose a crew with 5 or more presence in a party. Discard it.,,,,,,,,,,,,LootCard_49.png,REXARD,,-1150%,,C,c1,123,"The bigger they are, the harder they fall."
+Walk the Plank,Pirate,Tactic,Maneuver,,Choose a crew with 3 or less presence in a party. Discard it.,,,,,,,,,,,,cultist.png,REXARD,,,,,c1,124,"Not much of a choice, really."
+Chainshot,Pirate,,Special Ammo,,"This cannon gets -1 power.
+
+Whenever this cannon breaches, your opponent discards two cards from their hand.",,,,,,,,,2,,,SGI_84.png,REXARD,,,,G,c1,125,
+Prize Claw,Pirate,,Special Ammo,,"Whenever this cannon breaches, plunder 1, then steal 1(P).",,,,,,,,,2,,,prizeclaw-2.png,Trevor Gannicott,,430%,,,c1,126,"Every pull, a winner!"
+Bram the Bold,Pirate,,Token,Crew,"Whenever this crew raids, deal 1 damage to the defending player.",,,TRUE,,,,2,1,,,,FantasyCardsPack_046_mirror.png,REXARD,,429%,,,c1,127,
+Clearinghouse,Trader,,Asset,,"Whenever you play a card from your Treasure Chest, gain 1(P).",,,,,,,,,,,,SGI_59.png,REXARD,,,,,c1,128,Whoever said crime doesn’t pay clearly hasn’t tried it.
+Iron Lancer,Trader,,Asset,Drone,"Whenever you board, you may spend 1(P). If you do, this asset becomes a 3/0 crew until the attempt ends. Move it to the attempt.",,,,,,,,,,,,M_bot.png,REXARD,,,,,c1,129,
+Slush Fund,Trader,,Asset,,**(A):** Gain 1(P) and draw a card.,,,,,,,,,,,,LootCard_47.png,REXARD,,205%,108%,,c1,130,Yesterday's investment is tomorrow's payday.
+Vault Guardian,Trader,,Asset,Drone,"Whenever you defend, you may spend 1(P). If you do, this asset becomes a 0/4 crew until the attempt ends. Move it to the attempt.",,,,,,,,,,,,warrior_bot.png,REXARD,,,,,c1,131,
+Brax Amundus,Trader,,Captain,,"Whenever you raid, you may spend 1(P) to put a noncrew card from the defending player’s discard pile into your Treasure Chest.",0.85,,,,,,,,,,,werewolf.png,REXARD,,,,,c1,132,
+Tech-E,Trader,,Captain,,"The first time you fire a cannon each turn, gain 1(P) or draw a card.",,,,,,,,,,,,FantasyCardsPack_037.png,REXARD,,,,,c1,133,
+Amundus Racketeer,Trader,,Crew,,"When this crew enters play, return a noncrew card from your discard pile to your hand unless your opponent pays you 1(P).",,,,,,,1,1,,,,Tex_minion_bg.png,REXARD,,-150%,,,c1,134,
+Battle Tech,Trader,,Crew,,"Whenever this crew raids, stun a cannon the defending player controls.",,,,,,,3,1,,,,Tex_Metal_golem_bg.png,REXARD,,,,,c1,135,Tech-E’s warriors only need a moment to sabotage opposing cannons.
+Demolition-X,Trader,,Crew,,"Eject a card from your discard pile as an additional cost to play this crew.
+
+Whenever this crew raids, the defending player may pay you 1(P) for each crew in their party. If they do not, discard them all.",,,TRUE,,,,4,2,,,,ma (48).PNG,REXARD,,,,,c1,136,
+Fence,Trader,,Crew,,"**(A):** Choose a card you control. Put another counter of a type already there on it. Your opponent may pay you 1(P) to use this action, choosing a card they control. Use only once each turn.",,,,,,,2,2,,,,FantasyCardsPack_012.png,REXARD,,-158%,,,c1,137,
+Garl Amundus,Trader,,Crew,,"Reveal a Trader card from your hand as an additional cost to play this crew.
+
+Whenever this crew repels, the boarding player may pay you 1(P) for each crew in their party. If they do not, then discard them all.",,,TRUE,,,,2,4,,,,ma (58).PNG,REXARD,,-4%,,,c1,138,
+Hired Muscle,Trader,,Crew,,Spend 1(P) as an additional cost to add this crew to your party.,,,,,,,4,5,,,,yeti.png,REXARD,,,,,c1,139,A powder a day keeps the doctor away.
+Smuggler,Trader,,Crew,,"When this crew enters play, you may put a noncrew card from your opponent’s discard pile into your Treasure Chest. If you do, they gain 1(P).",,,,,,,2,3,,,,Tex_abomination_bg.png,REXARD,,,,,c1,140,
+Straw Man,Trader,,Crew,,"*React -* Whenever a crew you control would be discarded or stowed, you may discard this crew instead.",,,,,,,0,0,,,,SGI_51.png,REXARD,,16%,,,c1,141,
+Trained Skywolf,Trader,,Crew,,"Discard a card from your hand as an additional cost to play this crew.
+
+When this crew enters play, you may draw a card.
+
+Whenever this crew raids, the defending player discards a card from their hand.",0.8,,,,,,3,3,,,,FantasyCardsPack_033.png,REXARD,,,,,c1,142,
+Avenger,Trader,,Emplacement,Cannon,"*React -* Whenever you would pay this cannon’s cost, you may eject three cards from your discard pile. If you do, spend 3(P) less.",,,,3,3,4,,,,,,T_Avenger.jpg,Trevor Gannicott,,40%,,,c1,143,
+Bazaar Stalls,Trader,,Emplacement,Structure,"**(A), pay your opponent 1(P):** Put one noncrew card from your opponent’s discard pile into your Treasure Chest. Use only once each turn.
+
+When this structure breaks, gain 1(P).",,,,,,3,,,,,,lodge.png,REXARD,,,,,c1,144,
+Garbage Gun,Trader,,Emplacement,Cannon,"When your cannon phase begins, you may eject X cards from your Treasure Chest. If you do, this cannon gets +X power until the turn ends.",,,,3,2,4,,,,,,Garbage Gun.png,Trevor Gannicott,,118%,,,c1,145,
+Mail Room,Trader,,Emplacement,Structure,"After mulligans, store the top five cards of your Hold on this structure facedown in a random order.
+
+When your turn begins, put a card stored on this structure into your hand.",,,,,,2,,,,,,LootCard_103.png,REXARD,,-200%,108%,,c1,146,
+Malliket Mortar,Trader,,Emplacement,Cannon,"Whenever this cannon fires, stun all other cannons you control.",,,,2,3,3,,,,,,T_Mallets Mortar.jpg,Trevor Gannicott,,,,,c1,147,"No island makes a better gun than Malliket, but the recoil is something else."
+Tollbooth,Trader,,Emplacement,Structure,Your opponent must pay you 1(P) as an additional cost to board.,,,,,,2,,,,,,old_tower.png,REXARD,,-1660%,,,c1,148, All business conducted aboard a Trader League ship is subject to service fees.
+Trade Pod,Trader,,Emplacement,Structure,"When your turn begins, you may eject a card from your discard pile to gain 1(P).
+
+When this structure breaks, you may draw a card.",0.9,,,,,3,,,,,,LootCard_29.png,REXARD,,-220%,108%,,c1,149,
+Acquire,Trader,,Maneuver,,Draw three cards.,,,,,,,,,,,,LootCard_127.png,REXARD,,-875%,,,c1,150,Trader captains can't abide a shortage of anything.
+All That Glitters,Trader,,Maneuver,,"**Board,** choosing this card as your raid token.
+
+If you raid, plunder 4. You may put an additional noncrew card from the revealed cards into your Treasure Chest.",,,,,,,,,,,,ItemsCards_69_b.png,REXARD,,-1700%,,,c1,151,
+Deploy Drone,Trader,Tactic,Maneuver,,"While defending, put a 0/4 Drone crew token into play. When the boarding attempt ends, discard it.",,,,,,,,,,,,Tex_stone_spirit_bg.png,REXARD,,-900%,,,c1,152,Protect the merchandise!
+Careful Curation,Trader,,Maneuver,,Stow up to three cards with different names from your discard pile. Eject this card.,,,,,,,,,,,,LootCard_117.png,REXARD,,235%,108%,,c1,153,"What you need, when you need it."
+Contract to Kill,Trader,Tactic,Maneuver,,"While boarding, move a crew in your party to reserve. If you do, choose and discard a crew the defending player controls.",,,,,,,,,,,,coin.png,REXARD,,-1400%,,,c1,154,
+Cook the Books,Trader,,Maneuver,,"Put a noncrew card from your discard pile into your opponent’s Treasure Chest as an additional cost to play this maneuver.
+
+Gain 4(P).",,,,,,,,,,,,SGI_22.png,REXARD,,,,,c1,155,
+Double Cross,Trader,Tactic,Maneuver,,"Gain control of a crew with 2 or less presence in your opponent’s party until the attempt ends, and move it to your party.",,,,,,,,,,,,sea_dog.png,REXARD,,390%,,,c1,156,
+Hefty Bribe,Trader,Tactic,Maneuver,,"Pay your opponent 3(P) as an additional cost to play this maneuver.
+
+The boarding attempt ends. *(Stow all crew in the boarding and defending parties, then the boarding player’s action phase ends).*",,,,,,,,,,,,Tentacle.png,REXARD,,-460%,,,c1,157,
+White Flag,Trader,,Maneuver,,"Pay your opponent 2(P) as an additional cost to play this maneuver.
+
+Your opponent skips their next cannon phase.",,,,,,,,,,,,ItemsCards_48_b.png,REXARD,,-2200%,,,c1,158,
+Quicksilver,Trader,,Special Ammo,,This cannon gets -1 cost.,,,,,,,,,3,,,SGI_addons_172.png,REXARD,,,,,c1,159,"We’re not exactly sure how it works, but you can’t argue with the results. How many can we put you down for?"
+Drone,Trader,,Token,Crew|Drone,"*(When the boarding attempt ends, discard this crew).*",,,,,,,0,4,,,,Tex_stone_spirit_bg.png,REXARD,,,,,c1,160,
+Ancestral Memory,Devoted,,Asset,,"Whenever an effect you control would cause one or more nontoken crew to be ejected from anywhere, gain 1(P).",,,TRUE,,,,,,,,,gold_mine.png,REXARD,,1500%,,,e1,1,
+Fruiting Florathan,Devoted,,Asset,,"Discard a crew you control as an additional cost to play this asset.
+
+**(A):** Gain 2(P).",,,,,,,,,,,,FantasyCardsPack_014.png,REXARD,,,,,e1,2,It was in you all along.
+Offering to Cthalla,Devoted,,Asset,Idol,"When this asset enters play, stow a card from your discard pile.
+
+**(A), (A), eject this asset and a Keeper you control:** Put Cthalla into play, a unique 7/5 Leviathan crew token with “Whenever this crew raids, eject the top three cards of the defending player’s Hold.”",0.65,,,,,,,,,,,LootCard_85.png,REXARD,,185%,108%,,e1,3,
+Offering to Liria,Devoted,,Asset,Idol,"When this asset enters play, deal 1 damage to your opponent.
+
+**(A), (A), eject this asset and a Keeper you control:** Put Liria into play, a unique 5/7 Leviathan crew token with “**(A):** Eject two cards from your opponent's discard pile.”",,,,,,,,,,,,LootCard_100.png,REXARD,,220%,108%,,e1,4,
+Offering to Rzeth,Devoted,,Asset,Idol,"When this asset enters play, put a presence counter on a crew you control.
+
+**(A), (A), eject this asset and a Keeper you control:** Put Rzeth into play, a unique 6/6 Leviathan crew token with “When this crew enters play, your opponent ejects two cards from their hand at random.”",0.65,,,,,,,,,,,LootCard_24.png,REXARD,,225%,108%,,e1,5,
+Psychothan,Devoted,,Asset,,"Play with the top card of your Hold revealed.
+
+**(A):** Play the top card of your Hold if it's not a Tactic. Use only once each turn.
+
+**(T):** Play the top card of your Hold if it’s a Tactic.",0.7,,TRUE,,,,,,,,,sight.png,REXARD,,,,,e1,6,
+Titanbasking,Devoted,,Asset,,"When each turn begins, if you control a crew with 5 or more presence, gain 1(P).",,,,,,,,,,,,valley.png,REXARD,,,,,e1,7,Treasure each opportunity to be near the titans of this world.
+Agatha Voss,Devoted,,Captain,,"Whenever a structure you control breaks, you may replace it with a 1/2/3 cannon token named Adjudicator. Use only once per game.",0.8,,,,,,,,,,,FantasyCardsPack_043.png,REXARD,,,,,e1,8,
+Rook Prior,Devoted,,Captain,,"*React -* The first time your opponent chooses a crew you control for a Tactic card or effect each turn, you may spend 2(P) to prevent that card or effect from resolving.",,,,,,,,,,,,FantasyCardsPack_048.png,REXARD,,,,,e1,9,
+Vincent Tam,Devoted,,Captain,,"Whenever you put one or more presence counters on a crew, you may draw a card.",,,,,,,,,,,,ma (59).png,REXARD,,,,,e1,10,
+Attendant,Devoted,,Crew,Keeper,"When this crew enters play, you may search your Hold for an Idol, reveal it, and put it into to your hand.",,,,,,,3,2,,,,Tex_Swarm_Soldier_bg.png,REXARD,,,,,e1,11,"In times of need, it is said that the Devoted can call forth mighty Leviathans from the maelstrom."
+Bombard,Devoted,,Crew,,"Whenever this crew raids, deal damage to the defending player equal to its presence, then eject it.",,,,,,,0,1,,,,frog.png,REXARD,,,,,e1,12," When you infuse more power into a form than it can absorb, the results can be explosive."
+Cloudshaker Magnus,Devoted,,Crew,,"Lose all unspent (A) as an additional cost to play this crew.
+
+Whenever this crew raids or repels, your opponent cannot board until their next turn ends.",,,TRUE,,,,4,3,,,,Tex_orc_shaman_bg.png,REXARD,,,,,e1,13,
+Cthalla's Mimic,Devoted,,Crew,,"As you play this crew, you may spend 2(P). If you do, it enters play as a copy of another crew you control, except it’s still 2/1.",,,,,,,2,1,,,,slug.png,REXARD,,36%,,,e1,14,All flesh is pliable in Cthalla’s presence.
+Cultivator,Devoted,,Crew,,**(T):** Choose another crew in your party. It gets +3 presence until the attempt ends.,,,,,,,0,0,,,,Tex_h_miner_male_bg.png,REXARD,,20%,,,e1,15,
+Harbinger,Devoted,,Crew,Keeper,"Whenever you play an Idol, if this crew is in your discard pile, you may return this crew to your hand.",,,,,,,2,3,,,,Tex_raptor_bg.png,REXARD,,-200%,,,e1,16,"For every summoning, a sacrifice."
+Hulltender,Devoted,,Crew,,"When this crew enters play, you may use an action on a card you control, reducing the cost by (A).",,,,,,,2,1,,,,s_monstr.png,REXARD,,,,,e1,17,Devoted bioships swarm with helpers diligently seeing to their needs.
+Lirian Prophet,Devoted,,Crew,,"The first time a cannon you control unstuns each turn, gain 1(P) and draw a card.",,,,,,,1,3,,,,Tex_cultist_goblin_bg.png,REXARD,,-160%,,,e1,18,Followers of Liria apply themselves to predicting the behavior of their bioship’s weapons.
+Ringwarden,Devoted,,Crew,,"As long as you control an Idol, this crew gets +2 presence.",,,,,,,3,3,,,,FantasyCardsPack_056.png,REXARD,,,,,e1,19,The ritual must not be interrupted.
+Rzethite Trainer,Devoted,,Crew,,"When this crew enters play, put a presence counter on a crew you control.",,,,,,,2,2,,,,FantasyCardsPack_004.png,REXARD,,-65%,,,e1,20,We must become strong if we are to be worthy of Rzeth’s blessings.
+Squallbreaker Oros,Devoted,,Crew,,"Reveal a Devoted card from your hand as an additional cost to play this crew.
+
+*React -* Whenever you are dealt damage, you may discard a crew you control with 5 or more presence to reduce it by 3.",,,TRUE,,,,-,4,,,,FantasyCardsPack_025.png,REXARD,,,,,e1,21,
+Constricting Tentacle,Devoted,,Emplacement,Structure,Your opponent gets -4 maximum hand size.,,0.8,,,,2,,,,Striking Tentacle,,ItemsCards_55_b.png,REXARD,,-560%,106%,,e1,28,It’s hard to think with a giant tentacle steering your ship.
+Dust Membrane,Devoted,,Emplacement,Structure,"When this structure breaks, gain 3(P).",,,,,,3,,,,,,ItemsCards_66_b.png,REXARD,,-450%,106%,,e1,22,"Bioship engineers can coax the outer layers of young vessels to grow around caches of powder, creating useful reserves."
+Gigaphage,Devoted,,Emplacement,Structure,"Whenever you repel, eject a crew in the boarding party. If you do, gain 1(P) and shuffle a Shield into your Hold.
+
+When this structure breaks, gain (A) when your next turn begins.",,,,,,2,,,,,,den.png,REXARD,,-700%,,,e1,23,
+Growth Chamber,Devoted,,Emplacement,Structure,"**(A):** Put a presence counter on a crew you control. Use only once each turn.
+
+When this structure breaks, put a 0/0 Leviathan crew token into play, in reserve, then put a presence counter on it.",,,,,,3,,,,,,mushroom.png,REXARD,,-1790%,,,e1,24,
+Incubating Behemoth,Devoted,,Emplacement,Structure,"When your turn begins, put a presence counter on this structure. If there are four or more presence counters on this structure, you may break it.
+
+When this structure breaks, put a 0/0 Leviathan crew token into play, in reserve. Move all presence counters from this structure to that crew.",,,,,,4,,,,,,egg.png,REXARD,,,,,e1,25,
+Infestor,Devoted,,Emplacement,Cannon,"Whenever this cannon breaches, put a presence counter on a crew your opponent controls.",,,,1,2,3,,,,,,Infestor2.png,Trevor Gannicott,,,,,e1,26,
+Snapdragon,Devoted,,Emplacement,Cannon,"**(A), eject a crew from your discard pile:** Put a counter on this cannon.
+
+This cannon gets +1 cost and +2 power for each counter on it.",,,,2,0,5,,,,,,predator.png,REXARD,,35%,,,e1,27,
+Striking Tentacle,Devoted,,Emplacement,Cannon,"Whenever this cannon breaches, you may flip it.",,,,4,4,4,,,,,Constricting Tentacle,D_Striking Tentacle.jpg,Trevor Gannicott,,60%,,,e1,28,Bioships can grow an impressive diversity of weaponry.
+Absorb,Devoted,Tactic,Maneuver,,"While boarding, eject up to three cards from the defending player’s discard pile. Gain 1(P) for each card ejected this way.",,,,,,,,,,,,SGI_38.PNG,REXARD,,,,,e1,29,
+Ascension Ritual,Devoted,,Maneuver,,"Spend (A) as an additional cost to play this maneuver.
+
+Double the number of counters on a card you control.",,,,,,,,,,,,Cataclysm.png,REXARD,,,,,e1,30,
+Awestruck,Devoted,Tactic,Maneuver,,Choose a crew in your party. Move each crew with less presence than the chosen crew to reserve.,,,,,,,,,,,,FantasyCardsPack_041.png,REXARD,,,,,e1,31,
+Call the Faithful,Devoted,,Maneuver,,Put a 1/1 Deckhand crew token into play for each nontoken crew you control.,,,,,,,,,,,,frost_weapon.png,REXARD,,,,,e1,32,You are called to honor your vows today.
+Dissolve,Devoted,Tactic,Maneuver,,Choose a crew with 2 or less presence in your opponent’s party. Eject it.,,,,,,,,,,,,honey.png,REXARD,,,,,e1,33,As if you never were.
+Harvest Ritual,Devoted,,Maneuver,,"Play only if all cannons you control are stunned.
+
+Gain powder equal to the highest cost among cannons you control.",,,,,,,,,,,,FantasyCardsPack_047.png,REXARD,,,,,e1,34,
+Hip Toss,Devoted,Tactic,Maneuver,,Choose a crew your opponent controls with less presence than a crew in your party. Return the chosen crew to its captain’s hand.,,,,,,,,,,,,boar.png,REXARD,,,,,e1,35,
+Inspired by Giants,Devoted,,Maneuver,,Draw cards equal to the highest presence among crew you control.,,,,,,,,,,,,ruins.png,REXARD,,,,,e1,36,"We have much to learn from the Leviathans, harsh as their lessons may be."
+Pile On,Devoted,Tactic,Maneuver,,Play a crew with 3 or less presence from your hand.,,,,,,,,,,,,FantasyCardsPack_011.png,REXARD,,-1400%,,,e1,37,The Devoted are legion.
+Rally,Devoted,,Maneuver,,"**Board,** choosing this card as your raid token.
+
+If you raid, choose a crew in your party. Move it to reserve when the attempt ends.",,,,,,,,,,,,FantasyCardsPack_060.png,REXARD,,,,,e1,38,
+Repurpose,Devoted,,Maneuver,,"Break an emplacement you control with X durability as an additional cost to play this maneuver.
+
+Choose one:
+
+* Shuffle X Shields into your Hold.
+* Distribute X presence counters among crew you control.",,,,,,,,,,,,meat.png,REXARD,,,,,e1,39,
+Resilience Ritual,Devoted,Tactic,Maneuver,,"While defending with one or more crew, if the boarding party has more presence than your party, gain powder equal to the difference.",,,,,,,,,,,,spider_king.png,REXARD,,,,,e1,40,
+Antennae Flechette,Devoted,,Special Ammo,,"Whenever this cannon breaches, draw cards until you have the same number of cards in your hand as your opponent, then they discard a card from their hand at random.",,,,,,,,,2,,,46.png,REXARD,,460%,,,e1,41,
+Cloning Tendrils,Devoted,,Special Ammo,,"Whenever this cannon breaches, choose a crew discarded by the damage. Put a crew token that’s a copy of the chosen crew into play.",,,,,,,,,2,,,FantasyCardsPack_008.png,REXARD,,335%,,,e1,42,
+Griphook,Devoted,,Special Ammo,,"Whenever this cannon breaches, you may **board**, spending 2(P) less.",,,,,,,,,2,,,28.png,REXARD,,220%,,,e1,43,"A simple, cost effective method to stabilize the gangplank."
+Sporenade,Devoted,,Special Ammo,,"Whenever this cannon breaches, distribute that many presence counters among crew you control.",,,,,,,,,2,,,ItemsCards_98_b.png,REXARD,,350%,,,e1,44,
+Adjudicator,Devoted,,Token,Emplacement|Cannon,,,,,2,3,1,,,,,,Adjudicator Cannon Art.jpg,Trevor Gannicott,,,,,e1,45,
+Cthalla,Devoted,,Token,Crew|Leviathan,"Whenever this crew raids, eject the top three cards of the defending player’s Hold.",,,TRUE,,,,7,5,,,,48.png,REXARD,,145%,106%,,e1,46,
+Leviathan,Devoted,,Token,Crew|Leviathan,,,,,,,,0,0,,,,87.png,REXARD,,128%,106%,,e1,47,
+Liria,Devoted,,Token,Crew|Leviathan,**(A):** Eject two cards from your opponent's discard pile.,,,TRUE,,,,5,7,,,,37.png,REXARD,,138%,106%,,e1,48,
+Rzeth,Devoted,,Token,Crew|Leviathan,"When this crew enters play, your opponent ejects two cards from their hand at random.",,,TRUE,,,,6,6,,,,52.png,REXARD,,138%,106%,,e1,49,
+Puzzle Box,Ghost,,Asset,,"When this asset is discarded from anywhere, gain 1(P).
+
+*Vengeful -* If you discard this card from your Hold, stow it.",,,,,,,,,,,,LootCard_33.png,REXARD,,160%,108%,,e1,50,
+Pyronomicon,Ghost,,Asset,,"Whenever one or more Fires are ejected from an opponent's ship, gain 1(P).",,,TRUE,,,,,,,,,SGI_92.png,REXARD,,,,,e1,51,Why does every civilization think they were the first to discover fire?
+"Xandus, High Archivist",Ghost,,Captain,,"The first time you play an asset each turn, you may look at the top three cards of your Hold. If you do, put one of them into your hand and stow the rest.",,1,,,,,,,,,,Tex_lich_bg.png,REXARD,,,,,e1,52,
+Banshee,Ghost,,Crew,Shade,**(A):** Each player discards a card from their hand. Use only once each turn.,,,,,,,1,1,,,,Tex_overlord_bg.png,REXARD,,,,,e1,53,Its wailing falls on dead ears.
+Grave Gunner,Ghost,,Crew,,"Whenever this crew raids, you may fire an unstunned cannon you control.
+
+*Vengeful -* If you discard this card from your Hold, deal 1 damage to your opponent.",,,,,,,2,3,,,,ma (92).PNG,REXARD,,,,,e1,54,
+Amnesia,Ghost,,Maneuver,,"Play only if you control a Curse.
+
+Until your next turn begins, whenever a card your opponent is the captain of would be stowed, discard it instead.",,,,,,,,,,,,03.png,REXARD,,-1000%,,,e1,55,
+Ancient Power,Ghost,Tactic,Maneuver,,"Spend X(P) as an additional cost to play this maneuver.
+
+Choose a crew. It gets +X presence until the attempt ends.",,,,,,,,,,,,golem.PNG,REXARD,,,,,e1,56,
+Dread Channeling,Ghost,,Maneuver,,"Play only if you control a Curse.
+
+Deal 1 damage to your opponent, draw a card and gain 1(P).
+
+Whenever you play a Curse, if this card is in your discard pile, you may return it to your hand.",0.8,,,,,,,,,,,heart.png,REXARD,,,,,e1,57,
+Fan the Flames,Ghost,,Maneuver,,"**Board,** choosing this card as your raid token.
+
+If you raid, set two Fires on the defending player's ship, then deal damage to them equal to the number of Fires on their ship.",,,,,,,,,,,,weak_imp.png,REXARD,,,,,e1,58,
+Smoke in the Eyes,Ghost,,Maneuver,,"Play only if there is at least one Fire on your opponent's ship.
+
+Your opponent discards two cards from their hand.",,,,,,,,,,,,Infernal_nest.png,REXARD,,-1100%,,,e1,59,
+Vex,Ghost,Tactic,Maneuver,,"Return a crew with odd presence in a party to its captain’s hand. *(0 is not odd).*
+
+*Vengeful -* If you discard this card from your Hold, put it into your hand.",,,,,,,,,,,,SGI_18.png,REXARD,,,,,e1,60,
+Demoneye,Ghost,,Special Ammo,,"Whenever this cannon breaches, set two Fires on your opponent's ship for each nonmaneuver discarded by the damage.",,,,,,,,,2,,,LootCard_66.png,REXARD,33%,275%,108%,,e1,61,
+Firing Tubes,Imperial,,Asset,,"Recon Set. *(Limit 1 Set per deck).*
+
+When your cannon phase begins, choose a cannon you control. It gets +1 cost and +1 power until the turn ends.",,,,,,,,,,,,LootCard_96.png,REXARD,,77%,108%,,e1,62,
+Flight School,Imperial,,Asset,,"When your turn begins, if this asset has three operators, put a presence counter on each and unassign them.
+
+**(A):** Operate 1 (Limit 3 operators). Play up to one special ammo from your hand and gain 1(P).",,,TRUE,,,,,,,,,SGI_85.png,REXARD,,,,,e1,63,
+Piety,Imperial,,Captain,,"When your turn begins, if all cannons you control are stunned, gain (A).",,,,,,,,,,,,FantasyCardsPack_042.png,REXARD,,,,,e1,64,
+Cannoneer,Imperial,,Crew,,"The first time you play a special ammo each turn, gain (A).",,,,,,,1,2,,,,Tex_Dwarven_healer_female_bg.png,REXARD,,,,,e1,65,Imperial cannoneers are renowned for their efficiency and can-do attitude.
+Carpenter,Imperial,,Crew,,**(A):** Shuffle this crew and a Shield into your Hold.,,,,,,,2,3,,,,Tex_Dwarf_warrior_male_bg.png,REXARD,,,,,e1,66,"""If you need me, I'll be patching the hull."""
+Gunnel Striker,Imperial,,Crew,,"Whenever this crew raids, unstun a cannon you control.",,,,,,,3,1,,,,Tex_h_warrior_female_bg.png,REXARD,,48%,,,e1,67,"By the time the smoke clears from the gunnels, the Imperial skirmishers are already upon you."
+Mindlink Mech,Imperial,,Crew,,"Whenever this or another crew you control enters play, you may Operate 2 (Limit 2 operators).
+
+As long as this crew is operated, its presence is equal to the total presence of its operators.",,,,,,,-,-,,,,ma (8).PNG,REXARD,,,,,e1,68,
+Swabbie,Imperial,,Crew,,"When the turn this crew entered play ends, put a presence counter on it for each unbroken cannon you control.",,,,,,,2,2,,,,Tex_hermit_bg.png,REXARD,,-30%,,,e1,69,"Spend this much time around the artillery, and you’re bound to get a little protective."
+Ship Shape,Imperial,,Maneuver,,Gain 1(P) for each asset and special ammo you control.,,,,,,,,,,,,LootCard_58.png,REXARD,,267%,106%,,e1,70,Running a tight ship is its own reward.
+Show of Force,Imperial,,Maneuver,,"Recon Set. *(Limit 1 Set per deck).*
+
+Choose two:
+
+* Choose a cannon you control. It gets +1 power until the turn ends.
+* Put an ammo counter on a special ammo you control.
+* Your opponent discards a card from their hand.",,,,,,,,,,,,ItemsCards_72_b.png,REXARD,,-950%,,,e1,71,
+Silence Dissent,Imperial,,Maneuver,,"**Board,** choosing this card as your raid token.
+
+If you raid, choose a card in the defending player’s discard pile. Search their discard pile, hand, Hold, and play area for all copies of that card and eject them.",0.7,,,,,,,,,,,FantasyCardsPack_050.png,REXARD,,,,,e1,72,
+Flashbang,Imperial,,Special Ammo,,"Recon Set. *(Limit 1 Set per deck).*
+
+Whenever this cannon breaches, your opponent discards a card from their hand at random and loses 1(P).",,,,,,,,,2,,,meteor.png,REXARD,,,,,e1,73,
+Brute Force,Neutral,,Asset,,"**(A):** **Board**, spending 2(P) less. You cannot play Tactic cards during the attempt.",,,TRUE,,,,,,,,,SGI_82.png,REXARD,,13%,,,e1,74,"For some captains, battle is an intricate dance. For others, it’s a back alley brawl."
+Arsonist,Neutral,,Crew,,"Whenever this crew raids, set two Fires on your opponent's ship.",,,,,,,2,2,,,,fireball.png,REXARD,,,,,e1,75,It takes a certain kind of madness - or desperation - to light fires on the open miasma.
+Captain on Deck,Neutral,Tactic,Crew,,"*(Play only during a boarding attempt).*
+
+When this crew enters play, turn your Captain facedown.
+
+Whenever this crew raids or repels, turn your Captain faceup.",,,TRUE,,,,2,3,,,,SGI_15.png,REXARD,,,,,e1,76,
+Dragonfire Launcher,Neutral,,Emplacement,Cannon,"*React -* Whenever this cannon would resolve damage, set that many Fires on your opponent’s ship instead.",,,,2,2,3,,,,,,N_Dragonfire Launcher.jpg,Trevor Gannicott,,,,,e1,77,
+Fog Machine,Neutral,,Emplacement,Cannon,"When your cannon phase begins, choose a number X between 0 and 4. This cannon gets +X cost and +X power until the turn ends.
+
+*React -* Whenever this cannon would resolve damage, your opponent loses that much powder instead.",0.7,,,0,0,3,,,,,,Fog Machine.png,Trevor Gannicott,,,,,e1,78,
+Point Blank,Neutral,Tactic,Maneuver,,"While defending, fire an unstunned cannon you control.",,,,,,,,,,,,SGI_addons_181.png,REXARD,-180%,24%,,,e1,79,Best not to dawdle on the gangplank.
+Prohibit,Neutral,Tactic,Maneuver,,"Name a card. Until the attempt ends, the named card cannot be played, and Tactic effects on the named card cannot be used.",,,,,,,,,,,,SGI_46.png,REXARD,,,,,e1,80,
+Strike at Dawn,Neutral,,Maneuver,,"Spend X(A) as an additional cost to play this maneuver.
+
+**Board**, choosing X additional raid tokens.",,,,,,,,,,,,Lizard.png,REXARD,,,,,e1,81,
+Deadwind Special,Neutral,,Special Ammo,,"Whenever this cannon breaches, choose one:
+
+* Stun a cannon your opponent controls.
+* Unstun another cannon you control.",0.8,,,,,,,,2,,,LootCard_113.png,REXARD,33%,275%,108%,,e1,82,
+Wrecking Ball,Neutral,,Special Ammo,,"Whenever you fire this cannon, choose a structure your opponent controls.
+
+*React -* Whenever this cannon would resolve damage equal to or greater than the durability of the chosen structure, break that structure instead.",,,,,,,,,1,,,90.png,REXARD,,480%,,,e1,83,
+Fire,Neutral,,Status,,"When your turn begins, if you have been dealt no Fire damage this turn, this status deals 1 damage to you and ejects. If you recover a card from that damage, lose (A).
+
+**(A), (A):** Eject all Fires from your ship.",,,,,,,,,,,,fire.png,REXARD,,36%,116%,,e1,84,
+Copy,Neutral,,Token,Crew,,,,,,,,*,*,,,,LootCard_108.png,REXARD,,86%,110%,,e1,85,
+Spirit Bomb,Pirate,,Asset,,"Whenever you play a Pirate card, put a counter on this asset.
+
+Whenever you raid, you may discard this asset to deal damage to the defending player equal to the number of counters on this asset.",,,,,,,,,,,,LootCard_91.png,REXARD,,205%,108%,,e1,86,
+Steady at the Helm,Pirate,,Asset,,"*React -* The first time you are dealt damage each turn, you may discard a card from your hand to reduce it by 1. If you control a unique crew, reduce it by 2 instead.",,,,,,,,,,,,SGI_153.png,REXARD,,,,,e1,87,
+Apollo,Pirate,,Captain,,"When your turn begins, if there are at least three Fires on ships, gain (A).",,,,,,,,,,,,FantasyCardsPack_045.png,REXARD,,500%,,,e1,88,
+Firebug,Pirate,,Crew,,"*Reckless -* If you discard this card from your hand, set a Fire on each ship.",,,,,,,3,2,,,,Tex_imp_bg.png,REXARD,,,,,e1,89,Everything burns.
+Safecracker,Pirate,,Crew,,"**(T):** While boarding, return a card from the defending player’s Treasure Chest to your hand.",,,,,,,1,3,,,,FantasyCardsPack_013.png,REXARD,,,,,e1,90,That padlock doesn’t stand a chance.
+Surly Quartermaster,Pirate,,Crew,,"When this crew enters play, if there is at least one Fire on any ship, choose one:
+
+* Cannons you control get -1 cost until the turn ends.
+
+* **Board**, spending 1(P) less.",0.9,,,,,,3,3,,,,ma (40).PNG,REXARD,,,,,e1,91,
+Dinner Bell,Pirate,,Maneuver,,"Search your Hold for a crew, reveal it, and put it into your hand.",,,,,,,,,,,,fish.png,REXARD,,,,,e1,92,No self respecting Pirate would skip dinner.
+Drawn to the Flame,Pirate,,Maneuver,,"Play only if there are three or more Fires on ships.
+
+Play a crew from your discard pile, ignoring all costs.",,,,,,,,,,,,stoneskin.png,REXARD,,-600%,,,e1,93,
+Ramming Speed,Pirate,,Maneuver,,**Board.** Deal 3 damage to the defending player and set three Fires on your ship.,,,,,,,,,,,,Artifact_helmet.png,REXARD,,-105%,,,e1,94,“Let them know we’re here!” - Apollo
+Second Wind,Pirate,,Maneuver,,"Each player stows three cards from their hand, then draws three cards.",,,,,,,,,,,,SGI_161.png,REXARD,,,,,e1,95,"Exhale problems, inhale solutions."
+Step Lively,Pirate,,Maneuver,,"Put a 1/1 Deckhand crew token into play and gain 1(P). If you control a unique crew, gain (A).",,,,,,,,,,,,Bird.png,REXARD,,300%,,,e1,96,"""Hop to it, don't keep the captain waiting!"""
+Flaming Tar,Pirate,,Special Ammo,,"Whenever this cannon breaches, set a Fire on your ship and three Fires on your opponent’s ship.",,,,,,,,,2,,,SGI_77.png,REXARD,,,,,e1,97,
+Echo Chamber,Trader,,Asset,,"Whenever you breach, if the damage discarded three or more cards of the same type, you may eject this asset to unstun the cannon and fire it again.",,,TRUE,,,,,,,,,SGI_44.png,REXARD,,,,,e1,98,
+Luc Sangre,Trader,,Captain,,"When your turn begins, you may spend 1(P) to flip this card and put it into play.
+
+The first time you breach each turn, shuffle a Shield into your Hold.",,,,,,,,,,,The Bat,ma (66).png,REXARD,,,,,e1,99,
+Blazesinger,Trader,,Crew,,This crew gets +1 presence for each Fire on your ship.,,,,,,,2,2,,,,FantasyCardsPack_051.png,REXARD,,60%,,,e1,100,The chorus incendiary.
+Hecate Sangre,Trader,,Crew,,"Whenever you breach, put that many presence counters on this crew.",,,TRUE,,,,1,-,,,,ma (57).PNG,REXARD,,,,,e1,101,Rumors about the source of the Sangre family's power swirl thickly through the arteries of the Shattering.
+Sangre Enforcer,Trader,,Crew,,**(T):** This crew gets +2 presence until the attempt ends.,,,,,,,2,2,,,,FantasyCardsPack_054.png,REXARD,,,,,e1,102,Running one third of a criminal triumvirate comes with its share of dirty work.
+The Bat,Trader,,Crew,,"*React -* When this crew would leave play, flip it instead.",,,TRUE,,,,1,1,,Luc Sangre,,LootCard_83.png,REXARD,,1500%,101%,,e1,99,“Skree!”
+Bargain,Trader,,Maneuver,,"Discard a Trader card from your hand as an additional cost to play this maneuver.
+
+Eject a card from your Treasure Chest, then gain 2(P) or draw two cards. Repeat this process for each card in your Treasure Chest.",,,,,,,,,,,,LootCard_125.png,REXARD,,215%,110%,,e1,103,
+Forgery,Trader,,Maneuver,,"Set three Fires on your ship, then gain 3(P). If there are four or more Fires on your ship, gain 4(P) instead.",,,,,,,,,,,,SGI_114.PNG,REXARD,,,,,e1,104,
+Heat Barrier,Trader,,Maneuver,,"Set two Fires on your ship.
+
+Until your next turn begins, whenever you are dealt damage, reduce it by 1 for each Fire on your ship.",,,,,,,,,,,,SGI_147.png,REXARD,,-10%,,,e1,105,
+Torch,Trader,,Maneuver,,"Spend X(P) as an additional cost to play this maneuver, where X is the number of Fires on your ship.
+
+Deal X damage to your opponent.",,,,,,,,,,,,LootCard_81.png,REXARD,,-1000%,,,e1,106,
+Trade Alliance,Trader,,Maneuver,,"Search your Hold for a card that does not match your faction, reveal it, and put it into your hand.",,,,,,,,,,,,SGI_02.PNG,REXARD,,-16%,,,e1,107,
+Corrodium,Trader,,Special Ammo,,"Whenever this cannon breaches, choose one. If the damage discarded three or more cards of the same type, you may choose both:
+
+* Your opponent discards a crew they control.
+* Your opponent discards an asset they control.",0.65,,,,,,,,2,,,SGI_28.png,REXARD,,-36%,,,e1,108,
+Volatilium,Trader,,Special Ammo,,"Whenever this cannon breaches, choose one. If the damage discarded three or more cards of the same type, you may choose both:
+
+* Each player draws two cards.
+* Each player discards two cards from their hand.",0.7,,,,,,,,2,,,LootCard_76.png,REXARD,33%,275%,108%,,e1,109,
