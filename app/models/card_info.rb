@@ -23,6 +23,6 @@ class CardInfo < ApplicationRecord
     cost
     power
     durability
-    image_link
+    image_url
   )
 end

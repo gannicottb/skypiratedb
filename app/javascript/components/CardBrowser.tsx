@@ -1,19 +1,7 @@
 import * as React from 'react'
 import { Card } from './Card'
-import { Container, ChakraProvider } from '@chakra-ui/react'
+import { Container, ChakraProvider, Grid } from '@chakra-ui/react'
 
-// type CardBrowserProps = {
-//   children?:
-//   | React.ReactChild
-//   | React.ReactChild[];
-// }
-// export default ({ children }: CardBrowserProps) => (
-//   <ChakraProvider>
-//     <Container>
-//       {children}
-//     </Container>
-//   </ChakraProvider>
-// )
 type CardBrowserProps = {
   cards: Card[]
 }
@@ -21,11 +9,14 @@ type CardBrowserProps = {
 export default ({ cards }: CardBrowserProps) => (
   <ChakraProvider>
     <Container>
-      {cards.map((c) =>
-        <Card
-          card={c}
-        />)
-      }
+      <Grid templateColumns='repeat(4, 1fr)' gap={6}>
+        {cards.map((c) =>
+          <Card
+            card={c}
+          />)
+        }
+      </Grid>
+
     </Container>
   </ChakraProvider>
 )

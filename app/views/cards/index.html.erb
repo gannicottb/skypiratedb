@@ -1,3 +1,1 @@
-<%= react_component("CardBrowser", { 
-  cards: @cards.map(&:to_json)
-}) %>
+<%= react_component("CardBrowser", render(template: 'cards/index.json.jbuilder')) %>
