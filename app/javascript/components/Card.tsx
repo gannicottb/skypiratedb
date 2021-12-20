@@ -11,7 +11,7 @@ export const Card = ({ card, displayMode }: CardProps) => {
   const [onFront, toggleSide] = React.useState(true)
   const currentSide = onFront ? card : card.back
   return (
-    <LinkBox maxW='200px' borderWidth='.1em' borderRadius='sm'>
+    <LinkBox maxW='375px' borderWidth='.1em' borderRadius='sm'>
       <LinkOverlay href={`/cards/${card.id}`}></LinkOverlay>
       {displayMode == 'image' &&
         <Image src={currentSide.image_url} alt={currentSide.name} />
@@ -19,7 +19,12 @@ export const Card = ({ card, displayMode }: CardProps) => {
       {displayMode == 'text' &&
         <>
           <Box>{currentSide.unique ? '\u2605' : ""}{currentSide.name}</Box>
-          <Box>{[currentSide.faction, currentSide.type].join(" ")}</Box>
+          <Box>{
+            [
+              [currentSide.faction, currentSide.type].join(" "),
+              currentSide.subtype || ""
+            ].filter(x => x !== "").join(" - ")
+          }</Box>
           {currentSide.ammo && <Box>Ammo: {currentSide.ammo}</Box>}
           {currentSide.durability && <Box>Durability: {currentSide.durability}</Box>}
           {currentSide.attack && <Box>{currentSide.attack}/{currentSide.defense}</Box>}
