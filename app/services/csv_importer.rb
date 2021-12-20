@@ -2,11 +2,6 @@ require "csv"
 require "kramdown"
 
 module CsvImporter
-
-  # Should run locally
-  # Should then be used in prod somehow.
-
-  # somewhat qualified name
   def import_local(csv_filename)
     f = File.read(csv_filename)
     import(CSV.parse(f, headers: true, header_converters: :symbol))

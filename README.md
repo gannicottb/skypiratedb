@@ -1,24 +1,11 @@
-# README
+# SkyPirateDB
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Routes
 
-Things you may want to cover:
+/cards - Browse all cards
 
-* Ruby version
+## Run rake commands in prod
 
-* System dependencies
+`heroku login`
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`heroku run -a skypiratedb rake ...`

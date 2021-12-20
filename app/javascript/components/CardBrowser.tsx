@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Card } from './Card'
+import PageWrapper from './PageWrapper'
 import { Container, ChakraProvider, Grid } from '@chakra-ui/react'
 
 type CardBrowserProps = {
@@ -7,7 +8,7 @@ type CardBrowserProps = {
 }
 
 export default ({ cards }: CardBrowserProps) => (
-  <ChakraProvider>
+  <PageWrapper>
     <Container maxW='container.lg'>
       <Grid templateColumns='repeat(5, 1fr)' gap={6}>
         {cards.map((c) =>
@@ -18,5 +19,5 @@ export default ({ cards }: CardBrowserProps) => (
       </Grid>
 
     </Container>
-  </ChakraProvider>
+  </PageWrapper>
 )
