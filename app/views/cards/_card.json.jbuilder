@@ -1,5 +1,5 @@
 # Add all simple values
-json.(obj, :image_url, :name, :expansion_number, :unique, :text, :flavor)
+json.(obj, :id, :image_url, :name, :expansion_number, :unique, :text, :flavor)
 json.(obj, :attack, :defense, :cost, :power, :durability, :ammo)
 
 # Resolve associations
@@ -8,6 +8,7 @@ json.supertype obj.supertype.name
 json.subtype obj.subtype.name
 json.faction obj.faction.name
 json.artist obj.artist.name
+json.expansion obj.expansion.name
 
 # Embed back side if present
 if obj.respond_to?(:back) && obj.back.present?

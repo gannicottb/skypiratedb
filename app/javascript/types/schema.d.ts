@@ -35,8 +35,10 @@
 // }
 
 interface Card {
+  id: number;
   name: string;
   expansion_number: number,
+  expansion: string;
   image_url: string;
   unique: boolean;
   type: string;

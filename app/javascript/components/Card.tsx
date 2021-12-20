@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Box, Image, IconButton } from '@chakra-ui/react'
+import { Box, Image, IconButton, LinkBox, LinkOverlay } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,12 +11,13 @@ export const Card = ({ card, displayMode }: CardProps) => {
   const [onFront, toggleSide] = React.useState(true)
   const currentSide = onFront ? card : card.back
   return (
-    <Box maxW='200px'>
+    <LinkBox maxW='200px' borderWidth='.1em' borderRadius='sm'>
+      <LinkOverlay href={`/cards/${card.id}`}></LinkOverlay>
       {displayMode == 'image' &&
         <Image src={currentSide.image_url} alt={currentSide.name} />
       }
       {displayMode == 'text' &&
-        <Box>
+        <>
           <Box>{currentSide.unique ? '\u2605' : ""}{currentSide.name}</Box>
           <Box>{[currentSide.faction, currentSide.type].join(" ")}</Box>
           {currentSide.ammo && <Box>Ammo: {currentSide.ammo}</Box>}
@@ -24,7 +25,8 @@ export const Card = ({ card, displayMode }: CardProps) => {
           {currentSide.attack && <Box>{currentSide.attack}/{currentSide.defense}</Box>}
           {currentSide.cost && <Box>{currentSide.cost}/{currentSide.power}</Box>}
           <Box dangerouslySetInnerHTML={{ __html: currentSide.text }} />
-        </Box>
+          <Box>#{currentSide.expansion_number} {currentSide.expansion}</Box>
+        </>
       }
       {card.back &&
         <IconButton
@@ -34,6 +36,6 @@ export const Card = ({ card, displayMode }: CardProps) => {
           onClick={() => toggleSide(!onFront)}
           icon={<FontAwesomeIcon icon={faSyncAlt} />} />
       }
-    </Box>
+    </LinkBox>
   )
 }
