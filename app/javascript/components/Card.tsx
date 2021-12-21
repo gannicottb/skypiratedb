@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Box, Image, IconButton, LinkBox, LinkOverlay } from '@chakra-ui/react'
+import { Text, Box, Image, IconButton, LinkBox, LinkOverlay, Divider } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,25 +11,30 @@ export const Card = ({ card, displayMode }: CardProps) => {
   const [onFront, toggleSide] = React.useState(true)
   const currentSide = onFront ? card : card.back
   return (
-    <LinkBox maxW='375px' borderWidth='.1em' borderRadius='sm'>
+    <LinkBox maxW='300px' borderWidth='.1em' borderRadius='sm' p={2}>
       <LinkOverlay href={`/cards/${card.id}`}></LinkOverlay>
       {displayMode == 'image' &&
         <Image src={currentSide.image_url} alt={currentSide.name} />
       }
       {displayMode == 'text' &&
         <>
-          <Box>{currentSide.unique ? '\u2605' : ""}{currentSide.name}</Box>
-          <Box>{
+          <Text fontSize='2xl'>{currentSide.unique ? '\u2605' : ""}{currentSide.name}</Text>
+          <Text>{
             [
               [currentSide.faction, currentSide.type].join(" "),
               currentSide.subtype || ""
             ].filter(x => x !== "").join(" - ")
-          }</Box>
-          {currentSide.ammo && <Box>Ammo: {currentSide.ammo}</Box>}
-          {currentSide.durability && <Box>Durability: {currentSide.durability}</Box>}
-          {currentSide.attack && <Box>{currentSide.attack}/{currentSide.defense}</Box>}
-          {currentSide.cost && <Box>{currentSide.cost}/{currentSide.power}</Box>}
-          <Box dangerouslySetInnerHTML={{ __html: currentSide.text }} />
+          }</Text>
+          {currentSide.ammo && <Text>Ammo: {currentSide.ammo}</Text>}
+          {currentSide.durability && <Text>Durability: {currentSide.durability}</Text>}
+          {currentSide.attack && <Text>{currentSide.attack}/{currentSide.defense}</Text>}
+          {currentSide.cost && <Text>{currentSide.cost}/{currentSide.power}</Text>}
+          <Divider />
+          <Box
+            borderLeft={2}
+            borderColor='darkslateblue'
+            dangerouslySetInnerHTML={{ __html: currentSide.text }} />
+          <Divider />
           <Box>#{currentSide.expansion_number} {currentSide.expansion}</Box>
         </>
       }

@@ -11,7 +11,7 @@ export default ({ card }: CardShowProps) => {
 
   return (
     <PageWrapper>
-      <HStack>
+      <HStack align='start'>
         <Card displayMode='image' card={card} />
         <Card displayMode='text' card={card} />
       </HStack>
