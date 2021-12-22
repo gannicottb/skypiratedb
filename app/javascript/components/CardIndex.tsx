@@ -1,7 +1,29 @@
 import * as React from 'react'
 import { Card } from './Card'
 import PageWrapper from './PageWrapper'
-import { Box, HStack, RadioGroup, SimpleGrid, Grid, Text, Stack, Radio, Divider, EditableInput, Editable, Select } from '@chakra-ui/react'
+import { IconButton, Box, HStack, RadioGroup, SimpleGrid, Grid, Text, Stack, Radio, Divider, EditableInput, Editable, Select, SelectField, Input, Spacer, InputGroup, InputRightAddon } from '@chakra-ui/react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+
+// TODO: neaten up the interaction a bit perhaps
+// maybe a form would be more appropriate.
+const SearchBar = ({ setQuery }) => {
+  const [raw, setRaw] = React.useState("")
+  return (
+    <InputGroup size='md'>
+      <Input
+        placeholder='Enter a query here. ex: t:crew'
+        value={raw}
+        onChange={(ev) => setRaw(ev.target.value)} />
+      <InputRightAddon as='button'
+        onClick={() => setQuery(raw)}
+      >
+        <FontAwesomeIcon icon={faSearch} />
+      </InputRightAddon>
+    </InputGroup>
+  )
+}
+
 
 type CardIndexProps = {
   cards: Card[]
@@ -37,7 +59,7 @@ export default ({ cards }: CardIndexProps) => {
       (_card: Card) => true // By default, let everything through
     )
   }
-  const [query, setQuery] = React.useState("x:special f:imperial")
+  const [query, setQuery] = React.useState("")
 
   /*
   // SORT
@@ -63,10 +85,14 @@ export default ({ cards }: CardIndexProps) => {
   // PAGINATION
   */
   // Mocked out - make controllable
-  const maxPerPage = 20
-  const currentPage = 1
-  const start = maxPerPage * (currentPage - 1)
-  const end = (maxPerPage * currentPage)
+  // const maxPerPage = 20
+  // const currentPage = 1
+
+
+  // TODO: useReducer probably more appropriate here
+  const [pagination, updatePagination] = React.useState({ perPage: 20, currentPage: 1, numPages: Math.round(cards.length / 20) })
+  const start = pagination.perPage * (pagination.currentPage - 1)
+  const end = (pagination.perPage * pagination.currentPage)
 
   // Apply filter, sort, and then pagination to full list of cards
   const transformedCards = cards
@@ -76,29 +102,34 @@ export default ({ cards }: CardIndexProps) => {
 
   return (
     <PageWrapper>
-      <Box>
-        <Editable>
-          <EditableInput
-            value={query}
-            onChange={() => setQuery}
-          ></EditableInput>
-        </Editable>
-      </Box>
-      <RadioGroup onChange={setDisplayMode} value={displayMode} paddingBlock={4}>
-        <Stack direction='row'>
-          <Radio value='image'>Images</Radio>
-          <Radio value='text'>Text</Radio>
-        </Stack>
-      </RadioGroup>
-      {/* TODO: look up that thing about React spread objects not showing as new */}
-      {/* TODO: also this should be a Select probably*/}
-      <RadioGroup onChange={(v) => setSorter({ direction: v, ...sorter })} value={sorter.direction}>
+      <SearchBar setQuery={setQuery} />
+      <Divider />
+      <HStack>
+        <RadioGroup onChange={setDisplayMode} value={displayMode} paddingBlock={4}>
+          <Stack direction='row'>
+            <Radio value='image'>Images</Radio>
+            <Radio value='text'>Text</Radio>
+          </Stack>
+        </RadioGroup>
+        <Spacer />
+        {/* TODO: look up that thing about React spread objects not showing as new */}
         <HStack>
-          <Radio value='asc'>Sort Asc</Radio>
-          <Radio value='desc'>Sort Desc</Radio>
+          <Text>Sort by</Text>
+          <Select
+            width='fit-content'
+            onChange={(v) => setSorter({ direction: sorter.direction, field: v.currentTarget.value })}>
+            {Object.keys(sortFns).map(f => <option value={f}>{f}</option>)}
+          </Select>
+          <Select
+            width='80px'
+            onChange={(v) => setSorter({ direction: v.currentTarget.value, field: sorter.field })}>
+            <option value='asc'>Asc</option>
+            <option value='desc'>Desc</option>
+          </Select>
         </HStack>
-      </RadioGroup>
-      <SimpleGrid minChildWidth='300px' spacing='20px'>
+
+      </HStack>
+      <SimpleGrid minChildWidth='200px' spacing='20px'>
         {transformedCards.length > 0 ?
           transformedCards.map((c) =>
             <Card
@@ -108,6 +139,6 @@ export default ({ cards }: CardIndexProps) => {
             />) :
           <Box><Text>No cards match!</Text></Box>}
       </SimpleGrid>
-    </PageWrapper>
+    </PageWrapper >
   )
 }
