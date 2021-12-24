@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Card } from './Card'
 import PageWrapper from './PageWrapper'
-import { IconButton, Box, HStack, RadioGroup, SimpleGrid, Grid, Text, Stack, Radio, Divider, EditableInput, Editable, Select, SelectField, Input, Spacer, InputGroup, InputRightAddon } from '@chakra-ui/react'
+import { Box, HStack, RadioGroup, SimpleGrid, Text, Stack, Radio, Divider, Select, Input, Spacer, InputGroup, InputRightAddon, chakra } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
@@ -9,18 +9,22 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 // maybe a form would be more appropriate.
 const SearchBar = ({ setQuery }) => {
   const [raw, setRaw] = React.useState("")
+
   return (
-    <InputGroup size='md'>
-      <Input
-        placeholder='Enter a query here. ex: t:crew'
-        value={raw}
-        onChange={(ev) => setRaw(ev.target.value)} />
-      <InputRightAddon as='button'
-        onClick={() => setQuery(raw)}
-      >
-        <FontAwesomeIcon icon={faSearch} />
-      </InputRightAddon>
-    </InputGroup>
+    <chakra.form size='md'>
+      <InputGroup>
+        <Input
+          placeholder='Enter a query here. ex: t:crew'
+          value={raw}
+          onChange={(ev) => setRaw(ev.target.value)} />
+        <InputRightAddon as='button'
+          type='submit'
+          onClick={(ev) => { ev.preventDefault(); setQuery(raw) }}
+        >
+          <FontAwesomeIcon icon={faSearch} />
+        </InputRightAddon>
+      </InputGroup>
+    </chakra.form>
   )
 }
 
@@ -118,7 +122,7 @@ export default ({ cards }: CardIndexProps) => {
           <Select
             width='fit-content'
             onChange={(v) => setSorter({ direction: sorter.direction, field: v.currentTarget.value })}>
-            {Object.keys(sortFns).map(f => <option value={f}>{f}</option>)}
+            {Object.keys(sortFns).map(f => <option key={f} value={f}>{f}</option>)}
           </Select>
           <Select
             width='80px'
