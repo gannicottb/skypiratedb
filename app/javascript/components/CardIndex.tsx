@@ -44,6 +44,9 @@ export default ({ cards }: CardIndexProps) => {
     ),
     "faction": (card1: Card, card2: Card) => (
       card1.faction.localeCompare(card2.faction)
+    ),
+    "type": (card1: Card, card2: Card) => (
+      card1.type.localeCompare(card2.type)
     )
     // TODO: generalize to "string" and "number" I think
     // that would require matching on types probs
@@ -87,19 +90,15 @@ export default ({ cards }: CardIndexProps) => {
           <Input
             placeholder='Enter a query here. ex: t:crew'
             value={raw}
-            onChange={(ev) => setRaw(ev.target.value)} />
-          <Tooltip label={helpText}>
-            <InputRightAddon as='button'
-              type='submit'
-              onClick={(ev) => {
+            onKeyDown={(ev) => {
+              if (ev.key === "Enter") {
                 ev.preventDefault();
                 setCurrentPage(1);
                 setQuery(raw);
-              }}
-            >
-              <FontAwesomeIcon icon={faSearch} />
-            </InputRightAddon>
-          </Tooltip>
+              }
+            }
+            }
+            onChange={(ev) => setRaw(ev.target.value)} />
         </InputGroup>
       </chakra.form>
     )
