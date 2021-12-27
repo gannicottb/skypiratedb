@@ -1,68 +1,12 @@
 import * as React from 'react'
 import { Card } from './Card'
 import PageWrapper from './PageWrapper'
-import { Box, HStack, RadioGroup, SimpleGrid, Text, Stack, Radio, Divider, Select, Input, Spacer, InputGroup, InputRightAddon, chakra, Button, IconButton, Center } from '@chakra-ui/react'
+import { PaginationBar } from './PaginationBar'
+import { stringInclude, stringExactMatch, numericEqual, useFilter } from '../hooks/useFilter'
+import { Box, HStack, RadioGroup, SimpleGrid, Text, Stack, Radio, Divider, Select, Input, Spacer, InputGroup, InputRightAddon, chakra, Center, Tooltip, InputLeftAddon } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faAngleDoubleLeft, faAngleLeft, faAngleRight, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
-
-const SearchBar = ({ setQuery }) => {
-  const [raw, setRaw] = React.useState("")
-
-  // TODO: add a syntax helper somewhere
-  return (
-    <chakra.form size='md'>
-      <InputGroup>
-        <Input
-          placeholder='Enter a query here. ex: t:crew'
-          value={raw}
-          onChange={(ev) => setRaw(ev.target.value)} />
-        <InputRightAddon as='button'
-          type='submit'
-          onClick={(ev) => { ev.preventDefault(); setQuery(raw) }}
-        >
-          <FontAwesomeIcon icon={faSearch} />
-        </InputRightAddon>
-      </InputGroup>
-    </chakra.form>
-  )
-}
-
-const PaginationBar = ({ perPageOptions, state, dispatch }) => (
-  <HStack>
-    <IconButton
-      aria-label="First"
-      icon={<FontAwesomeIcon icon={faAngleDoubleLeft} />}
-      onClick={() => dispatch({ type: "first" })}
-    >First</IconButton>
-    <IconButton
-      aria-label="Previous"
-      icon={<FontAwesomeIcon icon={faAngleLeft} />}
-      disabled={state.currentPage === 1}
-      onClick={() => dispatch({ type: "previous" })}
-    >Previous ({state.currentPage - 1})</IconButton>
-    <Text>{state.currentPage}</Text>
-    <IconButton
-      aria-label="Next"
-      icon={<FontAwesomeIcon icon={faAngleRight} />}
-      disabled={state.currentPage === state.numPages}
-      onClick={() => dispatch({ type: "next" })}
-    >Next ({state.currentPage + 1})</IconButton>
-    <IconButton
-      aria-label="Last"
-      icon={<FontAwesomeIcon icon={faAngleDoubleRight} />}
-      onClick={() => dispatch({ type: "last" })}
-    >Last ({state.numPages})</IconButton>
-
-    <Text>Showing</Text>
-    <Select
-      width='fit-content'
-      value={state.perPage}
-      onChange={(ev) => dispatch({ type: "setPerPage", payload: ev.target.value })}>
-      {perPageOptions.map(i => <option key={i} value={i}>{i}</option>)}
-    </Select>
-    <Text>per page</Text>
-  </HStack >
-)
+import { faQuestionCircle, faSearch } from '@fortawesome/free-solid-svg-icons'
+import QuerySyntaxHelp from './QuerySyntaxHelp'
 
 type CardIndexProps = {
   cards: Card[]
@@ -71,60 +15,24 @@ export default ({ cards }: CardIndexProps) => {
   /*
   // DISPLAY MODE
   */
-  const [displayMode, setDisplayMode] = React.useState('text')
+  const [displayMode, setDisplayMode] = React.useState('image')
 
   /*
   // FILTER
   */
-  const parseQuery = (queryString: string) => {
-    const stringExactMatch = (fieldName: string) => (
-      (c: Card, input: string) => (c[fieldName] || "").toLowerCase() === input.toLowerCase()
-    )
-    const stringInclude = (fieldName: string) => (
-      (c: Card, input: string) => (c[fieldName] || "").toLowerCase().includes(input.toLowerCase())
-    )
-
-    const numericEqual = (fieldName: string) => {
-      return (c: Card, input: string) => {
-        if (c[fieldName]) {
-          return Number(c[fieldName]) === Number(input)
-        } else {
-          return false
-        }
-      }
-    }
-
-    const keyMap = {
-      "x": stringInclude("text"),
-      "t": stringExactMatch("type"),
-      "f": stringExactMatch("faction"),
-      "s": stringExactMatch("subtype"),
-      "a": numericEqual("attack"),
-      "d": numericEqual("defense"),
-      "dur": numericEqual("durability"),
-      "c": numericEqual("cost"),
-      "p": numericEqual("power"),
-      "art": stringInclude("artist")
-    }
-
-    // make case insensitive, and default to string include on `name`
-    const filterMap = (filterKey: string) => keyMap[filterKey.toLowerCase()] || stringInclude("name")
-
-    // raw string can contain multiple expressions, delimited by a space
-    const expressions = queryString.split(" ").filter(s => s.length > 0)
-
-    // Build a composite boolean function to match all conditions in query string
-    return expressions.map(e => {
-      const [key, input] = e.split(":").map(s => s.trim())
-
-      return (card: Card) => (
-        filterMap(key)(card, input || key)
-      )
-    }).reduce(
-      (memo, fn) => (card: Card) => memo(card) && fn(card), // AND all conditions
-      (_card: Card) => true // By default, let everything through
-    )
+  const keyMap = {
+    "x": { fn: stringInclude, arg: "text" },
+    "t": { fn: stringExactMatch, arg: "type" },
+    "s": { fn: stringExactMatch, arg: "subtype" },
+    "f": { fn: stringExactMatch, arg: "faction" },
+    "a": { fn: numericEqual, arg: "attack" },
+    "d": { fn: numericEqual, arg: "defense" },
+    "dur": { fn: numericEqual, arg: "durability" },
+    "c": { fn: numericEqual, arg: "cost" },
+    "p": { fn: numericEqual, arg: "power" },
+    "art": { fn: stringInclude, arg: "artist" }
   }
+  const [parseQuery, helpText] = useFilter(keyMap)
   const [query, setQuery] = React.useState("")
 
   /*
@@ -150,64 +58,71 @@ export default ({ cards }: CardIndexProps) => {
   /*
   // PAGINATION
   */
-  type PaginationState = {
-    perPage: number;
-    currentPage: number;
-    numPages: number;
-  }
   const perPageOptions = [10, 20, 50]
-  const defaultPerPage = perPageOptions[1]
-  const initialState = { perPage: defaultPerPage, currentPage: 1, numPages: Math.ceil(cards.length / defaultPerPage) }
-  const reducer = (state: PaginationState, action) => {
-    switch (action.type) {
-      case 'next':
-        return {
-          ...state,
-          currentPage: state.currentPage < state.numPages ? state.currentPage + 1 : state.currentPage
-        }
-      case 'previous':
-        return {
-          ...state,
-          currentPage: state.currentPage > 1 ? state.currentPage - 1 : state.currentPage
-        }
-      case 'first':
-        return {
-          ...state,
-          currentPage: 1
-        };
-      case 'last':
-        return {
-          ...state,
-          currentPage: state.numPages
-        };
-      case 'setPerPage':
-        const newPerPage = Number(action.payload)
-        return {
-          ...state,
-          currentPage: 1, // hack
-          perPage: newPerPage,
-          numPages: Math.ceil(cards.length / newPerPage)
-        }
-      default:
-        console.log(`Pagination received unknown action ${action}.`)
-        return state
-    }
-  }
 
-  const [pagination, updatePagination] = React.useReducer(reducer, initialState)
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [perPage, setPerPage] = React.useState(perPageOptions[1])
 
   // Apply filter, sort, and then pagination to full list of cards
   const transformedCards = cards
     .filter(parseQuery(query))
     .sort(currentSortFn(sorter))
+  const paginatedCards = transformedCards
     .slice(
-      pagination.perPage * (pagination.currentPage - 1),
-      (pagination.perPage * pagination.currentPage)
+      perPage * (currentPage - 1),
+      (perPage * currentPage)
     )
+
+  const SearchBar = ({ setQuery, helpText }) => {
+    const [raw, setRaw] = React.useState("")
+
+    return (
+      <chakra.form size='md'>
+        <InputGroup>
+          <InputLeftAddon>
+            <QuerySyntaxHelp
+              keywordHelp={Object.keys(keyMap).map(k => ({ kw: k, desc: keyMap[k].arg }))}
+            />
+          </InputLeftAddon>
+          <Input
+            placeholder='Enter a query here. ex: t:crew'
+            value={raw}
+            onChange={(ev) => setRaw(ev.target.value)} />
+          <Tooltip label={helpText}>
+            <InputRightAddon as='button'
+              type='submit'
+              onClick={(ev) => {
+                ev.preventDefault();
+                setCurrentPage(1);
+                setQuery(raw);
+              }}
+            >
+              <FontAwesomeIcon icon={faSearch} />
+            </InputRightAddon>
+          </Tooltip>
+        </InputGroup>
+      </chakra.form>
+    )
+  }
+
+  const PageSizePicker = ({ perPageOptions, perPage, setPerPage }) => {
+    return (
+      <HStack>
+        <Text>Showing</Text>
+        <Select
+          width='fit-content'
+          value={perPage}
+          onChange={(ev) => setPerPage(ev.target.value)}>
+          {perPageOptions.map(i => <option key={i} value={i}>{i}</option>)}
+        </Select>
+        <Text>per page</Text>
+      </HStack>
+    )
+  }
 
   return (
     <PageWrapper>
-      <SearchBar setQuery={setQuery} />
+      <SearchBar setQuery={setQuery} helpText={helpText} />
       <Divider />
       <HStack>
         <RadioGroup onChange={setDisplayMode} value={displayMode} paddingBlock={4}>
@@ -232,22 +147,32 @@ export default ({ cards }: CardIndexProps) => {
           </Select>
         </HStack>
       </HStack>
-      <SimpleGrid minChildWidth='200px' spacing='20px'>
-        {transformedCards.length > 0 ?
-          transformedCards.map((c) =>
-            <Card
-              displayMode={displayMode}
-              card={c}
-              key={c.id}
-            />) :
+      <SimpleGrid minChildWidth='200px' spacing='3'>
+        {paginatedCards.length > 0 ?
+          paginatedCards
+            .map((c) =>
+              <Card
+                displayMode={displayMode}
+                card={c}
+                key={c.id}
+              />) :
           <Box><Text>No cards match!</Text></Box>}
       </SimpleGrid>
-      <Center>
-        <PaginationBar
-          perPageOptions={perPageOptions}
-          state={pagination}
-          dispatch={updatePagination} />
+      <Center marginTop='2'>
+        <HStack >
+          <PaginationBar
+            totalItems={transformedCards.length}
+            pageSize={perPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+          <PageSizePicker
+            perPageOptions={perPageOptions}
+            perPage={perPage}
+            setPerPage={setPerPage}
+          />
+        </HStack>
       </Center>
-    </PageWrapper >
+    </PageWrapper>
   )
 }

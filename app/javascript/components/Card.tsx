@@ -68,7 +68,7 @@ type CardProps = {
 }
 export const Card = ({ card, displayMode }: CardProps) => {
   return (
-    <LinkBox maxW='fit-content' borderWidth={1} borderRadius='sm' p={2}>
+    <LinkBox maxW='300px' borderWidth={1} borderRadius='sm' p={2}>
       <LinkOverlay href={`/cards/${card.id}`}></LinkOverlay>
       {displayMode === 'image' && <CardImage card={card} />}
       {displayMode === 'text' && <CardTextOnly card={card} />}
