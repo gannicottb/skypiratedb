@@ -61,10 +61,10 @@ export default ({ cards }: CardIndexProps) => {
   /*
   // PAGINATION
   */
-  const perPageOptions = [10, 20, 50]
+  const perPageOptions = [10, 20, 30, 40, 50]
 
   const [currentPage, setCurrentPage] = React.useState(1)
-  const [perPage, setPerPage] = React.useState(perPageOptions[1])
+  const [perPage, setPerPage] = React.useState(perPageOptions[3])
 
   // Apply filter, sort, and then pagination to full list of cards
   const transformedCards = cards
@@ -77,7 +77,7 @@ export default ({ cards }: CardIndexProps) => {
     )
 
   const SearchBar = ({ setQuery, helpText }) => {
-    const [raw, setRaw] = React.useState("")
+    const [raw, setRaw] = React.useState(query)
 
     return (
       <chakra.form size='md'>
@@ -119,33 +119,50 @@ export default ({ cards }: CardIndexProps) => {
     )
   }
 
+  const Controls = () => (
+    <HStack paddingBlock={4}>
+      <Select
+        width='fit-content'
+        value={displayMode}
+        onChange={(ev) => setDisplayMode(ev.currentTarget.value)}
+      >
+        <option value="image">Images</option>
+        <option value="text">Text Only</option>
+      </Select>
+      <HStack>
+        <Text>sorted by</Text>
+        <Select
+          width='fit-content'
+          value={sorter.field}
+          onChange={(v) => setSorter({ direction: sorter.direction, field: v.currentTarget.value })}>
+          {Object.keys(sortFns).map(f => <option key={f} value={f}>{f}</option>)}
+        </Select>
+        <Text>:</Text>
+        <Select
+          width='80px'
+          value={sorter.direction}
+          onChange={(v) => setSorter({ direction: v.currentTarget.value, field: sorter.field })}>
+          <option value='asc'>Asc</option>
+          <option value='desc'>Desc</option>
+        </Select>
+      </HStack>
+      <Spacer />
+      <PaginationBar
+        totalItems={transformedCards.length}
+        pageSize={perPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
+    </HStack>
+  )
+  let startIdx = perPage * (currentPage - 1)
+  let endIdx = perPage * currentPage // end is not inclusive
   return (
     <PageWrapper>
       <SearchBar setQuery={setQuery} helpText={helpText} />
       <Divider />
-      <HStack>
-        <RadioGroup onChange={setDisplayMode} value={displayMode} paddingBlock={4}>
-          <Stack direction='row'>
-            <Radio value='image'>Images</Radio>
-            <Radio value='text'>Text</Radio>
-          </Stack>
-        </RadioGroup>
-        <Spacer />
-        <HStack>
-          <Text>Sort by</Text>
-          <Select
-            width='fit-content'
-            onChange={(v) => setSorter({ direction: sorter.direction, field: v.currentTarget.value })}>
-            {Object.keys(sortFns).map(f => <option key={f} value={f}>{f}</option>)}
-          </Select>
-          <Select
-            width='80px'
-            onChange={(v) => setSorter({ direction: v.currentTarget.value, field: sorter.field })}>
-            <option value='asc'>Asc</option>
-            <option value='desc'>Desc</option>
-          </Select>
-        </HStack>
-      </HStack>
+      <Controls />
+      <Text as='em'>{startIdx + 1} - {Math.min(endIdx, transformedCards.length)} of {transformedCards.length} cards that match the query "{query}".</Text>
       <SimpleGrid minChildWidth='200px' spacing='3'>
         {paginatedCards.length > 0 ?
           paginatedCards
@@ -157,21 +174,7 @@ export default ({ cards }: CardIndexProps) => {
               />) :
           <Box><Text>No cards match!</Text></Box>}
       </SimpleGrid>
-      <Center marginTop='2'>
-        <HStack >
-          <PaginationBar
-            totalItems={transformedCards.length}
-            pageSize={perPage}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
-          <PageSizePicker
-            perPageOptions={perPageOptions}
-            perPage={perPage}
-            setPerPage={setPerPage}
-          />
-        </HStack>
-      </Center>
+      <Controls />
     </PageWrapper>
   )
 }
