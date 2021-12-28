@@ -35,8 +35,12 @@ export const useFilter = (keyMap: KeyMap2): [(queryString: string) => (c: Card) 
 
   // make case insensitive, and default to string include on `name`
   const filterMap = (filterKey: string) => {
-    const { fn, arg } = keyMap[filterKey.toLowerCase()]
-    return fn(arg) || stringInclude("name")
+    if (keyMap[filterKey.toLowerCase()]) {
+      const { fn, arg } = keyMap[filterKey.toLowerCase()]
+      return fn(arg)
+    } else {
+      return stringInclude("name")
+    }
   }
 
   const parseQuery = (queryString: string): (c: Card) => boolean => {
