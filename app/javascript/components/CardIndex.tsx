@@ -160,7 +160,6 @@ export default ({ cards }: CardIndexProps) => {
   return (
     <PageWrapper>
       <SearchBar setQuery={setQuery} helpText={helpText} />
-      <Divider />
       <Controls />
       <Text as='em'>{startIdx + 1} - {Math.min(endIdx, transformedCards.length)} of {transformedCards.length} cards that match the query "{query}".</Text>
       <SimpleGrid minChildWidth='200px' spacing='3'>
