@@ -56,3 +56,8 @@ interface Card {
   durability?: number;
   back?: Card
 }
+
+interface User {
+  email: string,
+  name: string
+}

@@ -23,6 +23,8 @@ export const LoginForm = (props: HTMLChakraProps<'form'>) => {
   const [username, setUsername] = React.useState("")
   const onInputChange = (fn) => (ev) => fn(ev.target.value)
 
+  const csrfMeta = document.getElementsByName('csrf-token')[0] as HTMLMetaElement;
+
   return (
     <chakra.form
       onSubmit={(e) => {
@@ -31,8 +33,34 @@ export const LoginForm = (props: HTMLChakraProps<'form'>) => {
         if (registerMode) {
           console.log(username)
           console.log(password === passwordConfirm)
+
+          fetch("/users", {
+            method: "POST",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': csrfMeta.content
+            },
+            body: JSON.stringify({ user: { email, name: username, password_confirmation: passwordConfirm, password } })
+          }).then(data => console.log(data))
         } else {
           console.log({ email: email, password: password })
+
+          fetch("/login", {
+            method: "POST",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': csrfMeta.content
+            },
+            body: JSON.stringify({ user: { email, password } })
+          }).then(data => {
+            console.log(data)
+            window.location.href = data.url
+          })
+
         }
 
       }}

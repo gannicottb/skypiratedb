@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    @user = User.find params[:id]
   end
 
   # GET /users/new
@@ -24,6 +25,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     respond_to do |format|
+      puts format
+      byebug
       if @user.save
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
@@ -64,6 +67,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :name, :password, :password_confirmation)
   end
 end

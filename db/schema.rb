@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2021_12_30_164357) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
+    t.string "name", null: false
     t.string "crypted_password"
     t.string "salt"
     t.datetime "created_at", precision: 6, null: false
@@ -103,6 +104,7 @@ ActiveRecord::Schema.define(version: 2021_12_30_164357) do
     t.datetime "reset_password_email_sent_at"
     t.integer "access_count_to_reset_password_page", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
