@@ -23,6 +23,7 @@ module CsvImporter
       row[:art] ||= ""
       row[:text] ||= ""
       row[:flavor] ||= ""
+
       # Dynamically find or create associated records
       artist = Artist.where(name: row[:illustrator]).first_or_create
       faction = Faction.where(name: row[:faction]).first_or_create
@@ -33,12 +34,13 @@ module CsvImporter
       subtype = Subtype.where(name: subtypes.first).first_or_create
 
       # Transform known codes into icons
-      row[:text] = row[:text].gsub("(P)", "<i class='far fa-dot-circle'></i>")
-      row[:text] = row[:text].gsub("(A)", "<i class='fas fa-dharmachakra'></i>")
-      row[:text] = row[:text].gsub("(T)", "<i class='fas fa-bolt tactic-icon'></i>")
+      icons_replaced = row[:text]
+        .gsub("(P)", "<i class='far fa-dot-circle'></i>")
+        .gsub("(A)", "<i class='fas fa-dharmachakra'></i>")
+        .gsub("(T)", "<i class='fas fa-bolt tactic-icon'></i>")
 
       # Parse markdown
-      parsed_text = Kramdown::Document.new(row[:text]).to_html if row[:text].present?
+      parsed_text = Kramdown::Document.new(icons_replaced).to_html if icons_replaced.present?
       parsed_flavor = Kramdown::Document.new(row[:flavor]).to_html if row[:flavor].present?
 
       # Map the row into a CardInfo
@@ -60,7 +62,7 @@ module CsvImporter
           cost: row[:cost],
           power: row[:power],
           durability: row[:break],
-          image_url: "https://skypiratedb.s3.amazonaws.com/#{row[:name].downcase.gsub(/ |\s|\W/, "")}.png",
+          image_url: "https://skypiratedb.s3.amazonaws.com/large/#{row[:name].downcase.gsub(/ |\s|\W/, "")}.png",
         }
       )
     end
