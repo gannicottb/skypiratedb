@@ -31,7 +31,8 @@ export default ({ cards }: CardIndexProps) => {
     "dur": { fn: numericEqual, arg: "durability" },
     "c": { fn: numericEqual, arg: "cost" },
     "p": { fn: numericEqual, arg: "power" },
-    "art": { fn: stringInclude, arg: "artist" }
+    "art": { fn: stringInclude, arg: "artist" },
+    "e": { fn: stringInclude, arg: "expansion" }
   }
   const [parseQuery, helpText] = useFilter(keyMap)
   const [query, setQuery] = React.useState("")
@@ -105,20 +106,20 @@ export default ({ cards }: CardIndexProps) => {
     )
   }
 
-  const PageSizePicker = ({ perPageOptions, perPage, setPerPage }) => {
-    return (
-      <HStack>
-        <Text>Showing</Text>
-        <Select
-          width='fit-content'
-          value={perPage}
-          onChange={(ev) => setPerPage(ev.target.value)}>
-          {perPageOptions.map(i => <option key={i} value={i}>{i}</option>)}
-        </Select>
-        <Text>per page</Text>
-      </HStack>
-    )
-  }
+  // const PageSizePicker = ({ perPageOptions, perPage, setPerPage }) => {
+  //   return (
+  //     <HStack>
+  //       <Text>Showing</Text>
+  //       <Select
+  //         width='fit-content'
+  //         value={perPage}
+  //         onChange={(ev) => setPerPage(ev.target.value)}>
+  //         {perPageOptions.map(i => <option key={i} value={i}>{i}</option>)}
+  //       </Select>
+  //       <Text>per page</Text>
+  //     </HStack>
+  //   )
+  // }
 
   const Controls = () => (
     <Stack direction={['column', 'row']} paddingBlock={4}>
