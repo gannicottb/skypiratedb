@@ -44,6 +44,7 @@ interface Card {
   type: string;
   subtype?: string;
   text: string;
+  raw_text: string;
   flavor: string;
   faction: string;
   artist: string;

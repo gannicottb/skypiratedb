@@ -21,8 +21,9 @@ export default ({ cards }: CardIndexProps) => {
   // FILTER
   */
   const keyMap = {
-    "x": { fn: stringInclude, arg: "text" },
+    "x": { fn: stringInclude, arg: "raw_text" },
     "t": { fn: stringExactMatch, arg: "type" },
+    "sup": { fn: stringExactMatch, arg: "supertype" },
     "s": { fn: stringExactMatch, arg: "subtype" },
     "f": { fn: stringExactMatch, arg: "faction" },
     "a": { fn: numericEqual, arg: "attack" },
@@ -120,16 +121,16 @@ export default ({ cards }: CardIndexProps) => {
   }
 
   const Controls = () => (
-    <HStack paddingBlock={4}>
-      <Select
-        width='fit-content'
-        value={displayMode}
-        onChange={(ev) => setDisplayMode(ev.currentTarget.value)}
-      >
-        <option value="image">Images</option>
-        <option value="text">Text Only</option>
-      </Select>
+    <Stack direction={['column', 'row']} paddingBlock={4}>
       <HStack>
+        <Select
+          width='fit-content'
+          value={displayMode}
+          onChange={(ev) => setDisplayMode(ev.currentTarget.value)}
+        >
+          <option value="image">Images</option>
+          <option value="text">Text Only</option>
+        </Select>
         <Text>sorted by</Text>
         <Select
           width='fit-content'
@@ -153,7 +154,7 @@ export default ({ cards }: CardIndexProps) => {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
-    </HStack>
+    </Stack>
   )
   let startIdx = perPage * (currentPage - 1)
   let endIdx = perPage * currentPage // end is not inclusive

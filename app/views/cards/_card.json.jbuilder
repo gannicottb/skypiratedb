@@ -1,5 +1,5 @@
 # Add all simple values
-json.(obj, :id, :image_url, :name, :expansion_number, :unique, :text, :flavor)
+json.(obj, :id, :image_url, :name, :expansion_number, :unique, :text, :raw_text, :flavor)
 json.(obj, :attack, :defense, :cost, :power, :durability, :ammo)
 
 # Resolve associations

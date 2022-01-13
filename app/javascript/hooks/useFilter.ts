@@ -44,6 +44,8 @@ export const useFilter = (keyMap: KeyMap2): [(queryString: string) => (c: Card) 
   }
 
   const parseQuery = (queryString: string): (c: Card) => boolean => {
+    // how to use quotes to separate tokens
+
     // raw string can contain multiple expressions, delimited by a space
     const expressions = queryString.split(" ").filter(s => s.length > 0)
 
