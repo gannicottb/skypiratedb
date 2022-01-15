@@ -106,48 +106,34 @@ export default ({ cards }: CardIndexProps) => {
     )
   }
 
-  // const PageSizePicker = ({ perPageOptions, perPage, setPerPage }) => {
-  //   return (
-  //     <HStack>
-  //       <Text>Showing</Text>
-  //       <Select
-  //         width='fit-content'
-  //         value={perPage}
-  //         onChange={(ev) => setPerPage(ev.target.value)}>
-  //         {perPageOptions.map(i => <option key={i} value={i}>{i}</option>)}
-  //       </Select>
-  //       <Text>per page</Text>
-  //     </HStack>
-  //   )
-  // }
-
   const Controls = () => (
     <Stack direction={['column', 'row']} paddingBlock={4}>
-      <HStack>
+      <Stack direction={['column', 'row']}>
         <Select
-          width='fit-content'
+          width={['100%', 'fit-content']}
           value={displayMode}
           onChange={(ev) => setDisplayMode(ev.currentTarget.value)}
         >
-          <option value="image">Images</option>
-          <option value="text">Text Only</option>
+          <option value="image">View as Images</option>
+          <option value="text">View as Text Only</option>
         </Select>
-        <Text>sorted by</Text>
-        <Select
-          width='fit-content'
-          value={sorter.field}
-          onChange={(v) => setSorter({ direction: sorter.direction, field: v.currentTarget.value })}>
-          {Object.keys(sortFns).map(f => <option key={f} value={f}>{f}</option>)}
-        </Select>
-        <Text>:</Text>
-        <Select
-          width='80px'
-          value={sorter.direction}
-          onChange={(v) => setSorter({ direction: v.currentTarget.value, field: sorter.field })}>
-          <option value='asc'>Asc</option>
-          <option value='desc'>Desc</option>
-        </Select>
-      </HStack>
+        <HStack>
+          <Select
+            width={['100%', 'fit-content']}
+            value={sorter.field}
+            onChange={(v) => setSorter({ direction: sorter.direction, field: v.currentTarget.value })}>
+            {Object.keys(sortFns).map(f => <option key={f} value={f}>Sort by {f}</option>)}
+          </Select>
+          <Text>:</Text>
+          <Select
+            width={['100%', 'fit-content']}
+            value={sorter.direction}
+            onChange={(v) => setSorter({ direction: v.currentTarget.value, field: sorter.field })}>
+            <option value='asc'>Asc</option>
+            <option value='desc'>Desc</option>
+          </Select>
+        </HStack>
+      </Stack>
       <Spacer />
       <PaginationBar
         totalItems={transformedCards.length}

@@ -1,11 +1,13 @@
 import * as React from 'react'
 import {
+  Box,
   ChakraProvider,
   ColorModeScript,
   Container,
   Flex,
   HStack,
   Link,
+  Text,
   Spacer,
   Switch,
 } from '@chakra-ui/react'
@@ -24,6 +26,21 @@ const ColorModeToggle = () => {
   )
 }
 
+const Footer = () => (
+  <Box
+    width='100%'
+    backgroundColor='gray.400'
+    marginTop='14'
+    paddingBlock='14'
+    paddingInline='10'
+  >
+    <Text>
+      Submit bugs and feature requests on <Link color='blue.600' href='https://github.com/gannicottb/skypiratedb'>Github.</Link>
+    </Text>
+    <Text>&copy; 2022 Winding Road Games. All rights reserved.</Text>
+  </Box>
+)
+
 export default ({ children }) => (
   <ChakraProvider theme={theme}>
     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
@@ -38,5 +55,6 @@ export default ({ children }) => (
     <Container maxW='container.lg' pt={4}>
       {children}
     </Container>
+    <Footer />
   </ChakraProvider>
 )

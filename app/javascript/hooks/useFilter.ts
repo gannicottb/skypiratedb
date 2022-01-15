@@ -15,23 +15,15 @@ export const numericEqual = (fieldName: string) => {
 }
 
 type FilterCondition = (c: Card, input: string) => boolean
+
 interface KeyMap {
-  [index: string]: FilterCondition
-}
-interface KeyMap2 {
   [index: string]: {
     fn: (fieldName: string) => FilterCondition,
     arg: string
   }
 }
-// interface FilterEntry {
-//   keyword: string,
-//   fn: FilterCondition,
-//   desc: string
-// }
-// type KeyMap3 = FilterEntry[]
 
-export const useFilter = (keyMap: KeyMap2): [(queryString: string) => (c: Card) => boolean, string] => {
+export const useFilter = (keyMap: KeyMap): [(queryString: string) => (c: Card) => boolean, string] => {
 
   // make case insensitive, and default to string include on `name`
   const filterMap = (filterKey: string) => {
@@ -44,13 +36,17 @@ export const useFilter = (keyMap: KeyMap2): [(queryString: string) => (c: Card) 
   }
 
   const parseQuery = (queryString: string): (c: Card) => boolean => {
-    // how to use quotes to separate tokens
+    //Step 1: extract all expressions with quoted inputs
+    const getQuotedExpressionsRegex = /(\S*:"[^"]*")/g
+    // Pull out expressions of the form something:"with spaces", then drop the quotes
+    const quotedExpressions = (queryString.match(getQuotedExpressionsRegex) || []).map(s => s.replace(/"/g, ""))
 
-    // raw string can contain multiple expressions, delimited by a space
-    const expressions = queryString.split(" ").filter(s => s.length > 0)
+    // Step 2: remove the quoted expressions, then just split on spaces
+    const queryWithoutQuoted = queryString.replace(getQuotedExpressionsRegex, "").trim()
+    const expressions = queryWithoutQuoted.split(" ").filter(s => s.length > 0)
 
-    // Build a composite boolean function to match all conditions in query string
-    return expressions.map(e => {
+    // Step 3: Build a composite boolean function to match all conditions in query string
+    return (expressions.concat(quotedExpressions)).map(e => {
       const [key, input] = e.split(":").map(s => s.trim())
 
       return (card: Card) => (

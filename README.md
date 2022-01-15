@@ -1,11 +1,5 @@
 # SkyPirateDB
 
-## Routes
+Official card database and browser for the [Sky Pirate card game](https://www.windingroadgames.com/)
 
-/cards - Browse all cards
-
-## Run rake commands in prod
-
-`heroku login`
-
-`heroku run -a skypiratedb rake ...`
+Deck builder is in development.
