@@ -30,7 +30,7 @@ const Footer = () => (
   <Box
     width='100%'
     backgroundColor='gray.400'
-    marginTop='14'
+    marginTop='auto'
     paddingBlock='14'
     paddingInline='10'
   >
@@ -44,17 +44,19 @@ const Footer = () => (
 export default ({ children }) => (
   <ChakraProvider theme={theme}>
     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-    <Flex bg='darkslateblue' w='100%' p={4} textColor='white'>
-      <HStack spacing={4}>
-        <Link href='/'>SkyPirateDB</Link>
-        <Link href='/cards'>Cards</Link>
-      </HStack>
-      <Spacer />
-      <ColorModeToggle />
+    <Flex direction='column' minHeight='100vh'>
+      <Flex bg='darkslateblue' w='100%' p={4} textColor='white'>
+        <HStack spacing={4}>
+          <Link href='/'>SkyPirateDB</Link>
+          <Link href='/cards'>Cards</Link>
+        </HStack>
+        <Spacer />
+        <ColorModeToggle />
+      </Flex>
+      <Container maxW='container.lg' pt={4} marginBlockEnd={14}>
+        {children}
+      </Container>
+      <Footer />
     </Flex>
-    <Container maxW='container.lg' pt={4}>
-      {children}
-    </Container>
-    <Footer />
   </ChakraProvider>
 )
