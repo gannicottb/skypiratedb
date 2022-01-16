@@ -23,7 +23,7 @@ interface KeyMap {
   }
 }
 
-export const useFilter = (keyMap: KeyMap): [(queryString: string) => (c: Card) => boolean, string] => {
+export const useFilter = (keyMap: KeyMap): (queryString: string) => (c: Card) => boolean => {
 
   // make case insensitive, and default to string include on `name`
   const filterMap = (filterKey: string) => {
@@ -58,9 +58,7 @@ export const useFilter = (keyMap: KeyMap): [(queryString: string) => (c: Card) =
     )
   }
 
-  const helpText: string = Object.keys(keyMap).map((k) => `${k}:${keyMap[k].arg}`).join(" ")
-
-  return [parseQuery, helpText]
+  return parseQuery
 
 }
 

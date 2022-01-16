@@ -3,9 +3,18 @@ import { Card } from './Card'
 import PageWrapper from './PageWrapper'
 import { PaginationBar } from './PaginationBar'
 import { stringInclude, stringExactMatch, numericEqual, useFilter } from '../hooks/useFilter'
-import { Box, HStack, RadioGroup, SimpleGrid, Text, Stack, Radio, Divider, Select, Input, Spacer, InputGroup, InputRightAddon, chakra, Center, Tooltip, InputLeftAddon } from '@chakra-ui/react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faQuestionCircle, faSearch } from '@fortawesome/free-solid-svg-icons'
+import {
+  Box,
+  chakra,
+  HStack,
+  Input,
+  InputGroup,
+  Select,
+  SimpleGrid,
+  Spacer,
+  Stack,
+  Text,
+} from '@chakra-ui/react'
 import QuerySyntaxHelp from './QuerySyntaxHelp'
 
 type CardIndexProps = {
@@ -15,7 +24,8 @@ export default ({ cards }: CardIndexProps) => {
   /*
   // DISPLAY MODE
   */
-  const [displayMode, setDisplayMode] = React.useState('image')
+  const [displayMode,
+    setDisplayMode] = React.useState('image')
 
   /*
   // FILTER
@@ -34,24 +44,27 @@ export default ({ cards }: CardIndexProps) => {
     "art": { fn: stringInclude, arg: "artist" },
     "e": { fn: stringInclude, arg: "expansion" }
   }
-  const [parseQuery, helpText] = useFilter(keyMap)
+  const parseQuery = useFilter(keyMap)
   const [query, setQuery] = React.useState("")
 
   /*
   // SORT
   */
+  const byString = (stringPropName: string) => (
+    (a: Card, b: Card) => a[stringPropName]?.localeCompare(b[stringPropName]) ?? 0
+  )
+  const byNumber = (numberPropName: string) => (
+    (a: Card, b: Card) => (a[numberPropName] || 0) - (b[numberPropName] || 0)
+  )
   const sortFns = {
-    "name": (card1: Card, card2: Card) => (
-      card1.name.localeCompare(card2.name)
-    ),
-    "faction": (card1: Card, card2: Card) => (
-      card1.faction.localeCompare(card2.faction)
-    ),
-    "type": (card1: Card, card2: Card) => (
-      card1.type.localeCompare(card2.type)
-    )
-    // TODO: generalize to "string" and "number" I think
-    // that would require matching on types probs
+    "name": byString("name"),
+    "faction": byString("faction"),
+    "type": byString("type"),
+    "attack": byNumber("attack"),
+    "defense": byNumber("defense"),
+    "durability": byNumber("durability"),
+    "cost": byNumber("cost"),
+    "power": byNumber("power")
   }
   // get the compare function from sortFns then apply asc/desc
   const currentSortFn = ({ field, direction }) => (
@@ -63,10 +76,8 @@ export default ({ cards }: CardIndexProps) => {
   /*
   // PAGINATION
   */
-  const perPageOptions = [10, 20, 30, 40, 50]
-
   const [currentPage, setCurrentPage] = React.useState(1)
-  const [perPage, setPerPage] = React.useState(perPageOptions[3])
+  const perPage = 40
 
   // Apply filter, sort, and then pagination to full list of cards
   const transformedCards = cards
@@ -78,17 +89,15 @@ export default ({ cards }: CardIndexProps) => {
       (perPage * currentPage)
     )
 
-  const SearchBar = ({ setQuery, helpText }) => {
+  const SearchBar = ({ setQuery }) => {
     const [raw, setRaw] = React.useState(query)
 
     return (
       <chakra.form size='md'>
         <InputGroup>
-          <InputLeftAddon>
-            <QuerySyntaxHelp
-              keywordHelp={Object.keys(keyMap).map(k => ({ kw: k, desc: keyMap[k].arg }))}
-            />
-          </InputLeftAddon>
+          <QuerySyntaxHelp
+            keywordHelp={Object.keys(keyMap).map(k => ({ kw: k, desc: keyMap[k].arg }))}
+          />
           <Input
             placeholder='Enter a query here. ex: t:crew'
             value={raw}
@@ -147,7 +156,7 @@ export default ({ cards }: CardIndexProps) => {
   let endIdx = perPage * currentPage // end is not inclusive
   return (
     <PageWrapper>
-      <SearchBar setQuery={setQuery} helpText={helpText} />
+      <SearchBar setQuery={setQuery} />
       <Controls />
       <Text as='em'>{startIdx + 1} - {Math.min(endIdx, transformedCards.length)} of {transformedCards.length} cards that match the query "{query}".</Text>
       <SimpleGrid minChildWidth='200px' spacing='3'>

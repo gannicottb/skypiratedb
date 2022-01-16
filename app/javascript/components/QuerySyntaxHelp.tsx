@@ -1,4 +1,4 @@
-import { Icon, Text, Code, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, IconButton, Input, useDisclosure, VStack, Grid, GridItem, Divider } from "@chakra-ui/react"
+import { Text, Code, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, IconButton, Input, useDisclosure, VStack, Grid, GridItem, Divider } from "@chakra-ui/react"
 import { faBolt, faDharmachakra, faDotCircle, faQuestionCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import * as React from "react"
@@ -12,7 +12,7 @@ export default ({ keywordHelp }: QuerySyntaxHelpProps) => {
 
   return (
     <>
-      <Icon
+      <IconButton
         aria-label="Help"
         icon={<FontAwesomeIcon icon={faQuestionCircle} />}
         ref={btnRef} onClick={onOpen} />
