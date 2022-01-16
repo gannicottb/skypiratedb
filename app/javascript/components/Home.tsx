@@ -3,8 +3,10 @@ import { Box, Text, Heading, Button, Center, VStack, HStack, Stack, Link, Spacer
 import PageWrapper from './PageWrapper'
 import { Card } from './Card'
 
-export default ({ card }) => (
-  <PageWrapper>
+export default ({ card, current_user }) => (
+  <PageWrapper
+    current_user={current_user}
+  >
     <VStack>
       <Heading size='3xl'>SkyPirateDB</Heading>
       <Stack direction={['column-reverse', 'row']} width='100%'>

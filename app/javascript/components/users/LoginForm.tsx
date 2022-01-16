@@ -57,6 +57,7 @@ export const LoginForm = (props: HTMLChakraProps<'form'>) => {
             },
             body: JSON.stringify({ user: { email, password } })
           }).then(data => {
+
             console.log(data)
             window.location.href = data.url
           })

@@ -18,9 +18,10 @@ import {
 import QuerySyntaxHelp from './QuerySyntaxHelp'
 
 type CardIndexProps = {
-  cards: Card[]
+  cards: Card[],
+  current_user: any
 }
-export default ({ cards }: CardIndexProps) => {
+export default ({ cards, current_user }: CardIndexProps) => {
   /*
   // DISPLAY MODE
   */
@@ -155,7 +156,7 @@ export default ({ cards }: CardIndexProps) => {
   let startIdx = perPage * (currentPage - 1)
   let endIdx = perPage * currentPage // end is not inclusive
   return (
-    <PageWrapper>
+    <PageWrapper current_user={current_user} >
       <SearchBar setQuery={setQuery} />
       <Controls />
       <Text as='em'>{startIdx + 1} - {Math.min(endIdx, transformedCards.length)} of {transformedCards.length} cards that match the query "{query}".</Text>

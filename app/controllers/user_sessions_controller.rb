@@ -8,8 +8,9 @@ class UserSessionsController < ApplicationController
     if @user
       redirect_back_or_to("/", notice: "Login successful")
     else
-      flash.now[:alert] = "Login failed"
-      render action: "new"
+      # flash.now[:alert] = "Login failed"
+      # render action: "new"
+      render json: { message: "Login failed" }
     end
   end
 
