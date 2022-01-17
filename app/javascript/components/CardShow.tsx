@@ -4,13 +4,14 @@ import PageWrapper from './PageWrapper'
 import { HStack } from '@chakra-ui/react'
 
 type CardShowProps = {
-  card: Card
+  card: Card,
+  current_user: User
 }
 
-export default ({ card }: CardShowProps) => {
+export default ({ card, current_user }: CardShowProps) => {
 
   return (
-    <PageWrapper>
+    <PageWrapper current_user={current_user}>
       <HStack align='start'>
         <Card displayMode='image' card={card} />
         <Card displayMode='text' card={card} />

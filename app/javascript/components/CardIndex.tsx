@@ -19,7 +19,7 @@ import QuerySyntaxHelp from './QuerySyntaxHelp'
 
 type CardIndexProps = {
   cards: Card[],
-  current_user: any
+  current_user: User
 }
 export default ({ cards, current_user }: CardIndexProps) => {
   /*

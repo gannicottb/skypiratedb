@@ -43,7 +43,10 @@ export const LoginForm = (props: HTMLChakraProps<'form'>) => {
               'X-CSRF-Token': csrfMeta.content
             },
             body: JSON.stringify({ user: { email, name: username, password_confirmation: passwordConfirm, password } })
-          }).then(data => console.log(data))
+          }).then(data => {
+            console.log(data)
+            window.location.href = data.url
+          })
         } else {
           console.log({ email: email, password: password })
 

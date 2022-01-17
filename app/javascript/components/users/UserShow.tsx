@@ -3,11 +3,12 @@ import * as React from "react";
 import { Center, Heading, Text, VStack } from "@chakra-ui/layout";
 
 interface UserShowProps {
-  user: User
+  user: User,
+  current_user: User
 }
 
-export default ({ user }: UserShowProps) => (
-  <PageWrapper>
+export default ({ user, current_user }: UserShowProps) => (
+  <PageWrapper current_user={current_user}>
     <Center>
       <VStack>
         <Heading>User "{user.name}"</Heading>
