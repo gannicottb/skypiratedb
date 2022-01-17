@@ -29,11 +29,8 @@ export const LoginForm = (props: HTMLChakraProps<'form'>) => {
     <chakra.form
       onSubmit={(e) => {
         e.preventDefault()
-        // your login logic here
-        if (registerMode) {
-          console.log(username)
-          console.log(password === passwordConfirm)
 
+        if (registerMode) {
           fetch("/users", {
             method: "POST",
             mode: "cors",
@@ -44,12 +41,9 @@ export const LoginForm = (props: HTMLChakraProps<'form'>) => {
             },
             body: JSON.stringify({ user: { email, name: username, password_confirmation: passwordConfirm, password } })
           }).then(data => {
-            console.log(data)
             window.location.href = data.url
           })
         } else {
-          console.log({ email: email, password: password })
-
           fetch("/login", {
             method: "POST",
             mode: "cors",
@@ -60,8 +54,6 @@ export const LoginForm = (props: HTMLChakraProps<'form'>) => {
             },
             body: JSON.stringify({ user: { email, password } })
           }).then(data => {
-
-            console.log(data)
             window.location.href = data.url
           })
 

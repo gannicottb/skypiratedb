@@ -53,6 +53,7 @@ export const PasswordField = React.forwardRef<HTMLInputElement, PasswordFieldPro
         />
         <InputRightAddon>
           <IconButton
+            tabIndex={-1}
             bg="transparent !important"
             variant="ghost"
             aria-label={isOpen ? 'Mask password' : 'Reveal password'}

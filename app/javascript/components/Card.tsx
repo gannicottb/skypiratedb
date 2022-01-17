@@ -56,7 +56,7 @@ const CardImage = ({ card }) => {
 
   return (
     <>
-      <Image src={currentSide.image_url} alt={currentSide.name} />
+      <Image src={currentSide.image_url} alt={currentSide.name} fallbackSrc='https://via.placeholder.com/200x300' />
       {card.back && <Flipper handleClick={() => toggleSide(!onFront)} />}
     </>
   )

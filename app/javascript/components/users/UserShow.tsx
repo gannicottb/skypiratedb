@@ -11,9 +11,9 @@ export default ({ user, current_user }: UserShowProps) => (
   <PageWrapper current_user={current_user}>
     <Center>
       <VStack>
-        <Heading>User "{user.name}"</Heading>
-        <Text>Email: {user.email}</Text>
-        <Text>Name: {user.name}</Text>
+        <Heading>{user.name}</Heading>
+        {user.email && <Text>Email: {user.email}</Text>}
+        <Text>Member since {new Date(user.created_at).toDateString()}</Text>
       </VStack>
     </Center>
   </PageWrapper>
