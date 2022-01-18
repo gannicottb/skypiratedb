@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.7.5"
 
+gem "dotenv-rails", groups: [:development, :test]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem "rails", "~> 6.1.4", ">= 6.1.4.4"
 # postgres
@@ -30,6 +31,7 @@ gem "bootsnap", ">= 1.4.4", require: false
 
 gem "react-rails", "~> 2.6.1"
 gem "kramdown", "~> 2.2.1"
+gem "sorcery", "~> 0.16.2"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

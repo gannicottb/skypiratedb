@@ -13,6 +13,6 @@ json.expansion obj.expansion.name
 # Embed back side if present
 if obj.respond_to?(:back) && obj.back.present?
   json.back do
-    json.partial! "card", obj: obj.back
+    json.partial! "cards/card", obj: obj.back
   end
 end
