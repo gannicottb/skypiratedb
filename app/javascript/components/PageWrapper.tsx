@@ -43,7 +43,7 @@ const UserToggle = ({ current_user }) => {
         'Content-Type': 'application/json',
         'X-CSRF-Token': csrfMeta.content
       },
-    }).then(data => window.location.href = '/')
+    }).then(data => window.location.href = data.url)
   )
   return (
     <Menu>
@@ -95,7 +95,6 @@ export default ({ children, current_user }) => (
         <HStack>
           <ColorModeToggle />
           <UserToggle current_user={current_user} />
-          {/* {current_user ? <Text>{current_user.name}</Text> : <Link href='/login'>Log in</Link>} */}
         </HStack>
       </Flex>
       <Container maxW='container.lg' pt={4} marginBlockEnd={14}>

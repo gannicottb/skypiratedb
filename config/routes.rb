@@ -4,9 +4,15 @@ Rails.application.routes.draw do
 
   resources :cards, only: [:index, :show]
 
-  resources :users
+  resources :users, only: [:show, :create, :update] do
+    member do
+      get :activate
+    end
+  end
 
-  get "login" => "user_sessions#new", :as => :login
+  resources :password_resets, only: [:new, :create, :edit, :update]
+
+  get "login" => "user_sessions#new", as: :login
   post "login" => "user_sessions#create"
-  post "logout" => "user_sessions#destroy", :as => :logout
+  post "logout" => "user_sessions#destroy", as: :logout
 end

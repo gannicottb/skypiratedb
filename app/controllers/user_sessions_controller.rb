@@ -1,4 +1,7 @@
 class UserSessionsController < ApplicationController
+  before_action -> { check_flag(USER_ACCOUNTS) }
+
+  # LoginForm
   def new
   end
 
@@ -8,16 +11,17 @@ class UserSessionsController < ApplicationController
     if @user
       redirect_back_or_to("/", notice: "Login successful")
     else
-      # flash.now[:alert] = "Login failed"
-      # render action: "new"
-      render json: { message: "Login failed" }
+      flash[:alert] = "Login failed"
+      render action: :new
     end
   end
 
   def destroy
     logout
-    redirect_to(:users, notice: "Logged out!")
+    redirect_to("/", notice: "Logged out!")
   end
+
+  private
 
   def user_params
     params.require(:user).permit(:email, :password)
