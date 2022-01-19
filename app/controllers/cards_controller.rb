@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
   def index
-    @cards = Card.all
+    @cards = Card.includes(:expansion, front: [:subtype, :type, :supertype, :faction, :artist]).all
   end
 
   def show
