@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :decks, only: [:index, :show]
+
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   get "login" => "user_sessions#new", as: :login

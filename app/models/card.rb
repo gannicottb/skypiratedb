@@ -1,4 +1,6 @@
 class Card < ApplicationRecord
+  has_many :deck_slots
+  has_many :decks, through: :deck_slots
   belongs_to :expansion
   belongs_to :front, class_name: "CardInfo"
   belongs_to :back, class_name: "CardInfo", optional: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_17_004236) do
+ActiveRecord::Schema.define(version: 2022_01_20_015952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,25 @@ ActiveRecord::Schema.define(version: 2022_01_17_004236) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["expansion_id"], name: "index_cards_on_expansion_id"
     t.index ["front_id"], name: "index_cards_on_front_id"
+  end
+
+  create_table "deck_slots", force: :cascade do |t|
+    t.bigint "deck_id", null: false
+    t.bigint "card_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["card_id"], name: "index_deck_slots_on_card_id"
+    t.index ["deck_id"], name: "index_deck_slots_on_deck_id"
+  end
+
+  create_table "decks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_decks_on_user_id"
   end
 
   create_table "expansions", force: :cascade do |t|
@@ -118,4 +137,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_004236) do
   add_foreign_key "card_infos", "types"
   add_foreign_key "cards", "card_infos", column: "front_id"
   add_foreign_key "cards", "expansions"
+  add_foreign_key "deck_slots", "cards"
+  add_foreign_key "deck_slots", "decks"
+  add_foreign_key "decks", "users"
 end

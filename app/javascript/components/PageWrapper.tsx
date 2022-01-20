@@ -90,6 +90,7 @@ export default ({ children, current_user }) => (
         <HStack spacing={4}>
           <Link href='/'>SkyPirateDB</Link>
           <Link href='/cards'>Cards</Link>
+          <Link href='/decks'>Decks</Link>
         </HStack>
         <Spacer />
         <HStack>

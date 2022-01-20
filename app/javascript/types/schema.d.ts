@@ -23,7 +23,19 @@ interface Card {
 
 interface User {
   id: number;
-  email?: string,
-  name: string,
+  email?: string;
+  name: string;
   created_at: Date
+}
+interface DeckSlot {
+  quantity: number;
+  card: Card
+}
+interface Deck {
+  id: number;
+  description: string;
+  faction?: string;
+  captain?: Card;
+  splash?: string;
+  slots?: DeckSlot[]
 }
