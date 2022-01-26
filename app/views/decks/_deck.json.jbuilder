@@ -1,4 +1,4 @@
-json.(deck, :id, :description)
+json.(deck, :id, :name, :description)
 
 json.slots deck.deck_slots do |ds|
   json.quantity ds.quantity

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { VStack, Text, Box, Image, IconButton, LinkBox, LinkOverlay, Divider } from '@chakra-ui/react'
+import { VStack, Text, Box, Image, IconButton, LinkBox, LinkOverlay, Divider, LinkBoxProps, forwardRef } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -62,16 +62,31 @@ const CardImage = ({ card }) => {
   )
 }
 
+// type CardProps = {
+//   displayMode: string
+//   card: Card
+// } 
+// export const  Card = ({ card, displayMode }: CardProps) => {
+//   return (
+//     <LinkBox maxW='300px' borderWidth={1} borderRadius='sm' p={2}>
+//       <LinkOverlay href={`/cards/${card.id}`}></LinkOverlay>
+//       {displayMode === 'image' && <CardImage card={card} />}
+//       {displayMode === 'text' && <CardTextOnly card={card} />}
+//     </LinkBox>
+//   )
+// }
+
+
 type CardProps = {
   displayMode: string
   card: Card
-}
-export const Card = ({ card, displayMode }: CardProps) => {
+} & LinkBoxProps
+export const Card = forwardRef<CardProps, 'div'>(({ displayMode, card, ...props }, ref) => {
   return (
-    <LinkBox maxW='300px' borderWidth={1} borderRadius='sm' p={2}>
+    <LinkBox maxW='300px' borderWidth={1} borderRadius='sm' p={2} ref={ref} {...props}>
       <LinkOverlay href={`/cards/${card.id}`}></LinkOverlay>
       {displayMode === 'image' && <CardImage card={card} />}
       {displayMode === 'text' && <CardTextOnly card={card} />}
     </LinkBox>
   )
-}
+})

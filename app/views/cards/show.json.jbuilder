@@ -1,5 +1,5 @@
 json.card do
-  json.partial! "cards/card", obj: @card
+  json.partial! "cards/card", card: @card
 end
 
 json.partial! "users/current"
