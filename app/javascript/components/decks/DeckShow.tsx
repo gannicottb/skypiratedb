@@ -1,21 +1,13 @@
-import { Box, Divider, Heading, HStack, Text, VStack, Wrap, WrapItem } from "@chakra-ui/react"
+import { Box, Divider, Flex, Heading, HStack, Link, SimpleGrid, Stack, Text, VStack, Wrap, WrapItem } from "@chakra-ui/react"
 import * as React from "react"
 import { Card } from "../Card"
 import PageWrapper from "../PageWrapper"
 
 const Slot = ({ slot, ...props }) => (
-  <Box {...props}>{slot.quantity} {slot.card.name}</Box>
+  <Box {...props}>{slot.quantity}x <Link href={`/cards/${slot.card.id}`}>{slot.card.name}</Link></Box>
 )
 
 export default ({ deck, current_user }) => {
-  /*
-    Cleaver Aggro
-    -------------
-    Captain     | Cleaver
-    Card        | x/6 splash (Trader)
-                | 30 cards
-    
-  */
 
   const holdTypes = ["Asset", "Crew", "Maneuver", "Special Ammo"]
   const emplacementTypes = ["Cannon", "Structure"]
@@ -39,23 +31,33 @@ export default ({ deck, current_user }) => {
         <Heading>{deck.name}</Heading>
         <Divider />
         <HStack>
-          <Card displayMode="image" card={captain} width="25%" />
+          {/* Left Column */}
           <VStack alignItems='flex-start'>
-            <Text fontSize='2xl'>{captain.name}</Text>
-            <Text>{splash.reduce((m, s) => m + s.quantity, 0)}/6 splashes from {splashFactions}</Text>
-            <Text>{hold.reduce((memo: number, slot: DeckSlot) => memo + slot.quantity, 0)} cards</Text>
+            <HStack>
+              <Card displayMode="image" card={captain} width={180} />
+              <VStack alignItems='flex-start' justifyContent='flex-start'>
+                <Text fontSize='2xl'>{captain.name}</Text>
+                <Text>{splash.reduce((m, s) => m + s.quantity, 0)}/6 splashes from {splashFactions}</Text>
+                <Text>{hold.reduce((memo: number, slot: DeckSlot) => memo + slot.quantity, 0)} cards</Text>
+                <Box>
+                  {emplacements.map(e => <Slot key={e.card.id} slot={e} />)}
+                </Box>
+              </VStack>
+            </HStack>
+            <Flex direction='column' flexWrap='wrap' height='md' width='lg'>
+              {Object.keys(holdMap).map(t => <Box marginBlockEnd={4} key={`hold-${t}`}>
+                <Text>{t}</Text>
+                {holdMap[t].map(s => <Slot slot={s} key={`${s.quantity}x${s.card.id}`} />)}
+              </Box>)}
+            </Flex>
           </VStack>
-          <Wrap direction='column'>
-            {emplacements.map(e => <Slot key={e.card.id} slot={e} />)}
-          </Wrap>
+          {/* Right Column */}
+          <VStack alignItems='flex-start' alignSelf='flex-start'>
+            <Text fontSize='2xl' fontWeight='bold'>{deck.user.name}</Text>
+            <Box><Text>{deck.description}</Text></Box>
+          </VStack>
         </HStack>
-        <Wrap direction='column'>
-          {Object.keys(holdMap).map(t => <Box key={`hold-${t}`}>
-            <Text>{t}</Text>
-            {holdMap[t].map(s => <Slot slot={s} key={`${s.quantity}x${s.card.id}`} />)}
-          </Box>)}
-        </Wrap>
       </VStack>
-    </PageWrapper>
+    </PageWrapper >
   )
 }

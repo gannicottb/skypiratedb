@@ -33,6 +33,7 @@ interface DeckSlot {
 }
 interface Deck {
   id: number;
+  user: User;
   description: string;
   faction?: string;
   captain?: Card;
