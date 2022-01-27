@@ -2,9 +2,31 @@ import { Box, Divider, Flex, Heading, HStack, Link, SimpleGrid, Stack, Text, VSt
 import * as React from "react"
 import { Card } from "../Card"
 import PageWrapper from "../PageWrapper"
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
+} from '@chakra-ui/react'
 
 const Slot = ({ slot, ...props }) => (
-  <Box {...props}>{slot.quantity}x <Link href={`/cards/${slot.card.id}`}>{slot.card.name}</Link></Box>
+  <Box {...props}>
+    <Popover isLazy trigger='hover' placement='auto'>
+      {slot.quantity}x <PopoverTrigger>
+        <Link href={`/cards/${slot.card.id}`}>{slot.card.name}</Link>
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverArrow />
+        <PopoverBody><Card card={slot.card} displayMode="text"></Card></PopoverBody>
+      </PopoverContent>
+    </Popover>
+
+  </Box>
 )
 
 export default ({ deck, current_user }) => {
