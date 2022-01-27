@@ -25,7 +25,6 @@ const Slot = ({ slot, ...props }) => (
         <PopoverBody><Card card={slot.card} displayMode="text"></Card></PopoverBody>
       </PopoverContent>
     </Popover>
-
   </Box>
 )
 
@@ -75,7 +74,7 @@ export default ({ deck, current_user }) => {
           </VStack>
           {/* Right Column */}
           <VStack alignItems='flex-start' alignSelf='flex-start'>
-            <Text fontSize='2xl' fontWeight='bold'>{deck.user.name}</Text>
+            <Link fontSize='2xl' fontWeight='bold' href={`/users/${deck.user.id}`}>{deck.user.name}</Link>
             <Box><Text>{deck.description}</Text></Box>
           </VStack>
         </HStack>
