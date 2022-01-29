@@ -7,4 +7,6 @@ json.slots deck.deck_slots do |ds|
   end
 end
 
-json.partial! "users/user", user: deck.user
+json.user do
+  json.partial! "users/user", user: deck.user
+end

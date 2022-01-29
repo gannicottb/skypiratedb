@@ -1,20 +1,16 @@
-import { Box, Heading, Text } from "@chakra-ui/react"
+import { Box, Heading, Link, Text } from "@chakra-ui/react"
 import * as React from "react"
 import PageWrapper from "../PageWrapper"
+import DeckListItem from "./DeckListItem"
 
 export default ({ decks, current_user }) => {
 
   return (
     <PageWrapper current_user={current_user}>
       <Box>
-        {decks.map(d =>
-          <Box key={d.id}>
-            <Heading>{d.id}</Heading>
-            {d.description}
-            {d.slots.map(s =>
-              <Text key={d.id + s.card.id}>{s.quantity}x {s.card.name}</Text>
-            )}
-          </Box>)}
+        {decks.map(deck =>
+          <DeckListItem deck={deck} />
+        )}
       </Box>
     </PageWrapper>
   )

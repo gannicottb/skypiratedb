@@ -89,8 +89,10 @@ export default ({ children, current_user }) => (
       <Flex bg='darkslateblue' w='100%' p={4} textColor='white'>
         <HStack spacing={4}>
           <Link href='/'>SkyPirateDB</Link>
+          {current_user &&
+            <Link href='/my/decks' >My Decks</Link>}
+          <Link href='/decks'>Decklists</Link>
           <Link href='/cards'>Cards</Link>
-          <Link href='/decks'>Decks</Link>
         </HStack>
         <Spacer />
         <HStack>
