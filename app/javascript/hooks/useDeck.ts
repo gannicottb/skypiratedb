@@ -1,18 +1,9 @@
-export interface Deckbox extends Deck {
-  emplacements: DeckSlot[],
-  hold: DeckSlot[],
-  holdMap: { [index: string]: DeckSlot[] },
-  splash: DeckSlot[],
-  splashFactions: Set<string>
-}
 /*
   Enhance a Deck to make it easier to work with
 */
 export default (deck: Deck): Deckbox => {
   const holdTypes = ["Asset", "Crew", "Maneuver", "Special Ammo"]
   // const emplacementTypes = ["Cannon", "Structure"]
-  // const captain = deck.slots.filter(s => s.card.type == "Captain")?.[0]?.card
-
   const emplacements = deck.slots.filter(s => s.card.type == "Emplacement")
   const hold = deck.slots.filter(s => holdTypes.includes(s.card.type))
 
@@ -36,15 +27,3 @@ export default (deck: Deck): Deckbox => {
     splashFactions
   }
 }
-
-// class Deckbox {
-//   deck: Deck
-//   constructor(deck: Deck) {
-//     this.deck = deck
-//   }
-//   captain(): Card {
-//     return this.deck.slots.filter(s => s.card.type == "Captain")[0].card
-//   }
-
-
-// }

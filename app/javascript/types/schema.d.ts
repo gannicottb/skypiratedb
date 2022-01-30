@@ -37,5 +37,13 @@ interface Deck {
   description: string;
   slots?: DeckSlot[]
   captain?: Card;
+  faction?: string;
   created_at: Date
+}
+interface Deckbox extends Deck {
+  emplacements: DeckSlot[],
+  hold: DeckSlot[],
+  holdMap: { [index: string]: DeckSlot[] },
+  splash: DeckSlot[],
+  splashFactions: Set<string>
 }

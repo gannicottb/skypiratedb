@@ -4,6 +4,10 @@ json.captain do
   json.partial! "cards/card", card: deck.captain if deck.captain.present?
 end
 
+json.faction do
+  deck.faction&.name
+end
+
 json.slots deck.deck_slots do |ds|
   json.quantity ds.quantity
   json.card do

@@ -9,7 +9,7 @@ export default ({ deck, ...props }) => (
   <HStack width='100%' {...props}>
     <CaptainBadge deck={deck} />
     <VStack alignItems='flex-start'>
-      <Link href={`/decks/${deck.id}`}>{deck.name}</Link>
+      <Link href={`/decks/${deck.id}`} fontSize='lg'>{deck.name}</Link>
       <Link color='gray.500' href={`/users/${deck.user.id}`}>{deck.user.name}</Link>
     </VStack>
     <Spacer />
