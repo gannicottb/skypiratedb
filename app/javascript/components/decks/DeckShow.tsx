@@ -3,6 +3,8 @@ import * as React from "react"
 import { Card } from "../Card"
 import PageWrapper from "../PageWrapper"
 import { Slot } from "./Slot"
+import useDeck from "../../hooks/useDeck"
+import { Hold } from "./Hold"
 
 const EmplacementSlot = ({ slot, ...props }) => (
   <HStack
@@ -16,36 +18,8 @@ const EmplacementSlot = ({ slot, ...props }) => (
   </HStack>
 )
 
-const useDeck = (deck: Deck) => {
-  const holdTypes = ["Asset", "Crew", "Maneuver", "Special Ammo"]
-  const emplacementTypes = ["Cannon", "Structure"]
-
-  const captain = deck.slots.filter(s => s.card.type == "Captain")[0].card
-  const emplacements = deck.slots.filter(s => s.card.type == "Emplacement")
-  const hold = deck.slots.filter(s => holdTypes.includes(s.card.type))
-
-  const holdMap = holdTypes.reduce((o, ht) => {
-    let group = hold.filter(h => h.card.type == ht)
-    if (group.length > 0) { o[ht] = group }
-    return o
-  }, {})
-
-  const splash = deck.slots.filter(s => s.card.faction != "Neutral" && s.card.faction != captain.faction)
-  const splashFactions = new Set(splash.map(s => s.card.faction))
-
-  return {
-    holdTypes,
-    emplacementTypes,
-    captain,
-    emplacements,
-    hold,
-    holdMap,
-    splash,
-    splashFactions
-  }
-}
-
 export default ({ deck, current_user }) => {
+  const deckbox = useDeck(deck)
   const {
     captain,
     emplacements,
@@ -53,7 +27,7 @@ export default ({ deck, current_user }) => {
     holdMap,
     splash,
     splashFactions
-  } = useDeck(deck)
+  } = deckbox
 
   return (
     <PageWrapper current_user={current_user}>
@@ -74,14 +48,7 @@ export default ({ deck, current_user }) => {
             <SimpleGrid columns={[1, 2]} spacing={2}>
               {emplacements.map(e => <EmplacementSlot key={e.card.id} slot={e} />)}
             </SimpleGrid>
-            <Flex direction='column' flexWrap='wrap' height={['auto', 'md']} width='lg'>
-              {Object.keys(holdMap).map(t => <Box marginBlockEnd={4} key={`hold-${t}`}>
-                <Text fontSize='sm' fontWeight='bold' color='gray.500'>{t}</Text>
-                {holdMap[t].map(s =>
-                  <Slot showQuantity={true} slot={s} key={`${s.quantity}x${s.card.id}`} />
-                )}
-              </Box>)}
-            </Flex>
+            <Hold deckbox={deckbox} />
           </VStack>
           {/* Right Column */}
           <VStack alignItems='flex-start' alignSelf='flex-start'>

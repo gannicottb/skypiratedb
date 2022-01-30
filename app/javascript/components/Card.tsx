@@ -14,7 +14,8 @@ const CardFaceText = ({ card }) => (
     }</Text>
     {card.ammo && <Text>Ammo: {card.ammo}</Text>}
     {card.durability && <Text>Durability: {card.durability}</Text>}
-    {card.attack && <Text>{card.attack}/{card.defense}</Text>}
+    {card.attack != undefined && card.defense != undefined &&
+      <Text>{card.attack}/{card.defense}</Text>}
     {card.cost && <Text>{card.cost}/{card.power}</Text>}
     <Divider />
     <Box

@@ -10,7 +10,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :decks, only: [:index, :show]
+  resources :decks, only: [:index, :show, :create, :edit, :update] do
+    collection do
+      post :import
+    end
+  end
   namespace :my do
     resources :decks, only: [:index, :create, :edit]
   end

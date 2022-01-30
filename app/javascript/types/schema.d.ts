@@ -35,8 +35,7 @@ interface Deck {
   id: number;
   user: User;
   description: string;
-  faction?: string;
-  captain?: Card;
-  splash?: string;
   slots?: DeckSlot[]
+  captain?: Card;
+  created_at: Date
 }
