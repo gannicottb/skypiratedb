@@ -4,12 +4,12 @@ import * as React from "react";
 const SplashBadge = ({ splashFaction }) => (
   <Box
     position='absolute'
-    bottom='10px'
-    right='10px'
-    height={4}
-    width={4}
-    // background={`${splashFaction?.toLowerCase()}.500`}
-    background='pirate.500'
+    bottom='0px'
+    right='0px'
+    borderRadius='.6em 0em 0.9em 0em'
+    height={3}
+    width={6}
+    background={`${splashFaction?.toLowerCase()}.500`}
   ></Box>
 )
 
@@ -18,7 +18,6 @@ interface CaptainBadgeProps extends AvatarProps {
   deck: Deck
 }
 export const CaptainBadge = ({ deck, ...props }: CaptainBadgeProps) => {
-  // debugger
   return (
     <Avatar
       borderWidth={2}

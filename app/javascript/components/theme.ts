@@ -9,22 +9,22 @@ const config: ThemeConfig = {
 // !. Define faction colors so we can pass them like 'devoted.500'
 const colors = {
   devoted: {
-    500: 'afa331'
+    500: '#afa331'
   },
   ghost: {
-    500: '9845a4'
+    500: '#9845a4'
   },
   imperial: {
-    500: '2f4fc7'
+    500: '#2f4fc7'
   },
   pirate: {
-    500: 'b42f2f'
+    500: '#b42f2f'
   },
   trader: {
-    500: '4aa547'
+    500: '#4aa547'
   },
   neutral: {
-    500: 'cacaca'
+    500: '#cacaca'
   }
 }
 
