@@ -1,17 +1,44 @@
-import { Button, Input, Text, Textarea, Stack, VStack, Tab, TabList, TabPanel, TabPanels, Tabs, ButtonGroup, Divider } from "@chakra-ui/react"
+import { Button, Input, Text, Textarea, Stack, VStack, Tab, TabList, TabPanel, TabPanels, Tabs, ButtonGroup, Divider, useToast, Box, Center, Editable, EditableInput, EditablePreview, Link } from "@chakra-ui/react"
+import { sumBy } from "lodash"
 import * as React from "react"
-import useDeck, { Deckbox } from "../../hooks/useDeck"
+import useCSRF from "../../hooks/useCSRF"
+import useDeck from "../../hooks/useDeck"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import PageWrapper from "../PageWrapper"
+import { Hold } from "./Hold"
 import { Slot } from "./Slot"
 
-
-const Controls = ({ deckbox, handleSave, handleDelete }) => {
+const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateName }) => {
+  const [isSaving, setIsSaving] = React.useState(false)
   return (
     <VStack>
-      <Text>{deckbox.name}</Text>
-      <Button>Save deck</Button>
-      <Button>Delete deck</Button>
+      <Editable fontSize='lg' fontWeight='bold' defaultValue={deckbox.name}>
+        <EditablePreview />
+        <EditableInput
+          onBlur={(e) => handleUpdateName(e.target.value)}
+        />
+      </Editable>
+      <Text>{sumBy(deckbox.splash, (s: DeckSlot) => s.quantity)}/6 splashes from {deckbox.splashFactions}</Text>
+      <Text>{sumBy(deckbox.hold, (s: DeckSlot) => s.quantity)} cards</Text>
+      <Divider />
+      <Button
+        onClick={(e) => {
+          setIsSaving(true)
+          handleSave(e).then(data => setIsSaving(false))
+        }}
+        colorScheme='green'
+        isLoading={isSaving}
+      >Save</Button>
+      <Button
+        as='a'
+        href={`/decks/${deckbox.id}`}
+        colorScheme='blue'
+      >View</Button>
+      <Button
+        onClick={handleDelete}
+        variant='outline'
+        colorScheme='red'
+      >Delete</Button>
     </VStack>
   )
 }
@@ -25,16 +52,11 @@ const Editor = ({ deckbox, handleAdd, handleRemove }: EditorProps) => (
   <VStack>
     <Text>{deckbox.captain.name}</Text>
     {deckbox.emplacements.map(s => <Slot slot={s} showQuantity={false} key={s.card.id} />)}
-    {Object.entries(deckbox.holdMap).map(([type, cards]) =>
-      <div key={type}>
-        <Text>{type} ({cards.length})</Text>
-        {cards.map(s => <Slot slot={s} showQuantity={true} key={s.card.id} />)}
-      </div>
-    )}
+    <Hold deckbox={deckbox} />
   </VStack>
 )
 
-const Browser = ({ deckbox, cards, handleAdd, handleRemove }) => {
+const Browser = ({ deckbox, cards, handleAdd, handleRemove, handleUpdateDescription }) => {
   const [results, setResults] = React.useState<Card[]>([])
   const [query, setQuery] = React.useState("")
   const [cursor, setCursor] = React.useState(0)
@@ -85,18 +107,19 @@ const Browser = ({ deckbox, cards, handleAdd, handleRemove }) => {
           ></Input>
           {results.map((card, index) => (
             <Text
+              key={card.id}
               border={index === cursor ? "2px black solid" : "none"}
             >{card.name}</Text>
           ))}
           <ButtonGroup isAttached variant='outline' size='sm'>
             {["Pirate", "Imperial", "Trader", "Ghost", "Devoted", "Neutral"].map(t =>
-              <Button>{t}</Button>
+              <Button key={t}>{t}</Button>
             )}
           </ButtonGroup>
           <Divider />
           <ButtonGroup isAttached variant='outline' size='sm'>
             {["Captain", "Cannon", "Structure", "Asset", "Crew", "Maneuver", "Special Ammo"].map(t =>
-              <Button>{t[0]}</Button>
+              <Button key={t}>{t[0]}</Button>
             )}
           </ButtonGroup>
         </TabPanel>
@@ -105,6 +128,8 @@ const Browser = ({ deckbox, cards, handleAdd, handleRemove }) => {
             value={deckbox.description}
             placeholder='What is this deck all about?'
             size='sm'
+            rows={25}
+            onChange={(e) => handleUpdateDescription(e.target.value)}
           />
         </TabPanel>
         <TabPanel>
@@ -123,6 +148,10 @@ export default ({ deck, cards, current_user }) => {
   const [current, setCurrent] = React.useState(deck)
   // enhance the current deck
   const deckbox = useDeck(current)
+
+  const csrfMeta = useCSRF()
+
+  const toast = useToast()
 
   // TODO: 
   // const storageKey = `deck_${deck.id}_${current_user.id}`
@@ -160,8 +189,33 @@ export default ({ deck, cards, current_user }) => {
       setCurrent(updated)
     }
   }
-  const saveDeck = () => (true)
+  const saveDeck = (e) => {
+    e.preventDefault()
+
+    return fetch(`/decks/${current.id}`, {
+      method: "PUT",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfMeta.content
+      },
+      body: JSON.stringify({ deck: { name: current.name, description: current.description } })
+    })
+  }
   const deleteDeck = () => (true)
+
+  const setDescription = (description: string) => {
+    const updated = deepCopy(current)
+    updated.description = description
+    setCurrent(updated)
+  }
+
+  const setName = (name: string) => {
+    const updated = deepCopy(current)
+    updated.name = name
+    setCurrent(updated)
+  }
 
   return (
     <PageWrapper current_user={current_user}>
@@ -172,17 +226,24 @@ export default ({ deck, cards, current_user }) => {
           deckbox={deckbox}
           handleSave={saveDeck}
           handleDelete={deleteDeck}
+          handleUpdateName={setName}
         />
-        <Editor
+        <Box>
+          <Center>
+            <Text>Editor not fully implemented yet!</Text>
+          </Center>
+        </Box>
+        {/* <Editor
           deckbox={deckbox}
           handleAdd={addCard}
           handleRemove={removeCard}
-        />
+        /> */}
         <Browser
           deckbox={deckbox}
           cards={cards}
           handleAdd={addCard}
           handleRemove={removeCard}
+          handleUpdateDescription={setDescription}
         />
       </Stack>
     </PageWrapper>
