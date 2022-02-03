@@ -3,7 +3,7 @@ class DecksController < ApplicationController
   before_action :require_login, only: [:update, :create, :import]
 
   def index
-    @decks = Deck.take(50)
+    @decks = Deck.order(created_at: :desc).take(50)
   end
 
   def show

@@ -38,6 +38,7 @@ interface Deck {
   slots?: DeckSlot[]
   captain?: Card;
   faction?: string;
+  splash_faction?: string;
   created_at: Date
 }
 interface Deckbox extends Deck {

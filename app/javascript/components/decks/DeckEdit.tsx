@@ -1,4 +1,4 @@
-import { Button, Input, Text, Textarea, Stack, VStack, Tab, TabList, TabPanel, TabPanels, Tabs, ButtonGroup, Divider, useToast, Box, Center, Editable, EditableInput, EditablePreview, Link } from "@chakra-ui/react"
+import { Button, Input, Text, Textarea, Stack, VStack, Tab, TabList, TabPanel, TabPanels, Tabs, ButtonGroup, Divider, useToast, Box, Center, Editable, EditableInput, EditablePreview, Link, Heading } from "@chakra-ui/react"
 import { sumBy } from "lodash"
 import * as React from "react"
 import useCSRF from "../../hooks/useCSRF"
@@ -50,6 +50,7 @@ interface EditorProps {
 }
 const Editor = ({ deckbox, handleAdd, handleRemove }: EditorProps) => (
   <VStack>
+    <Heading>Editor not fully implemented yet!</Heading>
     <Text>{deckbox.captain.name}</Text>
     {deckbox.emplacements.map(s => <Slot slot={s} showQuantity={false} key={s.card.id} />)}
     <Hold deckbox={deckbox} />
@@ -228,16 +229,11 @@ export default ({ deck, cards, current_user }) => {
           handleDelete={deleteDeck}
           handleUpdateName={setName}
         />
-        <Box>
-          <Center>
-            <Text>Editor not fully implemented yet!</Text>
-          </Center>
-        </Box>
-        {/* <Editor
+        <Editor
           deckbox={deckbox}
           handleAdd={addCard}
           handleRemove={removeCard}
-        /> */}
+        />
         <Browser
           deckbox={deckbox}
           cards={cards}

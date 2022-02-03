@@ -20,7 +20,7 @@ class Deck < ApplicationRecord
     end
   end
 
-  def splash_factions
+  def splash_factions # Faction[]
     Set.new(splash_slots.map { |s| s.card.faction }).to_a
   end
 
