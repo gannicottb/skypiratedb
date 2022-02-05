@@ -22,8 +22,21 @@ interface KeyMap {
     arg: string
   }
 }
-
-export const useFilter = (keyMap: KeyMap): (queryString: string) => (c: Card) => boolean => {
+const defaultKeyMap = {
+  "x": { fn: stringInclude, arg: "raw_text" },
+  "t": { fn: stringExactMatch, arg: "type" },
+  "sup": { fn: stringExactMatch, arg: "supertype" },
+  "s": { fn: stringExactMatch, arg: "subtype" },
+  "f": { fn: stringExactMatch, arg: "faction" },
+  "a": { fn: numericEqual, arg: "attack" },
+  "d": { fn: numericEqual, arg: "defense" },
+  "dur": { fn: numericEqual, arg: "durability" },
+  "c": { fn: numericEqual, arg: "cost" },
+  "p": { fn: numericEqual, arg: "power" },
+  "art": { fn: stringInclude, arg: "artist" },
+  "e": { fn: stringInclude, arg: "expansion" }
+}
+export const useFilter = (keyMap: KeyMap = defaultKeyMap): (queryString: string) => (c: Card) => boolean => {
 
   // make case insensitive, and default to string include on `name`
   const filterMap = (filterKey: string) => {

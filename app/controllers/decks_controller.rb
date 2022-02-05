@@ -1,6 +1,6 @@
 class DecksController < ApplicationController
   before_action :set_deck, only: [:show, :update, :edit]
-  before_action :require_login, only: [:update, :create, :import]
+  before_action :require_login, only: [:update, :create, :import, :edit]
 
   def index
     @decks = Deck.order(created_at: :desc).take(50)

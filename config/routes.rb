@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
   end
   namespace :my do
-    resources :decks, only: [:index, :create, :edit]
+    resources :decks, only: [:index]
   end
 
   resources :password_resets, only: [:new, :create, :edit, :update]

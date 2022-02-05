@@ -9,24 +9,10 @@ export const BuildTab = ({ cards, handleAdd, handleRemove }) => {
   const [cursor, setCursor] = React.useState(0)
 
   // useFilter!
-  const keyMap = {
-    "x": { fn: stringInclude, arg: "raw_text" },
-    "t": { fn: stringExactMatch, arg: "type" },
-    "sup": { fn: stringExactMatch, arg: "supertype" },
-    "s": { fn: stringExactMatch, arg: "subtype" },
-    "f": { fn: stringExactMatch, arg: "faction" },
-    "a": { fn: numericEqual, arg: "attack" },
-    "d": { fn: numericEqual, arg: "defense" },
-    "dur": { fn: numericEqual, arg: "durability" },
-    "c": { fn: numericEqual, arg: "cost" },
-    "p": { fn: numericEqual, arg: "power" },
-    "art": { fn: stringInclude, arg: "artist" },
-    "e": { fn: stringInclude, arg: "expansion" }
-  }
-  const parseQuery = useFilter(keyMap)
+  const parseQuery = useFilter()
 
   const doSearch = (q) => {
-    const results = cards.filter(parseQuery(query))
+    const results = cards.filter(parseQuery(q))
     setResults(results)
     setCursor(0)
   }

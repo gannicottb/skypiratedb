@@ -56,7 +56,7 @@ interface EditorProps {
 const Editor = ({ deckbox, handleAdd, handleRemove }: EditorProps) => (
   <VStack width='40%'>
     <Heading>Editor not fully implemented yet!</Heading>
-    <Text>{deckbox.captain.name}</Text>
+    <Text>{deckbox.captain?.name}</Text>
     {deckbox.emplacements.map(s => <Slot deckSlot={s} showQuantity={false} key={s.card.id} />)}
     <Hold deckbox={deckbox} />
   </VStack>
@@ -85,8 +85,6 @@ export default ({ deck, cards, current_user }) => {
   const deckbox = useDeck(current)
 
   const csrfMeta = useCSRF()
-
-  // const toast = useToast()
 
   // TODO: 
   // const storageKey = `deck_${deck.id}_${current_user.id}`
@@ -169,15 +167,17 @@ export default ({ deck, cards, current_user }) => {
           handleRemove={removeCard}
         />
         <Browser
+          // FOR NOW
           // tabs={["Build", "Description"]}
           tabs={["Description"]}
         >
+          {/* FOR NOW */}
           {/* <BuildTab
             cards={cards}
             handleAdd={addCard}
             handleRemove={removeCard}
           /> */}
-          <Textarea
+          < Textarea
             value={deckbox.description}
             placeholder='What is this deck all about?'
             size='sm'

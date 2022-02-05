@@ -63,21 +63,6 @@ const CardImage = ({ card }) => {
   )
 }
 
-// type CardProps = {
-//   displayMode: string
-//   card: Card
-// } 
-// export const  Card = ({ card, displayMode }: CardProps) => {
-//   return (
-//     <LinkBox maxW='300px' borderWidth={1} borderRadius='sm' p={2}>
-//       <LinkOverlay href={`/cards/${card.id}`}></LinkOverlay>
-//       {displayMode === 'image' && <CardImage card={card} />}
-//       {displayMode === 'text' && <CardTextOnly card={card} />}
-//     </LinkBox>
-//   )
-// }
-
-
 type CardProps = {
   displayMode: string
   card: Card
