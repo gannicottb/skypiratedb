@@ -12,7 +12,6 @@ export default ({ user, current_user }: UserShowProps) => (
     <Center>
       <VStack>
         <Heading>{user.name}</Heading>
-        {user.email && <Text>Email: {user.email}</Text>}
         <Text>Member since {new Date(user.created_at).toDateString()}</Text>
       </VStack>
     </Center>
