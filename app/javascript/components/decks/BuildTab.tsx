@@ -1,14 +1,13 @@
 import { Text, Input, ButtonGroup, Button, Divider } from "@chakra-ui/react"
 import * as React from "react"
 
-import { stringInclude, stringExactMatch, numericEqual, useFilter } from '../../hooks/useFilter'
+import { useFilter } from '../../hooks/useFilter'
 
 export const BuildTab = ({ cards, handleAdd, handleRemove }) => {
   const [results, setResults] = React.useState<Card[]>([])
   const [query, setQuery] = React.useState("")
   const [cursor, setCursor] = React.useState(0)
 
-  // useFilter!
   const parseQuery = useFilter()
 
   const doSearch = (q) => {

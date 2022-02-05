@@ -27,6 +27,7 @@ class DecksController < ApplicationController
   end
 
   def edit
+    render(status: :unauthorized) unless @deck.user == current_user
     @cards = Card.includes(:expansion, front: [:subtype, :type, :supertype, :faction, :artist]).all
   end
 
