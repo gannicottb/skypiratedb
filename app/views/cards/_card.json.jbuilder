@@ -1,18 +1,18 @@
 # Add all simple values
-json.(obj, :id, :image_url, :name, :expansion_number, :unique, :text, :raw_text, :flavor)
-json.(obj, :attack, :defense, :cost, :power, :durability, :ammo)
+json.(card, :id, :image_url, :name, :expansion_number, :unique, :text, :raw_text, :flavor)
+json.(card, :attack, :defense, :cost, :power, :durability, :ammo)
 
 # Resolve associations
-json.type obj.type.name
-json.supertype obj.supertype.name
-json.subtype obj.subtype.name
-json.faction obj.faction.name
-json.artist obj.artist.name
-json.expansion obj.expansion.name
+json.type card.type.name
+json.supertype card.supertype.name
+json.subtype card.subtype.name
+json.faction card.faction.name
+json.artist card.artist.name
+json.expansion card.expansion.name
 
 # Embed back side if present
-if obj.respond_to?(:back) && obj.back.present?
+if card.respond_to?(:back) && card.back.present?
   json.back do
-    json.partial! "cards/card", obj: obj.back
+    json.partial! "cards/card", card: card.back
   end
 end

@@ -21,6 +21,7 @@ import { useColorMode } from '@chakra-ui/color-mode'
 import theme from './theme'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
+import useCSRF from '../hooks/useCSRF'
 
 const ColorModeToggle = () => {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -33,7 +34,7 @@ const ColorModeToggle = () => {
 }
 
 const UserToggle = ({ current_user }) => {
-  const csrfMeta = document.getElementsByName('csrf-token')[0] as HTMLMetaElement;
+  const csrfMeta = useCSRF()
   const logout = () => (
     fetch("/logout", {
       method: "POST",
@@ -89,6 +90,9 @@ export default ({ children, current_user }) => (
       <Flex bg='darkslateblue' w='100%' p={4} textColor='white'>
         <HStack spacing={4}>
           <Link href='/'>SkyPirateDB</Link>
+          {current_user &&
+            <Link href='/my/decks' >My Decks</Link>}
+          <Link href='/decks'>Decklists</Link>
           <Link href='/cards'>Cards</Link>
         </HStack>
         <Spacer />

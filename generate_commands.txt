@@ -89,3 +89,10 @@ image_link:string
 # Card id: 259, set_number: 99, front_id: 259, set_id: 2, back_id: 260
 # CardData id: 259, name: "Luc Sangre", type_id: 3, card_id: 259, text: "When your turn begins, you may spend 1(P)..." 
 # CardData id: 260, name: "The Bat", type_id: 4, card_id: 259, ...
+
+
+rails g model Deck \
+user:references \
+description:text
+
+rails g controller Decks index show --no-helper --no-assets --no-javascripts --no-stylesheets

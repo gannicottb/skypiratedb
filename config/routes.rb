@@ -10,6 +10,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :decks, only: [:index, :show, :create, :edit, :update] do
+    collection do
+      post :import
+    end
+  end
+  namespace :my do
+    resources :decks, only: [:index]
+  end
+
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   get "login" => "user_sessions#new", as: :login

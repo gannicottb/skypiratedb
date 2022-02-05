@@ -23,7 +23,28 @@ interface Card {
 
 interface User {
   id: number;
-  email?: string,
-  name: string,
+  email?: string;
+  name: string;
   created_at: Date
+}
+interface DeckSlot {
+  quantity: number;
+  card: Card
+}
+interface Deck {
+  id: number;
+  user: User;
+  description: string;
+  slots?: DeckSlot[]
+  captain?: Card;
+  faction?: string;
+  splash_faction?: string;
+  created_at: Date
+}
+interface Deckbox extends Deck {
+  emplacements: DeckSlot[],
+  hold: DeckSlot[],
+  holdMap: { [index: string]: DeckSlot[] },
+  splash: DeckSlot[],
+  splashFactions: Set<string>
 }

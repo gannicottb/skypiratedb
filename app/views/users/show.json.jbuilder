@@ -1,6 +1,5 @@
 json.user do
-  json.(@user, :name, :created_at)
-  json.(@user, :email) if @user.id == current_user&.id
+  json.partial! "users/user", user: @user
 end
 
 json.partial! "users/current"
