@@ -7,7 +7,7 @@ interface HoldProps extends BoxProps {
 }
 export const Hold = ({ deckbox, ...props }: HoldProps) => (
   <Box {...props}>
-    <Flex direction='column' flexWrap='wrap' height={['auto', 'md']} width='lg'>
+    <Flex direction='column' flexWrap='wrap' height={['auto', 'sm']} width='lg'>
       {Object.entries(deckbox.holdMap).map(([type, slots]) =>
         <Box marginBlockEnd={4} key={`hold-${type}`}>
           <Text fontSize='sm' fontWeight='bold' color='gray.500'>{type} ({slots.reduce((sum, s) => sum + s.quantity, 0)})</Text>

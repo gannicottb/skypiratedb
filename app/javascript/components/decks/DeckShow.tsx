@@ -5,18 +5,8 @@ import PageWrapper from "../PageWrapper"
 import { Slot } from "./Slot"
 import useDeck from "../../hooks/useDeck"
 import { Hold } from "./Hold"
-
-const EmplacementSlot = ({ slot, ...props }) => (
-  <HStack
-    borderWidth={2}
-    borderColor='gray'
-    borderRadius={4}
-    padding={2}
-    {...props}>
-    <Avatar size='sm' name={slot.card.name} src={slot.card.image_url} />
-    <Slot deckSlot={slot} showQuantity={false} />
-  </HStack>
-)
+import { EmplacementSlot } from "./EmplacementSlot"
+import { Emplacements } from "./Emplacements"
 
 export default ({ deck, current_user }) => {
   const deckbox = useDeck(deck)
@@ -44,9 +34,7 @@ export default ({ deck, current_user }) => {
                 <Text>{hold.reduce((memo: number, slot: DeckSlot) => memo + slot.quantity, 0)} cards</Text>
               </VStack>
             </HStack>
-            <SimpleGrid columns={[1, 2]} spacing={2}>
-              {emplacements.map(e => <EmplacementSlot key={e.card.id} slot={e} />)}
-            </SimpleGrid>
+            <Emplacements emplacements={emplacements} />
             <Hold deckbox={deckbox} />
           </VStack>
           {/* Right Column */}

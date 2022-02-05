@@ -4,6 +4,7 @@ import useCSRF from "../../hooks/useCSRF"
 import useDeck from "../../hooks/useDeck"
 import PageWrapper from "../PageWrapper"
 import { CaptainBadge } from "./CaptainBadge"
+import { Emplacements } from "./Emplacements"
 import { Hold } from "./Hold"
 
 function ImportControl() {
@@ -65,25 +66,30 @@ export default ({ decks, current_user }) => {
         <Divider />
         <ImportControl />
         <Accordion defaultIndex={[]} allowMultiple width='100%'>
-          {decks.map(deck =>
-            <AccordionItem key={deck.id}>
-              <h2>
-                <AccordionButton>
-                  <Box flex='1' textAlign='left'>
-                    {deck.name || <Text fontStyle='italic' color="gray.300">Unnamed</Text>}
-                  </Box>
-                  <CaptainBadge deck={deck} />
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                <Hold deckbox={useDeck(deck)} />
-                <HStack>
-                  <Link href={'/decks/' + deck.id}>View</Link>
-                  <Link href={'/decks/' + deck.id + '/edit'}>Edit</Link>
-                </HStack>
-              </AccordionPanel>
-            </AccordionItem>
+          {decks.map(deck => {
+            const deckbox = useDeck(deck)
+            return (
+              <AccordionItem key={deck.id}>
+                <h2>
+                  <AccordionButton>
+                    <Box flex='1' textAlign='left'>
+                      {deck.name || <Text fontStyle='italic' color="gray.300">Unnamed</Text>}
+                    </Box>
+                    <CaptainBadge deck={deck} />
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <Emplacements emplacements={deckbox.emplacements} />
+                  <Hold deckbox={deckbox} />
+                  <HStack>
+                    <Link href={'/decks/' + deck.id}>View</Link>
+                    <Link href={'/decks/' + deck.id + '/edit'}>Edit</Link>
+                  </HStack>
+                </AccordionPanel>
+              </AccordionItem>
+            )
+          }
           )}
         </Accordion>
       </VStack>

@@ -6,6 +6,7 @@ import useDeck from "../../hooks/useDeck"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import PageWrapper from "../PageWrapper"
 import { BuildTab } from "./BuildTab"
+import { Emplacements } from "./Emplacements"
 import { Hold } from "./Hold"
 import { Slot } from "./Slot"
 
@@ -57,7 +58,7 @@ const Editor = ({ deckbox, handleAdd, handleRemove }: EditorProps) => (
   <VStack width='40%'>
     <Heading>Editor not fully implemented yet!</Heading>
     <Text>{deckbox.captain?.name}</Text>
-    {deckbox.emplacements.map(s => <Slot deckSlot={s} showQuantity={false} key={s.card.id} />)}
+    <Emplacements emplacements={deckbox.emplacements} />
     <Hold deckbox={deckbox} />
   </VStack>
 )
