@@ -1,17 +1,19 @@
-import { Button, Input, Text, Textarea, Stack, VStack, Tab, TabList, TabPanel, TabPanels, Tabs, ButtonGroup, Divider, useToast, Box, Center, Editable, EditableInput, EditablePreview, Link, Heading } from "@chakra-ui/react"
+import { Button, Input, Text, Textarea, Stack, VStack, Tab, TabList, TabPanel, TabPanels, Tabs, ButtonGroup, Divider, useToast, Box, Center, Editable, EditableInput, EditablePreview, Link, Heading, toast } from "@chakra-ui/react"
 import { sumBy } from "lodash"
 import * as React from "react"
 import useCSRF from "../../hooks/useCSRF"
 import useDeck from "../../hooks/useDeck"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import PageWrapper from "../PageWrapper"
+import { BuildTab } from "./BuildTab"
 import { Hold } from "./Hold"
 import { Slot } from "./Slot"
 
 const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateName }) => {
   const [isSaving, setIsSaving] = React.useState(false)
+  const toast = useToast()
   return (
-    <VStack>
+    <VStack width='30%'>
       <Editable fontSize='lg' fontWeight='bold' defaultValue={deckbox.name}>
         <EditablePreview />
         <EditableInput
@@ -24,7 +26,10 @@ const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateName }) => {
       <Button
         onClick={(e) => {
           setIsSaving(true)
-          handleSave(e).then(data => setIsSaving(false))
+          handleSave(e).then(data => {
+            setIsSaving(false)
+            toast({ title: 'Deck saved!', status: 'success' })
+          })
         }}
         colorScheme='green'
         isLoading={isSaving}
@@ -49,93 +54,22 @@ interface EditorProps {
   handleRemove: any
 }
 const Editor = ({ deckbox, handleAdd, handleRemove }: EditorProps) => (
-  <VStack>
+  <VStack width='40%'>
     <Heading>Editor not fully implemented yet!</Heading>
     <Text>{deckbox.captain.name}</Text>
-    {deckbox.emplacements.map(s => <Slot slot={s} showQuantity={false} key={s.card.id} />)}
+    {deckbox.emplacements.map(s => <Slot deckSlot={s} showQuantity={false} key={s.card.id} />)}
     <Hold deckbox={deckbox} />
   </VStack>
 )
 
-const Browser = ({ deckbox, cards, handleAdd, handleRemove, handleUpdateDescription }) => {
-  const [results, setResults] = React.useState<Card[]>([])
-  const [query, setQuery] = React.useState("")
-  const [cursor, setCursor] = React.useState(0)
-
-  const doSearch = (q) => {
-    const results = cards.filter((card) => card.name.toLowerCase().includes(q.toLowerCase()))
-    setResults(results)
-    setCursor(0)
-  }
-
-  const handleInput = (e) => {
-    const { value } = e.target
-    setQuery(value)
-    if (value.length >= 3) {
-      doSearch(value)
-    } else {
-      setResults([])
-    }
-  }
-
-  const handleKeyDown = (e) => {
-    if (e.keyCode === 38 && cursor > 0) {
-      setCursor(cursor - 1);
-    } else if (e.keyCode === 40 && cursor < results.length - 1) {
-      setCursor(cursor + 1);
-    } else if (e.keyCode === 13) {
-      handleAdd({ quantity: 1, card: results[cursor] })
-      setQuery("")
-      setResults([])
-    }
-  }
+const Browser = ({ tabs, ...props }) => {
   return (
     <Tabs width='30%'>
       <TabList>
-        <Tab>Build</Tab>
-        <Tab>Description</Tab>
-        <Tab>...</Tab>
+        {tabs.map(t => <Tab key='t'>{t}</Tab>)}
       </TabList>
-
       <TabPanels>
-        <TabPanel>
-          <Input
-            placeholder='Find a card'
-            onInput={handleInput}
-            onKeyDown={handleKeyDown}
-            value={query}
-            autoFocus
-          ></Input>
-          {results.map((card, index) => (
-            <Text
-              key={card.id}
-              border={index === cursor ? "2px black solid" : "none"}
-            >{card.name}</Text>
-          ))}
-          <ButtonGroup isAttached variant='outline' size='sm'>
-            {["Pirate", "Imperial", "Trader", "Ghost", "Devoted", "Neutral"].map(t =>
-              <Button key={t}>{t}</Button>
-            )}
-          </ButtonGroup>
-          <Divider />
-          <ButtonGroup isAttached variant='outline' size='sm'>
-            {["Captain", "Cannon", "Structure", "Asset", "Crew", "Maneuver", "Special Ammo"].map(t =>
-              <Button key={t}>{t[0]}</Button>
-            )}
-          </ButtonGroup>
-        </TabPanel>
-        <TabPanel>
-          <Textarea
-            value={deckbox.description}
-            placeholder='What is this deck all about?'
-            size='sm'
-            rows={25}
-            onChange={(e) => handleUpdateDescription(e.target.value)}
-          />
-        </TabPanel>
-        <TabPanel>
-          <p>three!</p>
-        </TabPanel>
+        {React.Children.map(props.children, c => <TabPanel>{c}</TabPanel>)}
       </TabPanels>
     </Tabs>
   )
@@ -152,7 +86,7 @@ export default ({ deck, cards, current_user }) => {
 
   const csrfMeta = useCSRF()
 
-  const toast = useToast()
+  // const toast = useToast()
 
   // TODO: 
   // const storageKey = `deck_${deck.id}_${current_user.id}`
@@ -235,12 +169,22 @@ export default ({ deck, cards, current_user }) => {
           handleRemove={removeCard}
         />
         <Browser
-          deckbox={deckbox}
-          cards={cards}
-          handleAdd={addCard}
-          handleRemove={removeCard}
-          handleUpdateDescription={setDescription}
-        />
+          // tabs={["Build", "Description"]}
+          tabs={["Description"]}
+        >
+          {/* <BuildTab
+            cards={cards}
+            handleAdd={addCard}
+            handleRemove={removeCard}
+          /> */}
+          <Textarea
+            value={deckbox.description}
+            placeholder='What is this deck all about?'
+            size='sm'
+            rows={25}
+            onBlur={(e) => setDescription(e.target.value)}
+          />
+        </Browser>
       </Stack>
     </PageWrapper>
   )

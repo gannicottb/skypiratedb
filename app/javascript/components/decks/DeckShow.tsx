@@ -1,4 +1,4 @@
-import { Avatar, Box, Divider, Flex, Heading, HStack, Link, SimpleGrid, Stack, Text, VStack, Wrap, WrapItem } from "@chakra-ui/react"
+import { Avatar, Box, Divider, Heading, HStack, Link, SimpleGrid, Stack, Text, VStack } from "@chakra-ui/react"
 import * as React from "react"
 import { Card } from "../Card"
 import PageWrapper from "../PageWrapper"
@@ -14,7 +14,7 @@ const EmplacementSlot = ({ slot, ...props }) => (
     padding={2}
     {...props}>
     <Avatar size='sm' name={slot.card.name} src={slot.card.image_url} />
-    <Slot slot={slot} showQuantity={false} />
+    <Slot deckSlot={slot} showQuantity={false} />
   </HStack>
 )
 
@@ -24,7 +24,6 @@ export default ({ deck, current_user }) => {
     captain,
     emplacements,
     hold,
-    holdMap,
     splash,
     splashFactions
   } = deckbox
@@ -38,9 +37,9 @@ export default ({ deck, current_user }) => {
           {/* Left Column */}
           <VStack alignItems='flex-start'>
             <HStack>
-              <Card displayMode="image" card={captain} width={180} />
+              {captain && <Card displayMode="image" card={captain} width={180} />}
               <VStack alignItems='flex-start' justifyContent='flex-start'>
-                <Text fontSize='2xl'>{captain.name}</Text>
+                {captain && <Text fontSize='2xl'>{captain.name}</Text>}
                 <Text>{splash.reduce((m, s) => m + s.quantity, 0)}/6 splashes from {splashFactions}</Text>
                 <Text>{hold.reduce((memo: number, slot: DeckSlot) => memo + slot.quantity, 0)} cards</Text>
               </VStack>
