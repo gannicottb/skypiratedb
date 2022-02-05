@@ -14,6 +14,7 @@ import {
 import * as React from 'react'
 import { PasswordField } from './PasswordField'
 import { EmailField } from './EmailField'
+import useCSRF from '../../hooks/useCSRF'
 
 export const LoginForm = (props: HTMLChakraProps<'form'>) => {
   const [mode, setMode] = React.useState("login") //login, register, forgot
@@ -23,7 +24,7 @@ export const LoginForm = (props: HTMLChakraProps<'form'>) => {
   const [username, setUsername] = React.useState("")
   const onInputChange = (fn) => (ev) => fn(ev.target.value)
 
-  const csrfMeta = document.getElementsByName('csrf-token')[0] as HTMLMetaElement;
+  const csrfMeta = useCSRF()
 
   const internals = () => {
     switch (mode) {
@@ -109,7 +110,7 @@ export const LoginForm = (props: HTMLChakraProps<'form'>) => {
               },
               body: JSON.stringify({ user: { email, name: username, password_confirmation: passwordConfirm, password } })
             }).then(data => {
-              window.location.href = data.url
+              window.location.href = data.url + "?new=true"
             })
             break;
           }

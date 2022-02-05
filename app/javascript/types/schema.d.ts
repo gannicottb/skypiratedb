@@ -25,7 +25,7 @@ interface User {
   id: number;
   email?: string;
   name: string;
-  created_at: Date
+  created_at: Date;
 }
 interface DeckSlot {
   quantity: number;
