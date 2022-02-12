@@ -28,7 +28,9 @@ export const Slot = ({ deckSlot, showQuantity, ...props }: SlotProps) => (
       </PopoverTrigger>
       <PopoverContent>
         <PopoverArrow />
-        <PopoverBody><Card card={deckSlot.card} displayMode="text"></Card></PopoverBody>
+        <PopoverBody>
+          <Card card={deckSlot.card} displayMode="text"></Card>
+        </PopoverBody>
       </PopoverContent>
     </Popover>
   </Box>

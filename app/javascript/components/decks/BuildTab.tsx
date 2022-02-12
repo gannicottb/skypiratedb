@@ -3,7 +3,7 @@ import * as React from "react"
 
 import { useFilter } from '../../hooks/useFilter'
 
-export const BuildTab = ({ cards, handleAdd, handleRemove }) => {
+export const BuildTab = ({ cards, handleSetSlot }) => {
   const [results, setResults] = React.useState<Card[]>([])
   const [query, setQuery] = React.useState("")
   const [cursor, setCursor] = React.useState(0)
@@ -32,7 +32,7 @@ export const BuildTab = ({ cards, handleAdd, handleRemove }) => {
     } else if (e.keyCode === 40 && cursor < results.length - 1) {
       setCursor(cursor + 1);
     } else if (e.keyCode === 13) {
-      handleAdd({ quantity: 1, card: results[cursor] })
+      handleSetSlot({ quantity: 1, card: results[cursor] })
       setQuery("")
       setResults([])
     }

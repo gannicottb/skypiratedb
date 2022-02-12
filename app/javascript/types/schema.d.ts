@@ -28,14 +28,16 @@ interface User {
   created_at: Date;
 }
 interface DeckSlot {
+  id?: number;
   quantity: number;
   card: Card
 }
 interface Deck {
   id: number;
   user: User;
+  name: string;
   description: string;
-  slots?: DeckSlot[]
+  slots: DeckSlot[]
   captain?: Card;
   faction?: string;
   splash_faction?: string;

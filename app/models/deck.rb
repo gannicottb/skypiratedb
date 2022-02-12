@@ -1,18 +1,29 @@
 class Deck < ApplicationRecord
   has_many :deck_slots, dependent: :destroy
   has_many :cards, through: :deck_slots
-  accepts_nested_attributes_for :deck_slots
+  accepts_nested_attributes_for :deck_slots, allow_destroy: true
   belongs_to :user
+
+  def deck_slots_attributes=(*args)
+    # Calculate which slots to destroy (the ones missing from args)
+    ids_to_destroy =
+      Set.new(self.deck_slots.map(&:id)) -
+      Set.new(args[0].map { |o| o["id"] })
+
+    args[0] += ids_to_destroy.to_a.map { |id| { id: id, _destroy: true } }
+
+    super(*args)
+  end
 
   def self.create_from_import(raw_text, params)
     rows = raw_text.split("\n").filter { |s| s.strip.present? }.map { |l| l.split(" ", 2) }
 
     Deck.create(
       params.merge(
-        deck_slots: rows.map { |r|
+        deck_slots_attributes: rows.map { |r|
           q, n = r
           card_id = Card.with_faces.where(front: { name: n }).pluck(:id).first
-          DeckSlot.new(quantity: q, card_id: card_id)
+          { quantity: q, card_id: card_id }
         },
       ),
     )

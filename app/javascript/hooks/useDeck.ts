@@ -8,7 +8,9 @@ export default (deck: Deck): Deckbox => {
   const hold = deck.slots.filter(s => holdTypes.includes(s.card.type))
 
   const holdMap = holdTypes.reduce((o, ht) => {
-    let group = hold.filter(h => h.card.type == ht)
+    let group = hold
+      .filter(h => h.card.type == ht)
+      .sort((a, b) => a.card.name.localeCompare(b.card.name))
     if (group.length > 0) { o[ht] = group }
     return o
   }, {})
