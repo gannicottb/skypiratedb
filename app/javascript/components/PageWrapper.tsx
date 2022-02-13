@@ -83,7 +83,7 @@ const Footer = () => (
   </Box>
 )
 
-export default ({ children, current_user }) => (
+export default ({ children, current_user, ...props }) => (
   <ChakraProvider theme={theme}>
     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
     <Flex direction='column' minHeight='100vh'>
@@ -101,7 +101,7 @@ export default ({ children, current_user }) => (
           <UserToggle current_user={current_user} />
         </HStack>
       </Flex>
-      <Container maxW='container.lg' pt={4} marginBlockEnd={14}>
+      <Container maxW='container.lg' pt={4} marginBlockEnd={14} {...props}>
         {children}
       </Container>
       <Footer />

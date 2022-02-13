@@ -12,6 +12,7 @@ import { BuildTab } from "./BuildTab"
 import { Emplacements } from "./Emplacements"
 import { Hold } from "./Hold"
 import { Slot } from "./Slot"
+import { WithPopover } from "./WithPopover"
 
 const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateName }) => {
   const [isSaving, setIsSaving] = React.useState(false)
@@ -69,7 +70,7 @@ const Summary = ({ deckbox }) => {
     <>
       <Text>{totalSplashes}/6 splashes from {listOfSplashes} {validIcon("splash")}</Text>
       <Text>{deckbox.emplacements.length}/4 emplacements {validIcon("emplacements")}</Text>
-      <Text>{totalHold} cards in Hold {validIcon("hold")}</Text>
+      <Text>{totalHold}/30 cards in Hold {validIcon("hold")}</Text>
     </>
   )
 }
@@ -79,7 +80,10 @@ const Editor = ({ deckbox, handleSetSlot, ...props }) => (
     <Stack direction={['column', 'row']} alignSelf='start'>
       <Image width={32} objectFit='contain' src={deckbox.captain?.image_url} />
       <VStack align='start'>
-        <Text fontSize='xl'>{deckbox.captain?.name}</Text>
+        <WithPopover
+          card={deckbox.captain}>
+          <Link fontSize='xl' href={`/cards/${deckbox.captain?.id}`}>{deckbox.captain?.name}</Link>
+        </WithPopover>
         <Summary deckbox={deckbox} />
       </VStack>
     </Stack>
@@ -117,6 +121,7 @@ const Browser = ({ deckbox, cards, handleSetSlot, handleSetDescription, ...props
       <TabPanels>
         <TabPanel>
           <BuildTab
+            deckbox={deckbox}
             cards={cards}
             handleSetSlot={handleSetSlot}
           />
@@ -222,7 +227,7 @@ export default ({ deck, cards, current_user }: DeckEditProps) => {
   }
 
   return (
-    <PageWrapper current_user={current_user}>
+    <PageWrapper current_user={current_user} maxW='container.xl'>
       <Stack
         direction={['column', 'row']}
         justifyContent='space-between'>

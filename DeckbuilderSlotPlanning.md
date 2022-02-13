@@ -62,4 +62,16 @@ So they're the same, we just want different onClick?
 
   The different emplacement display has somehow become intensely complex.
 
+  WithPopover
+
+  WithLink
+
+  WithModal
+
+  WithPopover
+    WithLink
+
+  WithPopover
+    WithModal
+
   

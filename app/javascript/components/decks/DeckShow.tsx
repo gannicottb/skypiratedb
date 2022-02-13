@@ -2,10 +2,8 @@ import { Avatar, Box, Divider, Heading, HStack, Link, SimpleGrid, Stack, Text, V
 import * as React from "react"
 import { Card } from "../Card"
 import PageWrapper from "../PageWrapper"
-import { Slot } from "./Slot"
 import useDeck from "../../hooks/useDeck"
 import { Hold } from "./Hold"
-import { EmplacementSlot } from "./EmplacementSlot"
 import { Emplacements } from "./Emplacements"
 
 export default ({ deck, current_user }) => {

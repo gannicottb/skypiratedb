@@ -4,7 +4,7 @@ import TraderIcon from 'images/trader.png'
 import DevotedIcon from 'images/devoted.png'
 import ImperialIcon from 'images/imperial.png'
 import NeutralIcon from 'images/neutral.png'
-import { Image } from "@chakra-ui/react"
+import { Image, Tooltip } from "@chakra-ui/react"
 import * as React from 'react'
 
 const IconMap = {
@@ -17,5 +17,5 @@ const IconMap = {
 }
 
 export const FactionIcon = ({ faction }) => (
-  <Image src={IconMap[faction]} width='16px' />
+  <Image src={IconMap[faction]} width='20px' />
 )

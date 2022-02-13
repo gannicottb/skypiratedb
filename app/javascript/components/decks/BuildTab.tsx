@@ -1,11 +1,15 @@
-import { Text, Input, Image, ButtonGroup, Button, Divider, Box, chakra, List, ListItem, Table, TableCaption, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react"
+import { Text, Input, Image, ButtonGroup, Button, Divider, Box, chakra, Link, ListItem, Table, TableCaption, Tbody, Td, Tfoot, Th, Thead, Tr, useColorModeValue, useDisclosure, Modal, HStack, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Tooltip, Stack, Spacer } from "@chakra-ui/react"
 import * as React from "react"
 
 import { stringInclude, useFilter } from '../../hooks/useFilter'
+import { Card } from "../Card"
 import { FactionIcon } from '../FactionIcon'
+import { WithModal } from "./WithModal"
+import { WithPopover } from "./WithPopover"
+import { sortBy } from 'lodash'
+import { TypeIcon } from "../TypeIcon"
 
-
-export const BuildTab = ({ cards, handleSetSlot }) => {
+export const BuildTab = ({ deckbox, cards, handleSetSlot }) => {
   // typeahead results specifically
   const [results, setResults] = React.useState<Card[]>([])
   const [query, setQuery] = React.useState("")
@@ -60,27 +64,30 @@ export const BuildTab = ({ cards, handleSetSlot }) => {
   }
 
   const handleKeyDown = (e) => {
-    if (e.keyCode === 38 && cursor > 0) {
+    if (e.keyCode === 38 && cursor > 0) { // up
       setCursor(cursor - 1);
-    } else if (e.keyCode === 40 && cursor < results.length - 1) {
+    } else if (e.keyCode === 40 && cursor < results.length - 1) { // down
       setCursor(cursor + 1);
-    } else if (e.keyCode === 13) {
+    } else if (e.keyCode === 13) { // enter
+      // Ideally this would trigger a modal for this item
+      // but I have no idea how to do that honestly
       handleSetSlot({ quantity: 1, card: results[cursor] })
       setQuery("")
       setResults([])
-    } else if (e.keyCode == 27) {
+    } else if (e.keyCode == 27) { // esc
       setResults([])
     }
   }
   //
 
-  const filtered = cards.filter(c => {
-    console.log(parseQuery(query))
-    return selectedFactions[c.faction] &&
-      (selectedTypes[c.type] || selectedTypes[c.subtype]) &&
-      parseQuery(query)
-  }
-  )
+  // all cards that are the right faction, type, and match the query in typeahead
+  // then sort by name, for now
+  const filtered = sortBy(
+    cards.filter(c => {
+      return selectedFactions[c.faction] &&
+        (selectedTypes[c.type] || selectedTypes[c.subtype]) &&
+        parseQuery(query)(c)
+    }), ['name'])
 
   return <Box>
     <chakra.div
@@ -92,39 +99,49 @@ export const BuildTab = ({ cards, handleSetSlot }) => {
         onKeyDown={handleKeyDown}
         value={query}
         autoFocus
-      ></Input>
+      />
       <Box
         position='absolute'
         zIndex='1'
         boxShadow='md'
-        bg='tomato'
+        bg={useColorModeValue('gray.50', 'gray.700')}
         borderRadius='lg'
         width='100%'
       >
         {results.map((card, index) => (
           <Text
             key={card.id}
-            padding='md'
+            padding={2}
             fontWeight={index === cursor ? 'extrabold' : 'normal'}
           >{card.name}</Text>
         ))}
       </Box>
     </chakra.div>
-    <ButtonGroup isAttached variant='outline' size='sm'>
-      {Object.keys(selectedFactions).map(t =>
-        <Button key={t}
-          onClick={() => handleSelectFaction(t)}
-          variant={selectedFactions[t] ? 'solid' : 'outline'}><FactionIcon faction={t} /></Button>
-      )}
-    </ButtonGroup>
-    <Divider />
-    <ButtonGroup isAttached variant='outline' size='sm'>
-      {Object.keys(selectedTypes).map(t =>
-        <Button key={t}
-          onClick={() => handleSelectType(t)}
-          variant={selectedTypes[t] ? 'solid' : 'outline'}>{t.slice(0, 4)}</Button>
-      )}
-    </ButtonGroup>
+    <Stack direction={['column', 'row']}>
+      <ButtonGroup isAttached variant='outline' size='sm'>
+        {Object.keys(selectedFactions).map(f =>
+          <Tooltip label={f}>
+            <Button key={f}
+              onClick={() => handleSelectFaction(f)}
+              variant={selectedFactions[f] ? 'solid' : 'outline'}>
+              <FactionIcon faction={f} />
+            </Button>
+          </Tooltip>
+        )}
+      </ButtonGroup>
+      <Spacer />
+      <ButtonGroup isAttached variant='outline' size='sm'>
+        {Object.keys(selectedTypes).map(t =>
+          <Tooltip label={t}>
+            <Button key={t}
+              onClick={() => handleSelectType(t)}
+              variant={selectedTypes[t] ? 'solid' : 'outline'}>
+              <TypeIcon type={t} />
+            </Button>
+          </Tooltip>
+        )}
+      </ButtonGroup>
+    </Stack>
     <Table variant='striped' colorScheme='gray'>
       <Thead>
         <Tr>
@@ -135,9 +152,17 @@ export const BuildTab = ({ cards, handleSetSlot }) => {
       </Thead>
       <Tbody>
         {filtered.map(c =>
-          <Tr>
-            <Td>{c.name}</Td>
-            <Td>{c.type.slice(0, 4)}</Td>
+          <Tr key={c.id}>
+            <Td>
+              <WithModal
+                deckSlot={deckbox.slots.find(s => s.card.id == c.id) || { quantity: 0, card: c }}
+                handleSetSlot={handleSetSlot}>
+                <WithPopover card={c}>
+                  <Link>{c.name}</Link>
+                </WithPopover>
+              </WithModal>
+            </Td>
+            <Td><TypeIcon type={c.type == "Emplacement" ? c.subtype : c.type} /></Td>
             <Td><FactionIcon faction={c.faction} /></Td>
           </Tr>
         )}

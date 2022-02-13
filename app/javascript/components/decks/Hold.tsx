@@ -9,7 +9,7 @@ interface HoldProps extends BoxProps {
 export const Hold = ({ deckbox, holdItem, ...props }: HoldProps) => {
   // default slot
   holdItem = holdItem == undefined ?
-    (d: DeckSlot) => <Slot key={d.id} deckSlot={d} showQuantity={true} /> :
+    (d: DeckSlot) => <Slot key={d.id} deckSlot={d} showQuantity={true} splashFactions={deckbox.splashFactions} /> :
     holdItem
 
   return (
