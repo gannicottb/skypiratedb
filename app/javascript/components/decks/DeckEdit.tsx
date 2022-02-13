@@ -1,5 +1,5 @@
-import { Button, Input, Image, Text, Textarea, Stack, VStack, Tab, TabList, TabPanel, TabPanels, Tabs, ButtonGroup, Divider, useToast, Box, Center, Editable, EditableInput, EditablePreview, Link, Heading, toast, HStack } from "@chakra-ui/react"
-import { faCheck, faCross, faQuestion } from "@fortawesome/free-solid-svg-icons"
+import { Button, Image, Text, Textarea, Stack, VStack, Tab, TabList, TabPanel, TabPanels, Tabs, Divider, useToast, Editable, EditableInput, EditablePreview, Link, HStack } from "@chakra-ui/react"
+import { faCheck, faQuestion } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { sumBy } from "lodash"
 import * as React from "react"
@@ -11,7 +11,6 @@ import { BuildSlot } from "./BuildSlot"
 import { BuildTab } from "./BuildTab"
 import { Emplacements } from "./Emplacements"
 import { Hold } from "./Hold"
-import { Slot } from "./Slot"
 import { WithPopover } from "./WithPopover"
 
 const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateName }) => {
