@@ -22,6 +22,7 @@ export const LoginForm = (props: HTMLChakraProps<'form'>) => {
   const [password, setPassword] = React.useState("")
   const [passwordConfirm, setPasswordConfirm] = React.useState("")
   const [username, setUsername] = React.useState("")
+  const [resetRequested, setResetRequested] = React.useState(false)
   const onInputChange = (fn) => (ev) => fn(ev.target.value)
 
   const csrfMeta = useCSRF()
@@ -65,16 +66,24 @@ export const LoginForm = (props: HTMLChakraProps<'form'>) => {
         )
       }
       case "forgot": {
-        return (<>
-          <EmailField value={email} onChange={onInputChange(setEmail)} />
-          <HStack spacing="4">
-            <Button type="submit" colorScheme="blue" size="lg" fontSize="md">
-              Reset my password
-            </Button>
-            <Text>Already have an account? <Link onClick={() => setMode("login")}>Log in</Link></Text>
-            <Link onClick={() => setMode("register")}>Register</Link>
-          </HStack>
-        </>)
+        return (
+          <>
+            {resetRequested ? (
+              <Text>Instructions have been sent to your email.</Text>
+            ) : (
+              <>
+                <EmailField value={email} onChange={onInputChange(setEmail)} />
+                <HStack spacing="4">
+                  <Button type="submit" colorScheme="blue" size="lg" fontSize="md">
+                    Reset my password
+                  </Button>
+                  <Text>Already have an account? <Link onClick={() => setMode("login")}>Log in</Link></Text>
+                  <Link onClick={() => setMode("register")}>Register</Link>
+                </HStack>
+              </>
+            )}
+          </>
+        )
       }
     }
   }
@@ -124,9 +133,8 @@ export const LoginForm = (props: HTMLChakraProps<'form'>) => {
                 'X-CSRF-Token': csrfMeta.content
               },
               body: JSON.stringify({ email: email })
-            }).then(data => {
-              window.location.href = data.url
-            })
+            }).then(response => response.json())
+              .then(json => json.errors.length == 0 && setResetRequested(true))
             break;
           }
           default: {
