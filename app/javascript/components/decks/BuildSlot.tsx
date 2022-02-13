@@ -1,18 +1,14 @@
-import { useDisclosure, Box, Image, Text, Popover, PopoverTrigger, PopoverContent, PopoverArrow, PopoverBody, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, HStack, ButtonGroup, Link } from "@chakra-ui/react"
+import { useDisclosure, Box, Image, Text, Popover, PopoverTrigger, PopoverContent, PopoverArrow, PopoverBody, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, HStack, ButtonGroup, Link, chakra } from "@chakra-ui/react"
+import { faCircle, faTint } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import * as React from "react"
 import { Card } from "../Card"
+import { EmplacementSlot } from "./EmplacementSlot"
+import { GenericSlot } from "./GenericSlot"
 
-/*
-It really seems like instead of add/remove we just want
-
-setSlot(qty, card)
-
-with a reducer. If we get a new one, add it. If we get an existing one, set qty.
-if the qty is 0, remove it.
-*/
-
-export const BuildSlot = ({ deckSlot, handleSetSlot, ...props }) => {
+//  GenericSlot wrapping a Link with a Modal that opens on click
+export const BuildSlot = ({ deckSlot, splashFactions, handleSetSlot, ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const maxCardsFor = (type: string) => {
@@ -28,18 +24,11 @@ export const BuildSlot = ({ deckSlot, handleSetSlot, ...props }) => {
 
   return (
     <Box {...props}>
-      <Popover isLazy trigger='hover' placement='auto'>
-        <span>{deckSlot.quantity}x </span>
-        <PopoverTrigger>
-          <Link onClick={onOpen}>{deckSlot.card.name}</Link>
-        </PopoverTrigger>
-        <PopoverContent>
-          <PopoverArrow />
-          <PopoverBody>
-            <Card card={deckSlot.card} displayMode="text"></Card>
-          </PopoverBody>
-        </PopoverContent>
-      </Popover>
+      <GenericSlot
+        deckSlot={deckSlot}
+        splashFactions={splashFactions}>
+        <Link onClick={onOpen}>{deckSlot.card.name}</Link>
+      </GenericSlot>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

@@ -8,7 +8,9 @@ interface HoldProps extends BoxProps {
 }
 export const Hold = ({ deckbox, holdItem, ...props }: HoldProps) => {
   // default slot
-  holdItem = holdItem == undefined ? (d: DeckSlot) => <Slot deckSlot={d} showQuantity={true} /> : holdItem
+  holdItem = holdItem == undefined ?
+    (d: DeckSlot) => <Slot key={d.id} deckSlot={d} showQuantity={true} /> :
+    holdItem
 
   return (
     <Box {...props}>
@@ -16,8 +18,6 @@ export const Hold = ({ deckbox, holdItem, ...props }: HoldProps) => {
         {Object.entries(deckbox.holdMap).map(([type, slots]) =>
           <Box marginBlockEnd={4} key={`hold-${type}`}>
             <Text fontSize='sm' fontWeight='bold' color='gray.500'>{type} ({slots.reduce((sum, s) => sum + s.quantity, 0)})</Text>
-            {/* {slots.map(s => <Slot deckSlot={s} showQuantity={true} key={s.card.id} />)} */}
-            {/* {slots.map(s => <Inner deckSlot={s} key={s.card.id} />)} */}
             {slots.map(holdItem)}
           </Box>
         )}

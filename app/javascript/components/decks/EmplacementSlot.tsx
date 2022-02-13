@@ -1,5 +1,6 @@
 import { Box, Center, HStack, Avatar, Image, useColorModeValue } from "@chakra-ui/react";
 import * as React from "react";
+import { GenericSlot } from "./GenericSlot";
 import { Slot } from "./Slot";
 
 export const EmplacementSlot = ({ slot, ...props }) => {

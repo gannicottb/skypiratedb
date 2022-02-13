@@ -80,7 +80,7 @@ export default ({ decks, current_user }) => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  <Emplacements emplacements={deckbox.emplacements} />
+                  <Emplacements deckbox={deckbox} />
                   <Hold deckbox={deckbox} />
                   <HStack>
                     <Link href={'/decks/' + deck.id}>View</Link>

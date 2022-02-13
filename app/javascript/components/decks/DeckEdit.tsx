@@ -1,4 +1,6 @@
 import { Button, Input, Image, Text, Textarea, Stack, VStack, Tab, TabList, TabPanel, TabPanels, Tabs, ButtonGroup, Divider, useToast, Box, Center, Editable, EditableInput, EditablePreview, Link, Heading, toast, HStack } from "@chakra-ui/react"
+import { faCheck, faCross, faQuestion } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { sumBy } from "lodash"
 import * as React from "react"
 import useCSRF from "../../hooks/useCSRF"
@@ -50,35 +52,84 @@ const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateName }) => {
   )
 }
 
+const Summary = ({ deckbox }) => {
+  const totalSplashes = sumBy(deckbox.splash, (s: DeckSlot) => s.quantity)
+  const listOfSplashes = deckbox.splashFactions.join(", ")
+  const totalHold = sumBy(deckbox.hold, (s: DeckSlot) => s.quantity)
+
+  const validation = {
+    "splash": totalSplashes <= 6 && deckbox.splashFactions.length <= 1,
+    "emplacements": deckbox.emplacements.length == 4,
+    "hold": totalHold == 30
+  }
+  const validIcon = (key: string) => (
+    <FontAwesomeIcon icon={validation[key] ? faCheck : faQuestion} />
+  )
+  return (
+    <>
+      <Text>{totalSplashes}/6 splashes from {listOfSplashes} {validIcon("splash")}</Text>
+      <Text>{deckbox.emplacements.length}/4 emplacements {validIcon("emplacements")}</Text>
+      <Text>{totalHold} cards in Hold {validIcon("hold")}</Text>
+    </>
+  )
+}
+
 const Editor = ({ deckbox, handleSetSlot, ...props }) => (
   <VStack>
     <Stack direction={['column', 'row']} alignSelf='start'>
       <Image width={32} objectFit='contain' src={deckbox.captain?.image_url} />
       <VStack align='start'>
         <Text fontSize='xl'>{deckbox.captain?.name}</Text>
-        <Text>{sumBy(deckbox.splash, (s: DeckSlot) => s.quantity)}/6 splashes from {deckbox.splashFactions}</Text>
-        <Text>{sumBy(deckbox.hold, (s: DeckSlot) => s.quantity)} cards</Text>
+        <Summary deckbox={deckbox} />
       </VStack>
     </Stack>
     <Divider />
-    <Emplacements emplacements={deckbox.emplacements} />
+    <Emplacements
+      deckbox={deckbox}
+      emplacementItem={(s) =>
+        <BuildSlot
+          handleSetSlot={handleSetSlot}
+          splashFactions={deckbox.splashFactions}
+          deckSlot={s}
+          key={s.card.id} />
+      }
+    />
     <Hold
       deckbox={deckbox}
-      // holdItem={(s) => <Slot deckSlot={s} showQuantity={true} key={s.card.id} />}
-      holdItem={(s) => <BuildSlot handleSetSlot={handleSetSlot} deckSlot={s} key={s.card.id} />}
+      holdItem={(s) =>
+        <BuildSlot
+          handleSetSlot={handleSetSlot}
+          splashFactions={deckbox.splashFactions}
+          deckSlot={s}
+          key={s.card.id}
+        />}
     />
     {React.Children.map(props.children, c => c)}
   </VStack>
 )
 
-const Browser = ({ tabs, ...props }) => {
+const Browser = ({ deckbox, cards, handleSetSlot, handleSetDescription, ...props }) => {
   return (
-    <Tabs width='50%'>
+    <Tabs width='50%' {...props}>
       <TabList>
-        {tabs.map(t => <Tab key={t}>{t}</Tab>)}
+        {["Build", "Description"].map(t => <Tab key={t}>{t}</Tab>)}
       </TabList>
       <TabPanels>
-        {React.Children.map(props.children, c => <TabPanel key={1}>{c}</TabPanel>)}
+        <TabPanel>
+          <BuildTab
+            cards={cards}
+            handleSetSlot={handleSetSlot}
+          />
+        </TabPanel>
+        <TabPanel>
+          <Textarea
+            defaultValue={deckbox.description}
+            placeholder='What is this deck all about?'
+            size='sm'
+            rows={25}
+            onBlur={(e) => handleSetDescription(e.target.value)}
+          />
+        </TabPanel>
       </TabPanels>
     </Tabs>
   )
@@ -111,14 +162,24 @@ export default ({ deck, cards, current_user }: DeckEditProps) => {
 
     if (existing) {
       // Update existing slot
+      console.log(`update existing: ${existing.quantity} -> ${quantity}x  ${card.name}`)
       updated.slots = rest.concat(
         { ...existing, quantity }
       )
     } else {
       // Add a new slot
-      updated.slots = rest.concat(
-        { quantity, card }
-      )
+      console.log(`add new: ${quantity}x ${card.name}`)
+      if (card.type == "Captain") {
+        // Handle adding a captain differently. There can only be one.
+        updated.slots = rest.filter(s => s.card.type != "Captain").concat(
+          { quantity, card }
+        )
+        updated.captain = card
+      } else {
+        updated.slots = rest.concat(
+          { quantity, card }
+        )
+      }
     }
     // Remove emmpty slots
     updated.slots = updated.slots.filter(s => s.quantity > 0)
@@ -165,7 +226,6 @@ export default ({ deck, cards, current_user }: DeckEditProps) => {
       <Stack
         direction={['column', 'row']}
         justifyContent='space-between'>
-
         <Editor
           deckbox={deckbox}
           handleSetSlot={setSlot}
@@ -178,20 +238,11 @@ export default ({ deck, cards, current_user }: DeckEditProps) => {
           />
         </Editor>
         <Browser
-          tabs={["Build", "Description"]}
-        >
-          <BuildTab
-            cards={cards}
-            handleSetSlot={setSlot}
-          />
-          < Textarea
-            defaultValue={deckbox.description}
-            placeholder='What is this deck all about?'
-            size='sm'
-            rows={25}
-            onBlur={(e) => setDescription(e.target.value)}
-          />
-        </Browser>
+          deckbox={deckbox}
+          cards={cards}
+          handleSetSlot={setSlot}
+          handleSetDescription={setDescription}
+        />
       </Stack>
     </PageWrapper>
   )

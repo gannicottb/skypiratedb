@@ -48,5 +48,5 @@ interface Deckbox extends Deck {
   hold: DeckSlot[],
   holdMap: { [index: string]: DeckSlot[] },
   splash: DeckSlot[],
-  splashFactions: Set<string>
+  splashFactions: string[]
 }
