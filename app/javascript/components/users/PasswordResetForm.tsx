@@ -23,7 +23,6 @@ export const PasswordResetForm = ({ token, user }) => {
       },
       body: JSON.stringify({ user: { password: password, password_confirmation: passwordConfirm } })
     }).then(data => {
-      debugger;
       window.location.href = data.url
     })
   )
@@ -33,7 +32,6 @@ export const PasswordResetForm = ({ token, user }) => {
       width="md"
       onSubmit={(e) => {
         e.preventDefault()
-        debugger;
         submitNewPassword()
       }}
     >
