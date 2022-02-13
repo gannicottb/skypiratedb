@@ -71,7 +71,7 @@ export const BuildTab = ({ deckbox, cards, handleSetSlot }) => {
   const filtered = sortBy(
     cards.filter(c => {
       return selectedFactions[c.faction] &&
-        (selectedTypes[c.type] || selectedTypes[c.subtype]) &&
+        (c.type == "Emplacement" ? selectedTypes[c.subtype] : selectedTypes[c.type]) &&
         parseQuery(query)(c)
     }), ['name'])
 
