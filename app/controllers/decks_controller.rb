@@ -36,7 +36,7 @@ class DecksController < ApplicationController
   def update
     render(status: :unauthorized) unless @deck.user == current_user
 
-    if @deck.update(deck_params.to_h)
+    if @deck.update(deck_params)
       @deck
     else
       render json: @post.errors, status: :unprocessable_entity

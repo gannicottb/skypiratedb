@@ -9,40 +9,26 @@ import { WithPopover } from "./WithPopover"
 import { sortBy } from 'lodash'
 import { TypeIcon } from "../TypeIcon"
 
+// Given a list of flags, maintain on/off for each.
+const useToggleMap = (flags: string[]): [{}, (string) => void] => {
+  const map = flags.reduce((prev, curr) => { prev[curr] = false; return prev }, {})
+  const [toggles, setToggles] = React.useState(map)
+  const toggleFlag = (flag) => {
+    const updated = { ...toggles }
+    updated[flag] = !updated[flag]
+    setToggles(updated)
+  }
+  return [toggles, toggleFlag]
+}
+
 export const BuildTab = ({ deckbox, cards, handleSetSlot }) => {
   // typeahead results specifically
   const [results, setResults] = React.useState<Card[]>([])
   const [query, setQuery] = React.useState("")
   const [cursor, setCursor] = React.useState(0)
-
-  // cards listed in the main tray
-  const [selectedFactions, setSelectedFactions] = React.useState({
-    "Pirate": false,
-    "Imperial": false,
-    "Trader": false,
-    "Ghost": false,
-    "Devoted": false,
-    "Neutral": false
-  })
-  const handleSelectFaction = (faction) => {
-    const updated = { ...selectedFactions }
-    updated[faction] = !updated[faction]
-    setSelectedFactions(updated)
-  }
-  const [selectedTypes, setSelectedTypes] = React.useState({
-    "Captain": false,
-    "Structure": false,
-    "Cannon": false,
-    "Asset": false,
-    "Crew": false,
-    "Maneuver": false,
-    "Special Ammo": false
-  })
-  const handleSelectType = (type) => {
-    const updated = { ...selectedTypes }
-    updated[type] = !updated[type]
-    setSelectedTypes(updated)
-  }
+  // filter buttons
+  const [selectedFactions, handleSelectFaction] = useToggleMap(["Pirate", "Imperial", "Trader", "Ghost", "Devoted", "Neutral"])
+  const [selectedTypes, handleSelectType] = useToggleMap(["Captain", "Structure", "Cannon", "Asset", "Crew", "Maneuver", "Special Ammo"])
 
   // TYPEAHEAD
   const parseQuery = useFilter()
