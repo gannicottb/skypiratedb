@@ -4,6 +4,7 @@ class Deck < ApplicationRecord
   accepts_nested_attributes_for :deck_slots, allow_destroy: true
   belongs_to :user
 
+  # Modify default nested attributes behavior - treat the input attributes as the correct full set
   def deck_slots_attributes=(*args)
     # Calculate which slots to destroy (the ones missing from args)
     ids_to_destroy =
