@@ -2,10 +2,8 @@ import { Avatar, Box, Divider, Heading, HStack, Link, SimpleGrid, Stack, Text, V
 import * as React from "react"
 import { Card } from "../Card"
 import PageWrapper from "../PageWrapper"
-import { Slot } from "./Slot"
 import useDeck from "../../hooks/useDeck"
 import { Hold } from "./Hold"
-import { EmplacementSlot } from "./EmplacementSlot"
 import { Emplacements } from "./Emplacements"
 
 export default ({ deck, current_user }) => {
@@ -34,7 +32,7 @@ export default ({ deck, current_user }) => {
                 <Text>{hold.reduce((memo: number, slot: DeckSlot) => memo + slot.quantity, 0)} cards</Text>
               </VStack>
             </HStack>
-            <Emplacements emplacements={emplacements} />
+            <Emplacements deckbox={deckbox} />
             <Hold deckbox={deckbox} />
           </VStack>
           {/* Right Column */}

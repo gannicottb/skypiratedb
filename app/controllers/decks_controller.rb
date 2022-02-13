@@ -2,6 +2,8 @@ class DecksController < ApplicationController
   before_action :set_deck, only: [:show, :update, :edit]
   before_action :require_login, only: [:update, :create, :import, :edit]
 
+  # https://www.mintbit.com/blog/implement-jbuilder-for-creating-json-response-in-ruby-on-rails
+
   def index
     @decks = Deck.order(created_at: :desc).take(50)
   end
@@ -34,7 +36,11 @@ class DecksController < ApplicationController
   def update
     render(status: :unauthorized) unless @deck.user == current_user
 
-    @deck.update(deck_params)
+    if @deck.update(deck_params)
+      @deck
+    else
+      render json: @post.errors, status: :unprocessable_entity
+    end
   end
 
   private
@@ -44,7 +50,7 @@ class DecksController < ApplicationController
   end
 
   def deck_params
-    params.require(:deck).permit(:name, :description, deck_slots: [:quantity, :card_id])
+    params.require(:deck).permit(:name, :description, deck_slots_attributes: [:id, :quantity, :card_id])
   end
 
   def import_params

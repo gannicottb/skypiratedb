@@ -10,7 +10,8 @@ json.splash_faction deck.splash_factions.first&.name
 
 
 json.slots deck.deck_slots do |ds|
-  json.quantity ds.quantity
+  json.(ds, :id, :quantity)
+  #json.is_splash ds.card.faction == deck.faction
   json.card do
     json.partial! "cards/card", card: ds.card
   end
