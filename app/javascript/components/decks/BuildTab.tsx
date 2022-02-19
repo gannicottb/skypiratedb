@@ -35,7 +35,10 @@ export const BuildTab = ({ deckbox, cards, handleSetSlot }) => {
   const [searchQty, setSearchQty] = React.useState(2)
 
   const doSearch = (q) => {
-    const results = cards.filter(c => stringInclude("name")(c, q))
+    const results = cards.filter((c: Card) =>
+      !["Token", "Status"].includes(c.type) &&
+      stringInclude("name")(c, q)
+    )
     setResults(results)
     setCursor(0)
   }
