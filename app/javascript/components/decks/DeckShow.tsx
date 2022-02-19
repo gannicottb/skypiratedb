@@ -5,6 +5,7 @@ import PageWrapper from "../PageWrapper"
 import useDeck from "../../hooks/useDeck"
 import { Hold } from "./Hold"
 import { Emplacements } from "./Emplacements"
+import { WithPopover } from "./WithPopover"
 
 export default ({ deck, current_user }) => {
   const deckbox = useDeck(deck)
@@ -27,7 +28,10 @@ export default ({ deck, current_user }) => {
             <HStack>
               {captain && <Card displayMode="image" card={captain} width={180} />}
               <VStack alignItems='flex-start' justifyContent='flex-start'>
-                {captain && <Text fontSize='2xl'>{captain.name}</Text>}
+                {captain &&
+                  <WithPopover card={captain}>
+                    <Link fontSize='2xl'>{captain.name}</Link>
+                  </WithPopover>}
                 <Text>{splash.reduce((m, s) => m + s.quantity, 0)}/6 splashes from {splashFactions}</Text>
                 <Text>{hold.reduce((memo: number, slot: DeckSlot) => memo + slot.quantity, 0)} cards</Text>
               </VStack>
