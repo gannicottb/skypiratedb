@@ -1,8 +1,8 @@
-import { Text, Input, Image, ButtonGroup, Button, Divider, Box, chakra, Link, ListItem, Table, TableCaption, Tbody, Td, Tfoot, Th, Thead, Tr, useColorModeValue, useDisclosure, Modal, HStack, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Tooltip, Stack, Spacer } from "@chakra-ui/react"
+import { Text, Input, Image, ButtonGroup, Button, Divider, Box, chakra, Link, ListItem, Table, TableCaption, Tbody, Td, Tfoot, Th, Thead, Tr, useColorModeValue, useDisclosure, Modal, HStack, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Tooltip, Stack, Spacer, InputGroup, NumberInput, NumberInputField, NumberDecrementStepper, NumberIncrementStepper, NumberInputStepper } from "@chakra-ui/react"
 import * as React from "react"
 
-import { stringInclude, useFilter } from '../../hooks/useFilter'
-import { Card } from "../Card"
+import { defaultKeyMap, stringInclude, useFilter } from '../../hooks/useFilter'
+import QuerySyntaxHelp from '../QuerySyntaxHelp'
 import { FactionIcon } from '../FactionIcon'
 import { WithModal } from "./WithModal"
 import { WithPopover } from "./WithPopover"
@@ -32,6 +32,7 @@ export const BuildTab = ({ deckbox, cards, handleSetSlot }) => {
 
   // TYPEAHEAD
   const parseQuery = useFilter()
+  const [searchQty, setSearchQty] = React.useState(2)
 
   const doSearch = (q) => {
     const results = cards.filter(c => stringInclude("name")(c, q))
@@ -57,13 +58,14 @@ export const BuildTab = ({ deckbox, cards, handleSetSlot }) => {
     } else if (e.keyCode === 13) { // enter
       // Ideally this would trigger a modal for this item
       // but I have no idea how to do that honestly
-      handleSetSlot({ quantity: 1, card: results[cursor] })
+      handleSetSlot({ quantity: searchQty, card: results[cursor] })
       setQuery("")
       setResults([])
     } else if (e.keyCode == 27) { // esc
       setResults([])
     }
   }
+
   //
 
   // all cards that are the right faction, type, and match the query in typeahead
@@ -79,13 +81,29 @@ export const BuildTab = ({ deckbox, cards, handleSetSlot }) => {
     <chakra.div
       position='relative'
     >
-      <Input
-        placeholder='Find a card'
-        onInput={handleInput}
-        onKeyDown={handleKeyDown}
-        value={query}
-        autoFocus
-      />
+      <InputGroup>
+        <NumberInput defaultValue={2} min={1} max={2}
+          value={searchQty}
+          maxW={16}
+          onChange={(v) => setSearchQty(Number(v))}
+        >
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+        <Input
+          placeholder='Find a card'
+          onInput={handleInput}
+          onKeyDown={handleKeyDown}
+          value={query}
+          autoFocus
+        />
+        <QuerySyntaxHelp
+          keywordHelp={Object.keys(defaultKeyMap).map(k => ({ kw: k, desc: defaultKeyMap[k].arg }))}
+        />
+      </InputGroup>
       <Box
         position='absolute'
         zIndex='1'
@@ -99,11 +117,15 @@ export const BuildTab = ({ deckbox, cards, handleSetSlot }) => {
             key={card.id}
             padding={2}
             fontWeight={index === cursor ? 'extrabold' : 'normal'}
+            bg={index === cursor ? 'blue.500' : 'inherit'}
           >{card.name}</Text>
         ))}
       </Box>
     </chakra.div>
-    <Stack direction={['column', 'row']}>
+
+    <Stack direction={['column', 'row']}
+      marginTop={4}
+    >
       <ButtonGroup isAttached variant='outline' size='sm'>
         {Object.keys(selectedFactions).map(f =>
           <Tooltip label={f}>

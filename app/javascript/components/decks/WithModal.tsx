@@ -2,7 +2,7 @@ import { Box, Button, ButtonGroup, HStack, Image, Modal, ModalBody, ModalCloseBu
 import * as React from "react"
 import { Card } from "../Card"
 
-export const WithModal = ({ deckSlot, handleSetSlot, children }) => {
+export const WithModal = ({ deckSlot, handleSetSlot, children, ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const maxCardsFor = (type: string) => {

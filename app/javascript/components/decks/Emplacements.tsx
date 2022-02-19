@@ -19,7 +19,7 @@ export const Emplacements = ({ deckbox, emplacementItem, ...props }: Emplacement
   const EmplacementRow = ({ slots, ...props }) => (
     <SimpleGrid columns={[1, 4]} spacing={2} {...props}>
       {slots.map(s =>
-        <EmplacementWrap deckSlot={s}>
+        <EmplacementWrap deckSlot={s} key={s.card.id}>
           {emplacementItem(s)}
         </EmplacementWrap>
       )}

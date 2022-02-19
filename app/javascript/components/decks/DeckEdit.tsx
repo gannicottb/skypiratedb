@@ -159,6 +159,13 @@ export default ({ deck, cards, current_user }: DeckEditProps) => {
   // const storageKey = `deck_${deck.id}_${current_user.id}`
   // const [unsavedChanges, setUnsavedChanges] = useLocalStorage(storageKey, {})
 
+  const maxCardsFor = (type: string) => {
+    return {
+      "Captain": 1,
+      "Emplacement": 1
+    }[type] || 2
+  }
+
   const setSlot = ({ quantity, card }) => {
     const updated: Deck = deepCopy(current)
     const existing = updated.slots.filter(s => s.card.id == card.id)?.[0]
@@ -176,12 +183,12 @@ export default ({ deck, cards, current_user }: DeckEditProps) => {
       if (card.type == "Captain") {
         // Handle adding a captain differently. There can only be one.
         updated.slots = rest.filter(s => s.card.type != "Captain").concat(
-          { quantity, card }
+          { quantity: 1, card }
         )
         updated.captain = card
       } else {
         updated.slots = rest.concat(
-          { quantity, card }
+          { quantity: Math.min(quantity, maxCardsFor(card.type)), card }
         )
       }
     }

@@ -22,7 +22,7 @@ interface KeyMap {
     arg: string
   }
 }
-const defaultKeyMap = {
+export const defaultKeyMap = {
   "x": { fn: stringInclude, arg: "raw_text" },
   "t": { fn: stringExactMatch, arg: "type" },
   "sup": { fn: stringExactMatch, arg: "supertype" },
