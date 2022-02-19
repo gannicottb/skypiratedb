@@ -1,11 +1,10 @@
 import { Button, Image, Text, Textarea, Stack, VStack, Tab, TabList, TabPanel, TabPanels, Tabs, Divider, useToast, Editable, EditableInput, EditablePreview, Link, HStack } from "@chakra-ui/react"
 import { faCheck, faQuestion } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { sumBy } from "lodash"
+import { sumBy, isEqual } from "lodash"
 import * as React from "react"
 import useCSRF from "../../hooks/useCSRF"
 import useDeck from "../../hooks/useDeck"
-import { useLocalStorage } from "../../hooks/useLocalStorage"
 import PageWrapper from "../PageWrapper"
 import { BuildSlot } from "./BuildSlot"
 import { BuildTab } from "./BuildTab"
@@ -13,7 +12,7 @@ import { Emplacements } from "./Emplacements"
 import { Hold } from "./Hold"
 import { WithPopover } from "./WithPopover"
 
-const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateName }) => {
+const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateAttr, isDirty }) => {
   const [isSaving, setIsSaving] = React.useState(false)
   const toast = useToast()
   return (
@@ -21,7 +20,7 @@ const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateName }) => {
       <Editable fontSize='lg' fontWeight='bold' defaultValue={deckbox.name}>
         <EditablePreview />
         <EditableInput
-          onBlur={(e) => handleUpdateName(e.target.value)}
+          onBlur={(e) => handleUpdateAttr('name', e.target.value)}
         />
       </Editable>
       <HStack>
@@ -36,7 +35,7 @@ const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateName }) => {
           }}
           colorScheme='green'
           isLoading={isSaving}
-        >Save</Button>
+        >Save{isDirty && '*'}</Button>
         <Button
           as='a'
           href={`/decks/${deckbox.id}`}
@@ -111,7 +110,7 @@ const Editor = ({ deckbox, handleSetSlot, ...props }) => (
   </VStack>
 )
 
-const Browser = ({ deckbox, cards, handleSetSlot, handleSetDescription, ...props }) => {
+const Browser = ({ deckbox, cards, handleSetSlot, handleUpdateAttr, ...props }) => {
   return (
     <Tabs width='50%' {...props}>
       <TabList>
@@ -131,7 +130,7 @@ const Browser = ({ deckbox, cards, handleSetSlot, handleSetDescription, ...props
             placeholder='What is this deck all about?'
             size='sm'
             rows={25}
-            onBlur={(e) => handleSetDescription(e.target.value)}
+            onBlur={(e) => handleUpdateAttr('description', e.target.value)}
           />
         </TabPanel>
       </TabPanels>
@@ -148,6 +147,8 @@ interface DeckEditProps {
 }
 // Wrap it all up
 export default ({ deck, cards, current_user }: DeckEditProps) => {
+  // "checkpoint" that tells us if we have unsaved changes
+  const [lastSave, setLastSave] = React.useState(deck)
   // maintain the internal deck state
   const [current, setCurrent] = React.useState(deck)
   // enhance the current deck
@@ -155,9 +156,7 @@ export default ({ deck, cards, current_user }: DeckEditProps) => {
 
   const csrfMeta = useCSRF()
 
-  // TODO: 
-  // const storageKey = `deck_${deck.id}_${current_user.id}`
-  // const [unsavedChanges, setUnsavedChanges] = useLocalStorage(storageKey, {})
+  const isDirty = React.useMemo(() => !isEqual(lastSave, current), [lastSave, current])
 
   const maxCardsFor = (type: string) => {
     return {
@@ -216,19 +215,16 @@ export default ({ deck, cards, current_user }: DeckEditProps) => {
         }
       })
     }).then(response => response.json())
-      .then(json => setCurrent(json.deck))
+      .then(json => {
+        setCurrent(json.deck)
+        setLastSave(json.deck)
+      })
   }
   const deleteDeck = () => (true)
 
-  const setDescription = (description: string) => {
-    const updated = deepCopy(current)
-    updated.description = description
-    setCurrent(updated)
-  }
-
-  const setName = (name: string) => {
-    const updated = deepCopy(current)
-    updated.name = name
+  const setAttribute = (k, v) => {
+    let updated = deepCopy(current)
+    updated[k] = v
     setCurrent(updated)
   }
 
@@ -245,14 +241,15 @@ export default ({ deck, cards, current_user }: DeckEditProps) => {
             deckbox={deckbox}
             handleSave={saveDeck}
             handleDelete={deleteDeck}
-            handleUpdateName={setName}
+            handleUpdateAttr={setAttribute}
+            isDirty={isDirty}
           />
         </Editor>
         <Browser
           deckbox={deckbox}
           cards={cards}
           handleSetSlot={setSlot}
-          handleSetDescription={setDescription}
+          handleUpdateAttr={setAttribute}
         />
       </Stack>
     </PageWrapper>
