@@ -50,7 +50,11 @@ const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateAttr, isDirty
           colorScheme='blue'
         >View</Button>
         <Button
-          onClick={handleDelete}
+          onClick={() => {
+            if (confirm("Are you sure? Deletion is final.")) {
+              handleDelete()
+            }
+          }}
           variant='outline'
           colorScheme='red'
         >Delete</Button>
@@ -230,7 +234,17 @@ export default ({ deck, cards, current_user }: DeckEditProps) => {
         setLastSave(json.deck)
       })
   }
-  const deleteDeck = () => (true)
+  const deleteDeck = () => {
+    fetch(`/decks/${current.id}`, {
+      method: "DELETE",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfMeta.content
+      }
+    }).then(data => window.location.href = data.url)
+  }
 
   const setAttribute = (k, v) => {
     let updated = deepCopy(current)

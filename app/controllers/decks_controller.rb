@@ -1,14 +1,13 @@
 class DecksController < ApplicationController
-  before_action :set_deck, only: [:show, :update, :edit]
+  before_action :set_deck, only: [:show, :update, :edit, :destroy]
   before_action :require_login, only: [:update, :create, :import, :edit]
-
-  # https://www.mintbit.com/blog/implement-jbuilder-for-creating-json-response-in-ruby-on-rails
 
   def index
     @decks = Deck.where(public: true).order(created_at: :desc).take(100)
   end
 
   def show
+    raise ActiveRecord::RecordNotFound.new("Not Found") if @deck.private? && @deck.user != current_user
   end
 
   def create
@@ -29,18 +28,25 @@ class DecksController < ApplicationController
   end
 
   def edit
-    render(status: :unauthorized) unless @deck.user == current_user
+    head :unauthorized unless @deck.user == current_user
     @cards = Card.includes(:expansion, front: [:subtype, :type, :supertype, :faction, :artist]).all
   end
 
+  # https://www.mintbit.com/blog/implement-jbuilder-for-creating-json-response-in-ruby-on-rails
   def update
-    render(status: :unauthorized) unless @deck.user == current_user
+    head :unauthorized unless @deck.user == current_user
 
     if @deck.update(deck_params)
       @deck
     else
       render json: @post.errors, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    head :unauthorized unless @deck.user == current_user
+    @deck.destroy
+    redirect_to my_decks_path
   end
 
   private

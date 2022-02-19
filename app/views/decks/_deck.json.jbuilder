@@ -1,4 +1,4 @@
-json.(deck, :id, :name, :description, :public, :created_at)
+json.(deck, :id, :name, :description, :public, :created_at, :updated_at)
 
 json.captain do
   json.partial! "cards/card", card: deck.captain if deck.captain.present?

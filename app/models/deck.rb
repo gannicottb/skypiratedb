@@ -49,4 +49,8 @@ class Deck < ApplicationRecord
   def splash_factions # Faction[]
     Set.new(splash_slots.map { |s| s.card.faction }).to_a
   end
+
+  def private?
+    !public
+  end
 end
