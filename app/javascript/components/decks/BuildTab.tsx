@@ -131,8 +131,8 @@ export const BuildTab = ({ deckbox, cards, handleSetSlot }) => {
     >
       <ButtonGroup isAttached variant='outline' size='sm'>
         {Object.keys(selectedFactions).map(f =>
-          <Tooltip label={f}>
-            <Button key={f}
+          <Tooltip key={f} label={f}>
+            <Button
               onClick={() => handleSelectFaction(f)}
               variant={selectedFactions[f] ? 'solid' : 'outline'}>
               <FactionIcon faction={f} />
@@ -143,8 +143,8 @@ export const BuildTab = ({ deckbox, cards, handleSetSlot }) => {
       <Spacer />
       <ButtonGroup isAttached variant='outline' size='sm'>
         {Object.keys(selectedTypes).map(t =>
-          <Tooltip label={t}>
-            <Button key={t}
+          <Tooltip label={t} key={t}>
+            <Button
               onClick={() => handleSelectType(t)}
               variant={selectedTypes[t] ? 'solid' : 'outline'}>
               <TypeIcon type={t} />

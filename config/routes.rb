@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :decks, only: [:index, :show, :create, :edit, :update] do
+  resources :decks, only: [:index, :show, :create, :edit, :update, :destroy] do
     collection do
       post :import
     end

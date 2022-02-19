@@ -32,7 +32,7 @@ export default ({ deck, current_user }) => {
                 <Text>{hold.reduce((memo: number, slot: DeckSlot) => memo + slot.quantity, 0)} cards</Text>
               </VStack>
             </HStack>
-            <Emplacements deckbox={deckbox} />
+            <Emplacements maxW='lg' deckbox={deckbox} />
             <Hold deckbox={deckbox} />
           </VStack>
           {/* Right Column */}

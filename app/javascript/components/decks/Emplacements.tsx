@@ -1,9 +1,9 @@
-import { Box, SimpleGrid } from "@chakra-ui/react"
+import { Box, SimpleGrid, SimpleGridProps } from "@chakra-ui/react"
 import * as React from "react"
 import { EmplacementWrap } from "./EmplacementWrap"
 import { Slot } from "./Slot"
 
-interface EmplacementsProps {
+interface EmplacementsProps extends SimpleGridProps {
   deckbox: Deckbox,
   emplacementItem?: (DeckSlot) => any
 }

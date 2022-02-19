@@ -7,6 +7,26 @@ import { CaptainBadge } from "./CaptainBadge"
 import { Emplacements } from "./Emplacements"
 import { Hold } from "./Hold"
 
+const NewDeckButton = () => {
+  const csrfMeta = useCSRF()
+  const handleClick = () => {
+    fetch("/decks", {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfMeta.content
+      },
+      body: JSON.stringify({})
+    }).then(data => window.location.href = data.url)
+  }
+
+  return (
+    <Button onClick={handleClick}>+ New Deck</Button>
+  )
+}
+
 function ImportControl() {
   const csrfMeta = useCSRF()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -64,7 +84,10 @@ export default ({ decks, current_user }) => {
       <VStack spacing={4} alignItems='flex-start'>
         <Heading>My Decks</Heading>
         <Divider />
-        <ImportControl />
+        <HStack>
+          <NewDeckButton />
+          <ImportControl />
+        </HStack>
         <Accordion defaultIndex={[]} allowMultiple width='100%'>
           {decks.map(deck => {
             const deckbox = useDeck(deck)
