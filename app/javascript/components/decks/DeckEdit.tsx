@@ -1,4 +1,4 @@
-import { Button, Image, Text, Textarea, Stack, VStack, Tab, TabList, TabPanel, TabPanels, Tabs, Divider, useToast, Editable, EditableInput, EditablePreview, Link, HStack } from "@chakra-ui/react"
+import { Button, Image, Text, Textarea, Stack, VStack, Tab, TabList, TabPanel, TabPanels, Tabs, Divider, useToast, Editable, EditableInput, EditablePreview, Link, HStack, RadioGroup, Radio } from "@chakra-ui/react"
 import { faCheck, faQuestion } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { sumBy, isEqual } from "lodash"
@@ -16,13 +16,21 @@ const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateAttr, isDirty
   const [isSaving, setIsSaving] = React.useState(false)
   const toast = useToast()
   return (
-    <>
+    <VStack alignSelf='start' alignItems='start'>
       <Editable fontSize='lg' fontWeight='bold' defaultValue={deckbox.name}>
         <EditablePreview />
         <EditableInput
           onBlur={(e) => handleUpdateAttr('name', e.target.value)}
         />
       </Editable>
+      <RadioGroup
+        onChange={() => handleUpdateAttr('public', !deckbox.public)}
+        value={Number(deckbox.public)}>
+        <Stack direction='row'>
+          <Radio value={1}>Public</Radio>
+          <Radio value={0}>Private</Radio>
+        </Stack>
+      </RadioGroup>
       <HStack>
         <Button
           onClick={(e) => {
@@ -47,7 +55,7 @@ const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateAttr, isDirty
           colorScheme='red'
         >Delete</Button>
       </HStack>
-    </>
+    </VStack>
   )
 }
 
@@ -106,6 +114,7 @@ const Editor = ({ deckbox, handleSetSlot, ...props }) => (
           key={s.card.id}
         />}
     />
+    <Divider />
     {React.Children.map(props.children, c => c)}
   </VStack>
 )
@@ -211,6 +220,7 @@ export default ({ deck, cards, current_user }: DeckEditProps) => {
         deck: {
           name: current.name,
           description: current.description,
+          public: current.public,
           deck_slots_attributes: current.slots.map(s => ({ id: s.id, quantity: s.quantity, card_id: s.card.id }))
         }
       })

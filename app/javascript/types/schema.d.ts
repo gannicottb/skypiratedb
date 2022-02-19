@@ -41,6 +41,7 @@ interface Deck {
   captain?: Card;
   faction?: string;
   splash_faction?: string;
+  public: boolean
   created_at: Date
 }
 interface Deckbox extends Deck {

@@ -5,7 +5,7 @@ class DecksController < ApplicationController
   # https://www.mintbit.com/blog/implement-jbuilder-for-creating-json-response-in-ruby-on-rails
 
   def index
-    @decks = Deck.order(created_at: :desc).take(50)
+    @decks = Deck.where(public: true).order(created_at: :desc).take(100)
   end
 
   def show
@@ -50,7 +50,7 @@ class DecksController < ApplicationController
   end
 
   def deck_params
-    params.require(:deck).permit(:name, :description, deck_slots_attributes: [:id, :quantity, :card_id])
+    params.require(:deck).permit(:name, :description, :public, deck_slots_attributes: [:id, :quantity, :card_id])
   end
 
   def import_params
