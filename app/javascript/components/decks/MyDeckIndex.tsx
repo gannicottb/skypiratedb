@@ -88,7 +88,7 @@ export default ({ decks, current_user }) => {
           <NewDeckButton />
           <ImportControl />
         </HStack>
-        <Accordion defaultIndex={[]} allowMultiple width='100%'>
+        <Accordion defaultIndex={[]} width='100%'>
           {decks.map(deck => {
             const deckbox = useDeck(deck)
             return (
