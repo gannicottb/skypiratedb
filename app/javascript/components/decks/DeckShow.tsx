@@ -6,6 +6,7 @@ import useDeck from "../../hooks/useDeck"
 import { Hold } from "./Hold"
 import { Emplacements } from "./Emplacements"
 import { WithPopover } from "./WithPopover"
+import { ExportDeck } from "./ExportDeck"
 
 export default ({ deck, current_user }) => {
   const deckbox = useDeck(deck)
@@ -38,6 +39,10 @@ export default ({ deck, current_user }) => {
             </HStack>
             <Emplacements maxW='lg' deckbox={deckbox} />
             <Hold deckbox={deckbox} />
+            <Divider />
+            <ExportDeck deckbox={deckbox}>
+              <Link>Export</Link>
+            </ExportDeck>
           </VStack>
           {/* Right Column */}
           <VStack alignItems='flex-start' alignSelf='flex-start'>
