@@ -9,6 +9,7 @@ import PageWrapper from "../PageWrapper"
 import { BuildSlot } from "./BuildSlot"
 import { BuildTab } from "./BuildTab"
 import { Emplacements } from "./Emplacements"
+import { ExportDeck } from "./ExportDeck"
 import { Hold } from "./Hold"
 import { WithPopover } from "./WithPopover"
 
@@ -49,6 +50,11 @@ const Controls = ({ deckbox, handleSave, handleDelete, handleUpdateAttr, isDirty
           href={`/decks/${deckbox.id}`}
           colorScheme='blue'
         >View</Button>
+        <ExportDeck deckbox={deckbox}>
+          <Button colorScheme='teal'>
+            Export
+          </Button>
+        </ExportDeck>
         <Button
           onClick={() => {
             if (confirm("Are you sure? Deletion is final.")) {
