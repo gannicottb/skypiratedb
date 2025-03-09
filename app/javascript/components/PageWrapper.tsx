@@ -79,7 +79,7 @@ const Footer = () => (
     <Text>
       Submit bugs and feature requests on <Link color='blue.600' href='https://github.com/gannicottb/skypiratedb'>Github.</Link>
     </Text>
-    <Text>&copy; 2022 Winding Road Games. All rights reserved.</Text>
+    <Text>&copy; 2025 Winding Road Games. All rights reserved.</Text>
   </Box>
 )
 
