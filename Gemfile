@@ -38,6 +38,8 @@ gem "mutex_m"
 gem "bigdecimal"
 gem "benchmark"
 gem "ostruct"
+gem "csv"
+gem "logger"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
