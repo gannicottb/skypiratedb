@@ -40,6 +40,7 @@ gem "benchmark"
 gem "ostruct"
 gem "csv"
 gem "logger"
+gem 'concurrent-ruby', '1.3.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
